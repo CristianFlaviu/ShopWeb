@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ButtonModule } from 'primeng/button';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent],
@@ -13,6 +14,7 @@ import { ButtonModule } from 'primeng/button';
     AppRoutingModule,
     BrowserAnimationsModule,
     ButtonModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent],
