@@ -2,16 +2,15 @@ import { Injectable } from '@angular/core';
 import * as signalR from '@aspnet/signalr';
 import { environment } from 'src/environments/environment';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SignalRService {
-
-  private hubconnection!: signalR.HubConnection;
+  private hubconnection: signalR.HubConnection;
 
   public startConnection = () => {
     this.hubconnection = new signalR.HubConnectionBuilder()
-     .withUrl(environment.apiSignalR)
-    .build();
+      .withUrl(environment.apiSignalR)
+      .build();
 
     this.hubconnection
       .start()
@@ -26,5 +25,4 @@ export class SignalRService {
     });
   };
   constructor() {}
-
 }
