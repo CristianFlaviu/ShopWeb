@@ -4,6 +4,5 @@ export class UserRegister {
   public Firstname: string;
   public Lastname: string;
   public PhoneNumber: string;
-  public Birthdate: Date;
   public Password: string;
 }

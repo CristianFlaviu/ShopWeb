@@ -2,7 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { UserLogin } from 'src/app/data_models/authentication/user-login.model';
+import { UserRegister } from 'src/app/data_models/authentication/user-register.model';
 import { authCodeFlowConfig } from 'src/app/globals/auth.config';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -12,23 +14,33 @@ export class AuthentiicationService {
 
   constructor(private oautth: OAuthService, private http: HttpClient) {}
 
-  public async Login(username: string, paswword: string): Promise<any> {
+  public async login(username: string, paswword: string): Promise<any> {
     this.oautth.configure(authCodeFlowConfig);
 
     // this.oautth.setupAutomaticSilentRefresh();
-
     return await this.oautth.fetchTokenUsingPasswordFlow(username, paswword);
   }
 
-  public refreshToken() {
-    this.oautth.refreshToken();
+  public register(userRegister: UserRegister): Promise<any> {
+    return this.http
+      .post(environment.apiUrl + '/auth/register', userRegister)
+      .toPromise();
   }
 
+  public confirmEmail(email: string, token: string): Promise<any> {
+    return this.http
+      .post(environment.apiUrl + '/auth/confirm-email', { email, token })
+      .toPromise();
+  }
   public getUser(): UserLogin {
     return this.currentUser;
   }
 
-  public GetWeather() {
-    return this.http.get('https://localhost:5001/WeatherForecast').toPromise();
-  }
+  // public refreshToken() {
+  //   this.oautth.refreshToken();
+  // }
+
+  // public GetWeather() {
+  //   return this.http.get('https://localhost:5001/WeatherForecast').toPromise();
+  // }
 }

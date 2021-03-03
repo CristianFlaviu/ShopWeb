@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 export const authCodeFlowConfig: AuthConfig = {
   // Url of the Identity Provider
   issuer: environment.apiUrl,
-  tokenEndpoint: environment.apiUrl + '/api/auth/login',
+  tokenEndpoint: environment.apiUrl + '/auth/login',
 
   // URL of the SPA to redirect the user to after login
   redirectUri: window.location.origin + '/index.html',

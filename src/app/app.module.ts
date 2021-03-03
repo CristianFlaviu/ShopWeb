@@ -20,13 +20,16 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { ConfirmEmailComponent } from './pages/confirm-email/confirm-email.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     TopBarComponent,
     FooterComponent,
+    ConfirmEmailComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +46,8 @@ import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
     MatCheckboxModule,
     MatIconModule,
     MatToolbarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     SnotifyModule.forRoot(),
     OAuthModule.forRoot({
       resourceServer: {
@@ -54,6 +59,7 @@ import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
   providers: [
     { provide: OAuthStorage, useValue: localStorage },
     SnotifyService,
+    MatDatepickerModule,
     { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
   ],
   bootstrap: [AppComponent],
