@@ -23,6 +23,10 @@ import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ConfirmEmailComponent } from './pages/confirm-email/confirm-email.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+import { HomeComponent } from './pages/home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,12 +34,16 @@ import { ConfirmEmailComponent } from './pages/confirm-email/confirm-email.compo
     TopBarComponent,
     FooterComponent,
     ConfirmEmailComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
+    MatMenuModule,
+    MatListModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ButtonModule,
+    MatSidenavModule,
     MatButtonModule,
     HttpClientModule,
     MatCardModule,

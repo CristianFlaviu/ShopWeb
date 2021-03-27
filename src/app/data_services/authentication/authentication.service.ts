@@ -4,6 +4,7 @@ import { OAuthService } from 'angular-oauth2-oidc';
 import { UserLogin } from 'src/app/data_models/authentication/user-login.model';
 import { UserRegister } from 'src/app/data_models/authentication/user-register.model';
 import { authCodeFlowConfig } from 'src/app/globals/auth.config';
+import { CommandResult } from 'src/app/globals/commandResult';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -21,9 +22,9 @@ export class AuthentiicationService {
     return await this.oautth.fetchTokenUsingPasswordFlow(username, paswword);
   }
 
-  public register(userRegister: UserRegister): Promise<any> {
+  public register(userRegister: UserRegister): Promise<CommandResult<any>> {
     return this.http
-      .post(environment.apiUrl + '/auth/register', userRegister)
+      .post<CommandResult<any>>(environment.apiUrl + '/auth/register', userRegister)
       .toPromise();
   }
 

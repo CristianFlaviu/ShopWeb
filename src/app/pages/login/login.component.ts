@@ -1,10 +1,12 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { SnotifyService } from 'ng-snotify';
+import { SnotifyService, SnotifyToast } from 'ng-snotify';
+import { constants } from 'node:buffer';
 import { UserLogin } from 'src/app/data_models/authentication/user-login.model';
 import { UserRegister } from 'src/app/data_models/authentication/user-register.model';
 import { AuthentiicationService } from 'src/app/data_services/authentication/authentication.service';
+import { UserMessages } from 'src/app/globals/constants';
 import { SignalRService } from '../../data_services/signalR/signalR.service';
 
 @Component({
@@ -29,18 +31,29 @@ export class LoginComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.singalService.startConnection();
+    this.singalService.addTransferData();
+  }
 
   login(): void {
     this.authService.login(this.userLogin.Email, this.userLogin.Password).then(
-      (data) => {
-        console.log(data);
-        this.snotifyService.success('success', 'ee');
+      () => {
+        this.router.navigate(['/home']);
       },
       (err) => {
-        console.log('hmm', err);
-        this.snotifyService.error('error', 'mno');
-        console.log(this.selectedTabIndex);
+        console.log(err);
+        switch (err.status) {
+          case 401: {
+            this.snotifyService.error(err.error, { timeout: 5000 });
+            break;
+          }
+          case 404: {
+            this.snotifyService.error(UserMessages.general.serverError, {
+              timeout: 5000,
+            });
+          }
+        }
       }
     );
   }
@@ -50,18 +63,26 @@ export class LoginComponent implements OnInit {
       if (this.registerPassword === this.confirmationPassword) {
         this.userRegister.Password = this.registerPassword;
       }
-      this.authService.register(this.userRegister).then(
-        () => {
-          this.snotifyService.success('Succesfully Registered');
-          this.form.resetForm();
-          this.userRegister = new UserRegister();
-          this.selectedTabIndex = 0;
-        },
-        (err) => {
-          this.snotifyService.error('failRegister', 'mno');
+      this.authService
+        .register(this.userRegister)
+        .then((data) => {
+          if (data.isSuccess) {
+            this.form.resetForm();
+            this.userRegister = new UserRegister();
+            this.selectedTabIndex = 0;
+            this.snotifyService.success(
+              UserMessages.login.succesfullyRegistered
+            );
+          } else {
+            this.snotifyService.error(data.errorMessage);
+          }
+        })
+        .catch((err) => {
+          this.snotifyService.error(UserMessages.general.serverError, {
+            timeout: 5000,
+          });
           console.log(err);
-        }
-      );
+        });
     }
   }
 

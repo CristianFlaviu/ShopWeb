@@ -1,14 +1,37 @@
 <mat-toolbar color="primary">
-
   <mat-toolbar-row>
-    <span>Shop Assistant</span>
-    <span class="example-spacer"></span>
-    <button mat-icon-button  aria-label="Example icon-button with heart icon">
-      <mat-icon>person</mat-icon>
+    <button mat-icon-button>
+      <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
     </button>
+    <h1>Shop Assistant</h1>
+    <span class="menu-spacer"></span>
+    <div>
+      <a mat-button [routerLink]="'/create-account'"> <img alt="" src="./../../../assets/icons/shopping_cart.png" ></a>
 
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon>shopping_cart</mat-icon>
-    </button>
+      <button mat-button [matMenuTriggerFor]="menu" style="font-size: 18px;">Cristian Flaviu <i class="pi pi-angle-down"></i></button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>Item 1</button>
+        <button mat-menu-item>Item 2</button>
+      </mat-menu>
+    </div>
   </mat-toolbar-row>
+
 </mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav>
+    <mat-nav-list>
+
+      <a mat-list-item [routerLink]="'/accounts'"> Accounts </a>
+      <a mat-list-item [routerLink]="'/create-account'"> Create Account </a>
+      <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
+
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content style="height: 88vh;">
+
+    <router-outlet></router-outlet>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
