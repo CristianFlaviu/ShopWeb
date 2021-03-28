@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { UserLogin } from 'src/app/data_models/authentication/user-login.model';
 import { UserRegister } from 'src/app/data_models/authentication/user-register.model';
@@ -24,7 +25,10 @@ export class AuthentiicationService {
 
   public register(userRegister: UserRegister): Promise<CommandResult<any>> {
     return this.http
-      .post<CommandResult<any>>(environment.apiUrl + '/auth/register', userRegister)
+      .post<CommandResult<any>>(
+        environment.apiUrl + '/auth/register',
+        userRegister
+      )
       .toPromise();
   }
 
@@ -37,6 +41,13 @@ export class AuthentiicationService {
     return this.currentUser;
   }
 
+  public isLoggedIn(): boolean {
+    return this.oautth.hasValidAccessToken();
+  }
+
+  public logout(): void {
+    this.oautth.logOut();
+  }
   // public refreshToken() {
   //   this.oautth.refreshToken();
   // }

@@ -1,15 +1,22 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthentiicationService } from 'src/app/data_services/authentication/authentication.service';
 
 @Component({
   selector: 'app-top-bar',
   templateUrl: './top-bar.component.html',
-  styleUrls: ['./top-bar.component.scss']
+  styleUrls: ['./top-bar.component.scss'],
 })
 export class TopBarComponent implements OnInit {
+  constructor(
+    private authentiicationService: AuthentiicationService,
+    private router: Router
+  ) {}
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
+  public logout() {
+    this.authentiicationService.logout();
+    this.router.navigate(['/']);
   }
-
 }

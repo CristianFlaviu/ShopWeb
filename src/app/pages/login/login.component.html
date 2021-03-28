@@ -1,7 +1,7 @@
 <mat-card class="login-card">
   <mat-card-title class="header-text">Login</mat-card-title>
 
-  <mat-tab-group mat-stretch-tabs class="example-stretched-tabs" [(selectedIndex)]="selectedTabIndex" >
+  <mat-tab-group mat-stretch-tabs class="example-stretched-tabs" [(selectedIndex)]="selectedTabIndex">
 
     <!-- Sign In -->
     <mat-tab label="Sign In">
@@ -17,7 +17,7 @@
 
           <mat-form-field class="input-form-field">
             <input matInput placeholder="Password" [(ngModel)]="userLogin.Password" type="password" required
-              minlength="6" name="password" ngModel #passwordInput="ngModel">
+              autocomplete="off" minlength="6" name="password" ngModel #passwordInput="ngModel">
             <mat-error *ngIf="passwordInput.errors && passwordInput.errors.required">
               Password is required
             </mat-error>
@@ -82,8 +82,10 @@
 
           <!-- Password 1 -->
           <mat-form-field class="input-form-field">
-            <input matInput placeholder="Password" [(ngModel)]="registerPassword" type="password" required minlength="6"
-              name="password" ngModel #password="ngModel">
+            <input matInput placeholder="Password" autocomplete="off" [(ngModel)]="registerPassword" type="password"
+              required minlength="6" name="password" ngModel #password="ngModel">
+
+
             <mat-error *ngIf="password.errors && password.errors.required">
               Password is required
             </mat-error>
@@ -96,7 +98,7 @@
           <!-- Password 2 -->
           <mat-form-field class="input-form-field">
             <input matInput placeholder="Confirm Password" type="password" [(ngModel)]="confirmationPassword" required
-              minlength="6" name="repassword" ngModel #repassword="ngModel">
+              autocomplete="off" minlength="6" name="repassword" ngModel #repassword="ngModel">
             <mat-error *ngIf="repassword.errors && repassword.errors.required">
               Confirmation Password is required
             </mat-error>

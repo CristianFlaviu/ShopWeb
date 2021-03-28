@@ -6,12 +6,16 @@
     <h1>Shop Assistant</h1>
     <span class="menu-spacer"></span>
     <div>
-      <a mat-button [routerLink]="'/create-account'"> <img alt="" src="./../../../assets/icons/shopping_cart.png" ></a>
+ 
+      <mat-icon matBadge="2" matBadgeColor="warn" style="font-size: 35px;margin-right: 20px; vertical-align:middle;">shopping_cart</mat-icon>
+      <!-- <a mat-button [routerLink]="'/create-account'"> <img alt="" src="./../../../assets/icons/shopping_cart.png"
+          matBadge="15" matBadgeColor="warn"></a> -->
 
-      <button mat-button [matMenuTriggerFor]="menu" style="font-size: 18px;">Cristian Flaviu <i class="pi pi-angle-down"></i></button>
+      <button mat-button [matMenuTriggerFor]="menu" style="font-size: 20px;">Cristian Flaviu <i
+          class="pi pi-angle-down"></i></button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item>Item 1</button>
-        <button mat-menu-item>Item 2</button>
+        <button mat-menu-item (click)="logout()">Logout</button>
+        <button mat-menu-item>Profile</button>
       </mat-menu>
     </div>
   </mat-toolbar-row>
@@ -29,7 +33,7 @@
     </mat-nav-list>
   </mat-sidenav>
 
-  <mat-sidenav-content style="height: 88vh;">
+  <mat-sidenav-content style="height: 90vh;">
 
     <router-outlet></router-outlet>
 

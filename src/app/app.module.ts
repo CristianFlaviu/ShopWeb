@@ -27,6 +27,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { HomeComponent } from './pages/home/home.component';
+import { AuthGuard } from './globals/auth-guard';
+import { MatBadgeModule } from '@angular/material/badge';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,6 +58,7 @@ import { HomeComponent } from './pages/home/home.component';
     MatToolbarModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatBadgeModule,
     SnotifyModule.forRoot(),
     OAuthModule.forRoot({
       resourceServer: {
@@ -66,9 +69,10 @@ import { HomeComponent } from './pages/home/home.component';
   ],
   providers: [
     { provide: OAuthStorage, useValue: localStorage },
+    { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
     SnotifyService,
     MatDatepickerModule,
-    { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
+    AuthGuard,
   ],
   bootstrap: [AppComponent],
 })
