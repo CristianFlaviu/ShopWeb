@@ -9,7 +9,7 @@ import { AuthentiicationService } from 'src/app/data_services/authentication/aut
 })
 export class TopBarComponent implements OnInit {
   constructor(
-    private authentiicationService: AuthentiicationService,
+    public authentiicationService: AuthentiicationService,
     private router: Router
   ) {}
 

@@ -29,6 +29,51 @@ import { MatMenuModule } from '@angular/material/menu';
 import { HomeComponent } from './pages/home/home.component';
 import { AuthGuard } from './globals/auth-guard';
 import { MatBadgeModule } from '@angular/material/badge';
+import { TableModule } from 'primeng/table';
+import { BarcodeScanComponent } from './pages/barcode/barcode-scan/barcode-scan.component';
+import { CalendarModule } from 'primeng/calendar';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputTextModule } from 'primeng/inputtext';
+import { CardModule } from 'primeng/card';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+
+const primeNgComponents = [
+  CalendarModule,
+  ProgressBarModule,
+  ProgressBarModule,
+  MultiSelectModule,
+  DropdownModule,
+  TableModule,
+  InputTextModule,
+  CardModule,
+];
+
+const materialComponents = [
+  MatMenuModule,
+  MatListModule,
+  MatListModule,
+  MatSidenavModule,
+  MatButtonModule,
+  MatCardModule,
+  MatInputModule,
+  MatProgressSpinnerModule,
+  MatTabsModule,
+  MatCheckboxModule,
+  MatIconModule,
+  MatToolbarModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatBadgeModule,
+  MatGridListModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatSortModule
+];
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,28 +82,15 @@ import { MatBadgeModule } from '@angular/material/badge';
     FooterComponent,
     ConfirmEmailComponent,
     HomeComponent,
+    BarcodeScanComponent,
   ],
   imports: [
     BrowserModule,
-    MatMenuModule,
-    MatListModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ButtonModule,
-    MatSidenavModule,
-    MatButtonModule,
     HttpClientModule,
-    MatCardModule,
-    MatInputModule,
     FormsModule,
-    MatProgressSpinnerModule,
-    MatTabsModule,
-    MatCheckboxModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatBadgeModule,
     SnotifyModule.forRoot(),
     OAuthModule.forRoot({
       resourceServer: {
@@ -66,6 +98,8 @@ import { MatBadgeModule } from '@angular/material/badge';
         sendAccessToken: true,
       },
     }),
+    primeNgComponents,
+    materialComponents,
   ],
   providers: [
     { provide: OAuthStorage, useValue: localStorage },

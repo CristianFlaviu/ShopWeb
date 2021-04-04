@@ -26,6 +26,7 @@
     "angular-oauth2-oidc-jwks": "^9.0.0",
     "mdbootstrap": "^4.19.2",
     "ng-snotify": "^9.0.1",
+    "primeflex": "^2.0.0",
     "primeicons": "^4.1.0",
     "primeng": "^11.2.3",
     "rxjs": "~6.6.0",

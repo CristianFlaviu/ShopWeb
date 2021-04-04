@@ -23,6 +23,9 @@ export class LoginComponent implements OnInit {
   public confirmationPassword: string;
   public selectedTabIndex = 0;
 
+  public isError = false;
+  public errorMessage: string;
+
   showSpinner = false;
   constructor(
     private singalService: SignalRService,
@@ -45,10 +48,15 @@ export class LoginComponent implements OnInit {
         console.log(err);
         switch (err.status) {
           case 401: {
+            this.errorMessage = err.error;
+            this.isError = true;
+
             this.snotifyService.error(err.error, { timeout: 5000 });
             break;
           }
           case 404: {
+            this.errorMessage = UserMessages.general.serverError;
+            this.isError = true;
             this.snotifyService.error(UserMessages.general.serverError, {
               timeout: 5000,
             });

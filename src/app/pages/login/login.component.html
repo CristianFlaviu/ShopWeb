@@ -27,15 +27,18 @@
             <mat-icon matSuffix>lock</mat-icon>
           </mat-form-field>
 
-          <mat-checkbox class="input-form-field">Remember Me</mat-checkbox>
+          <!-- <span class="input-form-field">forget password?</span> -->
 
           <!-- Button Sign In -->
+          <mat-error *ngIf="isError" class="input-form-field link">
+            {{errorMessage}}
+          </mat-error>
           <button mat-raised-button color="primary" class="login-button" (click)="login()">
             Sign In
           </button>
 
           <button mat-raised-button class="login-button">
-            Login with Google
+            Forgot Password
           </button>
         </form>
       </mat-card-content>
@@ -51,7 +54,7 @@
           <mat-form-field class="input-form-field">
             <input matInput placeholder="Last Name" [(ngModel)]="userRegister.Lastname" required name="lastname" ngModel
               #lastname="ngModel">
-            <mat-error *ngIf="lastname.invalid">Last Name</mat-error>
+            <mat-error *ngIf="lastname.invalid">Last Name is required</mat-error>
             <mat-icon matSuffix>person</mat-icon>
           </mat-form-field>
 

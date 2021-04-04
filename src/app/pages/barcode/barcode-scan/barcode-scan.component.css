@@ -1,0 +1,27 @@
+.product-left {
+  text-align: center;
+  font-family: "SanaSansAlt", sans-serif;
+}
+
+.product-title {
+  width: 50%;
+  margin: 0 auto 3% auto;
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+
+.product-image {
+  height: 320px;
+  margin: auto;
+}
+
+/* ------------ */
+.table-info {
+  width: 80%;
+  margin: auto;
+}
+
+.product-info {
+  width: 65%;
+  margin: 3% auto;
+}
