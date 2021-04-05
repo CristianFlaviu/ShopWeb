@@ -25,3 +25,152 @@
   width: 65%;
   margin: 3% auto;
 }
+
+:host ::ng-deep .bigger-stars .p-rating .p-rating-icon {
+  font-size: 23px;
+  color: #f9bf3b;
+}
+
+.price {
+  font-size: 30px;
+  font-family: "SanaSansAlt", sans-serif;
+  font-weight: 500;
+}
+
+.tva {
+  color: #7c808c;
+  font-weight: 400;
+  font-size: 15px;
+}
+
+.space-div {
+  margin-top: 2%;
+}
+
+.first-info-div {
+  margin-top: 3%;
+}
+
+.space-line {
+  width: 70%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  margin-left: 0%;
+  color: #7c808c;
+}
+
+/*  Carusel */
+
+.product-item .product-item-content {
+  background: white;
+  border: 1px solid var(--surface-d);
+  border-radius: 3px;
+  margin: 0.3rem;
+  text-align: center;
+  padding: 15px 0 5px 0;
+}
+
+.product-item .product-image {
+  width: 50%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.header-carusel {
+  font-weight: 500;
+  font-size: 20px;
+  display: block;
+  margin-top: 15px;
+  height: 40px;
+}
+
+.carusel_image {
+  height: 170px;
+}
+.carusel-reducere {
+  position: absolute;
+  top: 3px;
+  left: 15px;
+  font-weight: 500;
+  color: red;
+}
+
+.carusel-product-title {
+  font-size: 15px;
+  font-family: "SanaSansAlt", sans-serif;
+}
+
+.carusel-old-price {
+  line-height: 0.5em;
+  position: relative;
+  width: 25%;
+  margin: 5px auto;
+  color: gray;
+}
+.carusel-old-price::after {
+  border-bottom: 1px solid gray;
+  content: "";
+  left: 0;
+  margin-top: calc(0.125em / 2 * -1);
+  position: absolute;
+  right: 0;
+  top: 60%;
+}
+.carusel-new-price {
+  font-size: 18px;
+  font-weight: 500;
+  color: red;
+}
+
+:host ::ng-deep .carusel-stars .p-rating .p-rating-icon {
+  color: #f9bf3b;
+  font-size: 15px;
+}
+
+/* specificatii*/
+.specifations {
+  margin: 10px 0;
+
+  font-size: 30px;
+}
+
+.table {
+  width: 100%;
+  max-width: 100%;
+}
+
+tr {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857;
+  color: #222;
+  border-collapse: collapse;
+  border-spacing: 0;
+  white-space: pre-line;
+  box-sizing: border-box;
+  background-color: #eff9fe;
+}
+
+
+.mytr{
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  font-family: "Open Sans",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  border-collapse: collapse;
+  border-spacing: 0;
+  white-space: pre-line;
+  box-sizing: border-box;
+  color: #888;
+  min-height: 1px;
+  width: 33.33333%;
+  position: static;
+  float: none;
+  display: table-cell;
+  padding: 8px;
+  line-height: 1.42857;
+  vertical-align: top;
+  border-top: 1px solid transparent;
+}
+

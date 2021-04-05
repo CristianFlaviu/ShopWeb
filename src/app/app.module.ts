@@ -41,6 +41,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { RatingModule } from 'primeng/rating';
+import { CarouselModule } from 'primeng/carousel';
 
 const primeNgComponents = [
   CalendarModule,
@@ -51,6 +53,8 @@ const primeNgComponents = [
   TableModule,
   InputTextModule,
   CardModule,
+  RatingModule,
+  CarouselModule,
 ];
 
 const materialComponents = [
@@ -72,7 +76,7 @@ const materialComponents = [
   MatGridListModule,
   MatTableModule,
   MatPaginatorModule,
-  MatSortModule
+  MatSortModule,
 ];
 @NgModule({
   declarations: [

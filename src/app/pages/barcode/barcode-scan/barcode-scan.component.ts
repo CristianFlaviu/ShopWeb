@@ -25,6 +25,7 @@ export class BarcodeScanComponent implements OnInit, AfterViewInit {
   dataSource: MatTableDataSource<BarcodeScan>;
   displayedColumns: string[] = ['productName', 'barcode', 'scanDate', 'price'];
 
+  public rating = 4;
   public columns = [
     { field: 'productName', header: 'Product Name' },
     { field: 'barcode', header: 'Barcode' },
@@ -47,6 +48,26 @@ export class BarcodeScanComponent implements OnInit, AfterViewInit {
     },
   ];
 
+  products: any[] = [1, 2, 3, 4, 5, 6, 7];
+
+  responsiveOptions = [
+    {
+      breakpoint: '1024px',
+      numVisible: 3,
+      numScroll: 3,
+    },
+    {
+      breakpoint: '768px',
+      numVisible: 2,
+      numScroll: 2,
+    },
+    {
+      breakpoint: '560px',
+      numVisible: 1,
+      numScroll: 1,
+    },
+  ];
+
   constructor(private productService: ProductsService) {}
 
   ngOnInit() {
@@ -64,5 +85,9 @@ export class BarcodeScanComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+
+  public mt() {
+    console.log('ceva');
   }
 }
