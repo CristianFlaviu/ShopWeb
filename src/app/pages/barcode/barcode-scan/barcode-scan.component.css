@@ -60,6 +60,9 @@
 }
 
 /*  Carusel */
+.product-item {
+  min-height: 200px;
+}
 
 .product-item .product-item-content {
   background: white;
@@ -68,6 +71,7 @@
   margin: 0.3rem;
   text-align: center;
   padding: 15px 0 5px 0;
+  min-height: 260px;
 }
 
 .product-item .product-image {
@@ -84,8 +88,9 @@
 }
 
 .carusel_image {
-  height: 170px;
+  height: 130px;
 }
+
 .carusel-reducere {
   position: absolute;
   top: 3px;
@@ -96,7 +101,10 @@
 
 .carusel-product-title {
   font-size: 15px;
+  width: 75%;
+  margin: 2px auto;
   font-family: "SanaSansAlt", sans-serif;
+  min-height: 35px;
 }
 
 .carusel-old-price {
@@ -106,6 +114,7 @@
   margin: 5px auto;
   color: gray;
 }
+
 .carusel-old-price::after {
   border-bottom: 1px solid gray;
   content: "";
@@ -115,18 +124,18 @@
   right: 0;
   top: 60%;
 }
+
 .carusel-new-price {
   font-size: 18px;
   font-weight: 500;
   color: red;
 }
-
 :host ::ng-deep .carusel-stars .p-rating .p-rating-icon {
   color: #f9bf3b;
   font-size: 15px;
 }
 
-/* specificatii*/
+/* ============ Informatii Produs ============== */
 .specifations {
   margin: 10px 0;
 
@@ -139,38 +148,10 @@
 }
 
 tr {
-  -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: transparent;
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  line-height: 1.42857;
-  color: #222;
+  font-size: 20px;
+  color: #3f51b5;
   border-collapse: collapse;
   border-spacing: 0;
-  white-space: pre-line;
-  box-sizing: border-box;
-  background-color: #eff9fe;
+  background: rgb(113, 190, 241);
 }
-
-
-.mytr{
-  -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: transparent;
-  font-family: "Open Sans",Helvetica,Arial,sans-serif;
-  font-size: 14px;
-  border-collapse: collapse;
-  border-spacing: 0;
-  white-space: pre-line;
-  box-sizing: border-box;
-  color: #888;
-  min-height: 1px;
-  width: 33.33333%;
-  position: static;
-  float: none;
-  display: table-cell;
-  padding: 8px;
-  line-height: 1.42857;
-  vertical-align: top;
-  border-top: 1px solid transparent;
-}
-

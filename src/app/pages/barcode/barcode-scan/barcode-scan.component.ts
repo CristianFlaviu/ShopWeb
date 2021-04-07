@@ -1,10 +1,7 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-import { Table } from 'primeng/table';
+import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/data_services/products/products.service';
-import { BarcodeScan } from '../models/barcode-scan';
+import { Product } from '../models/product';
+import { ProductAttribute } from '../models/product-attribute';
 
 export interface PeriodicElement {
   name: string;
@@ -18,37 +15,13 @@ export interface PeriodicElement {
   templateUrl: './barcode-scan.component.html',
   styleUrls: ['./barcode-scan.component.css'],
 })
-export class BarcodeScanComponent implements OnInit, AfterViewInit {
-  @ViewChild('dt') table: Table;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-  dataSource: MatTableDataSource<BarcodeScan>;
-  displayedColumns: string[] = ['productName', 'barcode', 'scanDate', 'price'];
+export class BarcodeScanComponent implements OnInit {
+  public product: Product = new Product();
+  public pathToProductImage: string;
 
-  public rating = 4;
-  public columns = [
-    { field: 'productName', header: 'Product Name' },
-    { field: 'barcode', header: 'Barcode' },
-    { field: 'scanDate', header: 'Scan-Date' },
-    { field: 'quantity', header: 'Quantity' },
-  ];
+  public importantFeatures: ProductAttribute[] = [];
 
-  public data: BarcodeScan[] = [
-    {
-      productName: 'lapte',
-      barcode: '5012345678900',
-      scanDate: 'today',
-      price: 2,
-    },
-    {
-      productName: 'branza',
-      barcode: '3042345678922',
-      scanDate: 'today',
-      price: 10,
-    },
-  ];
-
-  products: any[] = [1, 2, 3, 4, 5, 6, 7];
+  public products: Product[];
 
   responsiveOptions = [
     {
@@ -71,20 +44,29 @@ export class BarcodeScanComponent implements OnInit, AfterViewInit {
   constructor(private productService: ProductsService) {}
 
   ngOnInit() {
-    this.dataSource = new MatTableDataSource(this.data);
-    this.productService.getAllProducts().then(
+    this.productService.getProductByBarcode('9787313528310').then(
       (data) => {
-        console.log(data.payload);
+        this.product = data.payload.product;
+        JSON.parse(data.payload?.attributes).forEach(
+          (element: ProductAttribute) => {
+            if (element.IsImportant) {
+              this.importantFeatures.push(element);
+            }
+          }
+        );
 
-        console.log(JSON.parse(data.payload[0].attributes));
+        console.log(this.importantFeatures);
       },
       (err) => console.log(err)
     );
-  }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.productService.getProductFromSameCategory('defaultCategory').then(
+      (data) => {
+        console.log('list products', data.payload);
+        this.products = data.payload;
+      },
+      (err) => console.log(err)
+    );
   }
 
   public mt() {

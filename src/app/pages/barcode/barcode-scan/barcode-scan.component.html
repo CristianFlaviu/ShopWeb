@@ -3,9 +3,9 @@
         <!-- left -->
         <div class="p-col-6 product-left">
             <div class="product-title">
-                Crema de branza proaspata Almette cu smantana, 150 g
+                {{product?.title}}
             </div>
-            <img mat-card-image src="./../../../../assets/images/zuzu.jpg" alt="Photo of a Shiba Inu"
+            <img mat-card-image src='{{ "assets/images/" + product?.pathToImage }}' alt="Photo of a Shiba Inu"
                 class="product-image">
         </div>
 
@@ -15,7 +15,8 @@
             <!-- first row-->
             <div class="p-grid">
                 <div class="p-col-3">
-                    <p-rating [(ngModel)]="rating" [readonly]="true" [stars]="5" [cancel]="false" class="bigger-stars">
+                    <p-rating [(ngModel)]="product.score" [readonly]="true" [stars]="5" [disabled]='true'
+                        [cancel]="false" class="bigger-stars">
                     </p-rating>
                 </div>
                 <div class="p-col-6" style="align-items: flex-start;">
@@ -25,7 +26,7 @@
             <!-- second row-->
 
             <div class="price">
-                6.8 Lei
+                {{product?.newPrice}} Lei
             </div>
             <div class="tva">
                 Pretul Include 9% TVA
@@ -46,14 +47,15 @@
             </div>
             <div class="first-info-div">
                 <i class="pi pi-check-circle"></i>&nbsp; Disponibilitate : <span style="  color: #00985f;"> In
-                    stoc</span>
+                    stoc <span style="color: #00985f;">({{product?.unitsAvailable}})</span>
+                </span>
             </div>
 
             <div class="space-div">
-                <i class="pi pi-calendar"></i> &nbsp; Data Expirarii : 04.04.2021
+                <i class="pi pi-calendar"></i> &nbsp; Data Expirarii : {{product.availability |date : 'dd/MM/yyyy' }}
             </div>
             <div class="space-div">
-                <i class="pi pi-credit-card"></i> &nbsp; Barcode : 011232131230543
+                <i class="pi pi-credit-card"></i> &nbsp; Barcode : {{product.barcode}}
             </div>
         </div>
     </div>
@@ -67,34 +69,32 @@
                 <span class="header-carusel">We also recommand you </span>
             </ng-template>
 
-            <ng-template let-product pTemplate="item">
+            <ng-template let-myProduct pTemplate="item">
                 <div class="product-item" style="position: relative;">
                     <div class="product-item-content">
 
                         <div class="carusel-reducere">
-                            -30%
+                            {{myProduct.product.discount}}%
                         </div>
                         <div>
-                            <img src="./../../../../assets//images/zuzu_kefir.png" [alt]="product.name"
-                                class="carusel_image" />
+                            <img src='{{ "assets/images/" + myProduct?.product?.pathToImage }}'
+                                [alt]="myProduct.product.title" class="carusel_image" />
                         </div>
-                        <div>
-                            <span class="carusel-product-title">Lapte Zuzu</span>
-                            <p-rating [(ngModel)]="rating" [readonly]="true" [stars]="5" [cancel]="false"
-                                class="carusel-stars">
-                            </p-rating>
 
-                        </div>
-                        <!-- <div class="carusel-old-price">
-                            5.8 lei 
-                        </div> -->
+                        <div class="carusel-product-title">{{myProduct.product.title}}</div>
+
+                        <p-rating [(ngModel)]="myProduct.product.score" [readonly]="true" [stars]="5" [cancel]="false"
+                            class="carusel-stars">
+                        </p-rating>
+
 
                         <div style="font-size: 13px;">
-                            <span style="text-decoration: line-through;"> 8 Lei </span> (30%)
+                            <span style="text-decoration: line-through;"> {{myProduct.product.oldPrice}} Lei </span>
+                            ( {{myProduct.product.discount}} %)
                         </div>
 
                         <div class="carusel-new-price">
-                            5 lei
+                            {{myProduct.product.newPrice}} Lei
                         </div>
 
                     </div>
@@ -105,7 +105,7 @@
 </div>
 
 
-<div style="width: 75%; margin:auto">
+<div style="width: 75%; margin:auto; padding-bottom: 100px;">
 
 
     <div class="specifations">
@@ -116,52 +116,14 @@
         Caractestici Generale
     </div>
 
-    <table class="table">
-        <tbody>
-            <tr >
-                <td  class="mytr"> Prima</td>
-                <td  class="mytr"> Prima</td>
-            </tr>
-            
-        </tbody>
-    </table>
+
+    <ul style="  list-style-type: none; ">
+        <li *ngFor="let atr of importantFeatures ">
+            <span>{{atr.Name}} </span>
+            <span>
+                {{atr.Value}}
+            </span>
+        </li>
+    </ul>
 
 </div>
-
-
-<!-- <div style="margin-bottom: 100px;">
-
-    <div class="mat-elevation-z8" style="width: 80%; margin:auto;margin-bottom: 10px;">
-        <table mat-table [dataSource]="dataSource" style="width: 100%;" matSort>
-
-     
-            <ng-container matColumnDef="productName">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Progress </th>
-                <td mat-cell *matCellDef="let element"> <img src="./../../../../assets//images/zuzu.jpg"
-                        style="height: 100px; margin: 5% auto;" /> </td>
-            </ng-container>
-
-
-            <ng-container matColumnDef="barcode">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> barcode </th>
-                <td mat-cell *matCellDef="let element"> {{element.barcode}} </td>
-            </ng-container>
-
-   
-            <ng-container matColumnDef="scanDate">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> scanDate </th>
-                <td mat-cell *matCellDef="let element"> {{element.scanDate}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="price">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> price </th>
-                <td mat-cell *matCellDef="let element"> {{element.price}} </td>
-            </ng-container>
-
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-        <mat-paginator [pageSizeOptions]="[2, 5, 10]"></mat-paginator>
-    </div>
-
-</div> -->
