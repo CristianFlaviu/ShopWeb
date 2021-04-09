@@ -25,7 +25,7 @@
       <mat-menu #menu="matMenu">
         <button *ngIf="authentiicationService.isLoggedIn()" mat-menu-item (click)="logout()">Logout</button>
         <button *ngIf="!authentiicationService.isLoggedIn()" mat-menu-item [routerLink]="'/login'">Login</button>
-        <button mat-menu-item>Profile</button>
+        <button mat-menu-item routerLink='home'>Profile</button>
       </mat-menu>
     </div>
   </mat-toolbar-row>

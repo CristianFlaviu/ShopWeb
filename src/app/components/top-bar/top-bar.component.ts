@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthentiicationService } from 'src/app/data_services/authentication/authentication.service';
+import { SignalRService } from 'src/app/data_services/signalR/signalR.service';
 
 @Component({
   selector: 'app-top-bar',
@@ -10,10 +11,14 @@ import { AuthentiicationService } from 'src/app/data_services/authentication/aut
 export class TopBarComponent implements OnInit {
   constructor(
     public authentiicationService: AuthentiicationService,
-    private router: Router
+    private router: Router,
+    private singalService: SignalRService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.singalService.startConnection();
+    this.singalService.addTransferData();
+  }
 
   public logout() {
     this.authentiicationService.logout();

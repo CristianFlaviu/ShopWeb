@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from 'src/app/data_services/products/products.service';
 import { Product } from '../models/product';
 import { ProductAttribute } from '../models/product-attribute';
@@ -41,10 +42,15 @@ export class BarcodeScanComponent implements OnInit {
     },
   ];
 
-  constructor(private productService: ProductsService) {}
+  constructor(
+    private productService: ProductsService,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit() {
-    this.productService.getProductByBarcode('9787313528310').then(
+    const barcode = this.activatedRoute.snapshot.paramMap.get('barcode');
+
+    this.productService.getProductByBarcode(barcode + '').then(
       (data) => {
         this.product = data.payload.product;
         JSON.parse(data.payload?.attributes).forEach(

@@ -28,16 +28,12 @@ export class LoginComponent implements OnInit {
 
   showSpinner = false;
   constructor(
-    private singalService: SignalRService,
     private authService: AuthentiicationService,
     private snotifyService: SnotifyService,
     private router: Router
   ) {}
 
-  ngOnInit() {
-    this.singalService.startConnection();
-    this.singalService.addTransferData();
-  }
+  ngOnInit() {}
 
   login(): void {
     this.authService.login(this.userLogin.Email, this.userLogin.Password).then(

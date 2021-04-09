@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import * as signalR from '@aspnet/signalr';
 import { environment } from 'src/environments/environment';
 @Injectable({
@@ -6,6 +7,8 @@ import { environment } from 'src/environments/environment';
 })
 export class SignalRService {
   private hubconnection: signalR.HubConnection;
+
+  constructor(private router: Router) {}
 
   public startConnection = () => {
     this.hubconnection = new signalR.HubConnectionBuilder()
@@ -21,8 +24,7 @@ export class SignalRService {
   public addTransferData = () => {
     this.hubconnection.on('transferData', (data) => {
       console.log(data);
-      alert(data);
+      this.router.navigate(['/barcode-scan', data]);
     });
   };
-  constructor() {}
 }

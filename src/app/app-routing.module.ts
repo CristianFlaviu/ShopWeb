@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'confirm-email', component: ConfirmEmailComponent },
   { path: 'home', canActivate: [AuthGuard], component: HomeComponent },
-  { path: 'barcode-scan', canActivate: [AuthGuard], component: BarcodeScanComponent },
+  { path: 'barcode-scan/:barcode', canActivate: [AuthGuard], component: BarcodeScanComponent },
 ];
 
 @NgModule({
