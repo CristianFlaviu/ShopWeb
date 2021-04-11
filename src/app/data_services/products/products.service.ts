@@ -31,5 +31,12 @@ export class ProductsService {
       )
       .toPromise();
   }
-  
+
+  public addProductToFavourite(barcode: string) {
+    return this.httpClient
+      .get<any>(
+        'https://localhost:5001/products/add-products-to-favorite/' + barcode
+      )
+      .toPromise();
+  }
 }

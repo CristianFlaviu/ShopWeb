@@ -1,10 +1,24 @@
-.login-card {
-  margin-top: 3%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 0;
-  width: 25%;
+@media only screen and (max-width: 450px) {
+  .login-card {
+    margin-top: 25%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3px;
+    width: 70%;
+  }
 }
+
+@media only screen and (min-width: 450px) {
+  .login-card {
+    margin-top: 3%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3px;
+    width: 26%;
+  }
+}
+
+
 
 .input-form-field {
   width: 80%;

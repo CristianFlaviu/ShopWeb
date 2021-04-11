@@ -1,17 +1,21 @@
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <!-- <button mat-icon-button>
-      <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
-    </button> -->
+<div>
+  <mat-toolbar color="primary">
+    <div fxShow="true" fxHide.gt-sm="true">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
 
-    <h1>Shop Assistant</h1>
-    <span class="menu-spacer"></span>
-    <div>
-      <button mat-button style="font-size: 20px;" [routerLink]="'barcode-scan'">Barcode </button>
+    <button mat-button class="companyName" routerLink="/">
+      <span>Shop Assistant</span>
+    </button>
 
+    <span class="example-spacer"></span>
+    <div fxShow="true" fxHide.lt-md="true">
+      <!-- <button mat-button style="font-size: 23px;" [routerLink]="'barcode-scan'">Barcode </button> -->
 
       <button mat-button>
-        <mat-icon matBadge="2" matBadgeColor="warn" class="icon-align">
+        <mat-icon matBadge="2" matBadgeColor="warn" class="icon-align" routerLink='shopping-cart'>
           shopping_cart</mat-icon>
       </button>
 
@@ -19,33 +23,27 @@
         <mat-icon [matMenuTriggerFor]="menu" class="icon-align">person
         </mat-icon>
       </button>
-
-
-
       <mat-menu #menu="matMenu">
-        <button *ngIf="authentiicationService.isLoggedIn()" mat-menu-item (click)="logout()">Logout</button>
+        <button *ngIf="authentiicationService.isLoggedIn()" (click)="logout()" mat-menu-item>Logout</button>
         <button *ngIf="!authentiicationService.isLoggedIn()" mat-menu-item [routerLink]="'/login'">Login</button>
-        <button mat-menu-item routerLink='home'>Profile</button>
+        <button mat-menu-item>Profile</button>
       </mat-menu>
     </div>
-  </mat-toolbar-row>
 
-</mat-toolbar>
+  </mat-toolbar>
+  <mat-sidenav-container fxFlexFill class="example-container">
 
-<!-- <mat-sidenav-container>
-  <mat-sidenav #sidenav>
-    <mat-nav-list>
+    <mat-sidenav color="primary" #sidenav fxLayout="column" mode="over" opened="false" fxHide.gt-sm="true">
+      <div fxLayout="column">
+        <button mat-button routerLink="#">Home</button>
+        <button mat-button routerLink="/profile">Profile</button>
+        <button *ngIf="authentiicationService.isLoggedIn()" (click)="logout()" mat-button>Logout</button>
+        <button *ngIf="!authentiicationService.isLoggedIn()" routerLink='/login' mat-button>Log In</button>
 
-      <a mat-list-item [routerLink]="'/barcode-scan'"> Scan Barcode </a>
-      <a mat-list-item [routerLink]="'/create-account'"> Create Account </a>
-      <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
-
-    </mat-nav-list>
-  </mat-sidenav>
-
-  <mat-sidenav-content style="height: 100%;">
-
-    <router-outlet></router-outlet>
-
-  </mat-sidenav-content>
-</mat-sidenav-container> -->
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content fxFlexFill>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

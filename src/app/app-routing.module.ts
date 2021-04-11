@@ -5,13 +5,18 @@ import { BarcodeScanComponent } from './pages/barcode/barcode-scan/barcode-scan.
 import { ConfirmEmailComponent } from './pages/confirm-email/confirm-email.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
+import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'confirm-email', component: ConfirmEmailComponent },
   { path: 'home', canActivate: [AuthGuard], component: HomeComponent },
-  { path: 'barcode-scan/:barcode', canActivate: [AuthGuard], component: BarcodeScanComponent },
+  {
+    path: 'barcode-scan/:barcode',
+    component: BarcodeScanComponent,
+  },
+  { path: 'shopping-cart', component: ShoppingCartComponent },
 ];
 
 @NgModule({

@@ -92,6 +92,10 @@ $mobile-small: 300px */
   min-height: 200px;
 }
 
+:host ::ng-deep  .p-carousel .p-carousel-indicators .p-carousel-indicator button {
+  background-color: #cbdef1;
+}
+
 .product-item .product-item-content {
   background: white;
   border: 1px solid var(--surface-d);

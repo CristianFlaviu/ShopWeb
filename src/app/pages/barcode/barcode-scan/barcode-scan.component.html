@@ -31,7 +31,7 @@
             </div>
 
             <div class="space-div">
-                <button mat-raised-button color="primary">
+                <button mat-raised-button color="primary" (click)="addProductToFavorite()">
                     <mat-icon>
                         add_shopping_cart</mat-icon> Add to Chart
                 </button>
@@ -61,8 +61,8 @@
 
 <div style="background: #e9ebee;">
     <div style="margin: auto; width: 70%;">
-        <p-carousel [value]="products" [numVisible]="5" [numScroll]="3" [circular]="false" (click)="mt()"
-            [responsiveOptions]="responsiveOptions">
+        <p-carousel id="carouselID" [value]="products" [numVisible]="4" [numScroll]="1" [circular]="true" (click)="mt()"
+            [autoplayInterval]="10000" [responsiveOptions]="responsiveOptions">
             <ng-template pTemplate="header">
                 <span class="header-carusel">We also recommand you </span>
             </ng-template>
@@ -102,6 +102,15 @@
     </div>
 </div>
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#carouselID').hover(
+            function () { carouselNice.stopAutoPlay() },
+            function () { carouselNice.startAutoPlay() }
+        );
+    });
+</script>
+
 
 <div style="width: 75%; margin:auto; padding-bottom: 100px;">
 
@@ -132,7 +141,7 @@
 
     <div style="font-size: 20px;margin:20px 0;">
         Informatii Lapte
-    </div>    
+    </div>
 
     <p-table styleClass="p-datatable-sm" [value]=[1]>
 

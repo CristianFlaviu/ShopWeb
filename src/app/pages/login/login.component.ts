@@ -46,16 +46,11 @@ export class LoginComponent implements OnInit {
           case 401: {
             this.errorMessage = err.error;
             this.isError = true;
-
-            this.snotifyService.error(err.error, { timeout: 5000 });
             break;
           }
           case 404: {
             this.errorMessage = UserMessages.general.serverError;
             this.isError = true;
-            this.snotifyService.error(UserMessages.general.serverError, {
-              timeout: 5000,
-            });
           }
         }
       }

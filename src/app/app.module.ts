@@ -43,8 +43,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { RatingModule } from 'primeng/rating';
 import { CarouselModule } from 'primeng/carousel';
-import {FlexLayoutModule} from '@angular/flex-layout';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { RippleModule } from 'primeng/ripple';
+import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
+import { DividerModule } from 'primeng/divider';
 
 const primeNgComponents = [
   CalendarModule,
@@ -57,6 +59,8 @@ const primeNgComponents = [
   CardModule,
   RatingModule,
   CarouselModule,
+  RippleModule,
+  DividerModule,
 ];
 
 const materialComponents = [
@@ -89,6 +93,7 @@ const materialComponents = [
     ConfirmEmailComponent,
     HomeComponent,
     BarcodeScanComponent,
+    ShoppingCartComponent,
   ],
   imports: [
     BrowserModule,

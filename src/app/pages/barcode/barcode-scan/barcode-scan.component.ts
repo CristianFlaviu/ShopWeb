@@ -20,6 +20,8 @@ export class BarcodeScanComponent implements OnInit {
   public product: Product = new Product();
   public pathToProductImage: string;
 
+  public barcode: string;
+
   public importantFeatures: ProductAttribute[] = [];
 
   public products: Product[];
@@ -48,9 +50,10 @@ export class BarcodeScanComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const barcode = this.activatedRoute.snapshot.paramMap.get('barcode');
+    this.barcode =
+      this.activatedRoute.snapshot.paramMap.get('barcode') ?? 'invalid barcode';
 
-    this.productService.getProductByBarcode(barcode + '').then(
+    this.productService.getProductByBarcode(this.barcode + '').then(
       (data) => {
         this.product = data.payload.product;
         JSON.parse(data.payload?.attributes).forEach(
@@ -72,6 +75,17 @@ export class BarcodeScanComponent implements OnInit {
         this.products = data.payload;
       },
       (err) => console.log(err)
+    );
+  }
+
+  public addProductToFavorite() {
+    this.productService.addProductToFavourite(this.barcode).then(
+      (data) => {
+        console.log(data);
+      },
+      (err) => {
+        console.log(err);
+      }
     );
   }
 

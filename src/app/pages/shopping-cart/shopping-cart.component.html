@@ -1,0 +1,90 @@
+<div style="width: 80%;margin: 3% auto 0 auto;">
+  <div style="display: flex; flex-wrap: wrap;">
+
+    <div class="p-col-8">
+      <p-card>
+        <div class="p-grid">
+
+          <div class="p-col-3 div-image">
+            <img src="../../../assets/images/zuzu_kefir.png" class="small-image">
+          </div>
+
+          <div class="p-grid p-col-4"
+            style="text-align: center;align-content: center; justify-content: center; margin-right:10px">
+            <div class="title-product">
+              Lapte batut Auchan 2% grasime, 330 g
+            </div>
+          </div>
+
+          <div class="p-grid p-col-2" style="align-content: center; justify-content: center;">
+            <div style="font-size: 18px;font-weight: bold;">
+              500 lei
+            </div>
+          </div>
+
+          <div class="p-grid p-col-2" style="align-content: center; justify-content: center">
+
+
+            <button pButton pRipple type="button" (click)="minus()" icon="pi pi-minus"
+              class="p-button-rounded p-button-plain p-button-danger"></button>
+
+            <div style="margin: auto 5px; text-align: center;">{{number}}</div>
+
+            <button pButton pRipple type="button" (click)="plus()" icon="pi pi-plus"
+              class="p-button-rounded p-button-plain"></button>
+
+            <button pButton pRipple type="button" icon="pi pi-trash" style="margin-left: 10px;"
+              class="p-button-rounded p-button-plain  p-button-secondary"></button>
+
+          </div>
+        </div>
+
+        <p-divider></p-divider>
+      
+
+        <ng-template pTemplate="footer">
+          Total Price:
+        </ng-template>
+      </p-card>
+    </div>
+
+    <div class="p-col-3 p-offset-1">
+      <p-card styleClass>
+
+        <span class="total-price-title">
+          Sumar comanda
+        </span>
+        <div class="p-grid">
+          <div class="p-col-6">
+            Cost produse
+          </div>
+          <div class="p-col-6" style="text-align: right;">
+            500 lei
+          </div>
+        </div>
+
+        <div class="p-grid">
+          <div class="p-col-6">
+            Cost Livrare
+          </div>
+          <div class="p-col-6" style="text-align: right;">
+            20 lei
+          </div>
+        </div>
+
+        <p-divider></p-divider>
+
+
+        <div style="font-weight: bold; font-size: 20px;">
+          Total :
+        </div>
+        <div style="font-weight: bold; font-size: 25px;">
+          520<span style="font-size: 18px;">.00</span> Lei
+        </div>
+
+
+
+      </p-card>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+:host ::ng-deep .p-card .p-card-content {
+  padding: 0;
+}
+
+/* product-left  */
+.small-image {
+  height: 100px;
+}
+.div-image {
+  text-align: center;
+}
+
+/* product-right */
+.title-product {
+  font-weight: bold;
+}
+
+:host ::ng-deep .p-button.p-button-icon-only.p-button-rounded {
+  height: 1.557rem;
+}
+:host ::ng-deep .p-button.p-button-icon-only.p-button-rounded {
+  width: 1.557rem;
+}
+/* Total Price Div  */
+
+.total-price-title {
+  font-weight: bold;
+}
