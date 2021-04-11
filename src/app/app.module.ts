@@ -43,6 +43,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { RatingModule } from 'primeng/rating';
 import { CarouselModule } from 'primeng/carousel';
+import {FlexLayoutModule} from '@angular/flex-layout';
+
 
 const primeNgComponents = [
   CalendarModule,
@@ -90,6 +92,7 @@ const materialComponents = [
   ],
   imports: [
     BrowserModule,
+    FlexLayoutModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ButtonModule,
