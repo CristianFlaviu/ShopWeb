@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NotificationService } from 'src/app/data_services/notification.service';
+import { ProductsService } from 'src/app/data_services/products/products.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -6,15 +8,44 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./shopping-cart.component.css'],
 })
 export class ShoppingCartComponent implements OnInit {
-  constructor() {}
+  constructor(
+    private productService: ProductsService,
+    private notificationService: NotificationService
+  ) {}
 
-  public number = 0;
-  ngOnInit() {}
+  public products: any[] = [];
+  public totalPrice = 0;
 
-  plus() {
-    this.number++;
+  async ngOnInit() {
+    await this.productService.getProductShoppingCart().then((data) => {
+      this.products = data.payload;
+    });
+    this.computeTotalPrice();
   }
-  minus() {
-    this.number--;
+
+  public computeTotalPrice() {
+    this.totalPrice = 0;
+    this.products.forEach((x: any) => {
+      this.totalPrice += x.quantity * x.product.newPrice;
+    });
+  }
+
+  plus(product: any) {
+    product.quantity++;
+    this.computeTotalPrice();
+  }
+
+  minus(product: any) {
+    product.quantity--;
+    this.computeTotalPrice();
+  }
+
+  public async deleteProductShoppingCart(item: any) {
+    this.products = this.products.filter((x) => x !== item);
+    await this.productService.deleteProductToShppingCart(
+      item?.product?.barcode
+    );
+
+    this.notificationService.updateStats();
   }
 }

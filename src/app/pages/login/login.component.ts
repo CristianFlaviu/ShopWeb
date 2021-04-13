@@ -6,6 +6,7 @@ import { constants } from 'node:buffer';
 import { UserLogin } from 'src/app/data_models/authentication/user-login.model';
 import { UserRegister } from 'src/app/data_models/authentication/user-register.model';
 import { AuthentiicationService } from 'src/app/data_services/authentication/authentication.service';
+import { NotificationService } from 'src/app/data_services/notification.service';
 import { UserMessages } from 'src/app/globals/constants';
 import { SignalRService } from '../../data_services/signalR/signalR.service';
 
@@ -30,7 +31,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthentiicationService,
     private snotifyService: SnotifyService,
-    private router: Router
+    private router: Router,
+    private notificationService: NotificationService
   ) {}
 
   ngOnInit() {}
@@ -38,6 +40,7 @@ export class LoginComponent implements OnInit {
   login(): void {
     this.authService.login(this.userLogin.Email, this.userLogin.Password).then(
       () => {
+        this.notificationService.updateStats();
         this.router.navigate(['/home']);
       },
       (err) => {

@@ -47,6 +47,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { RippleModule } from 'primeng/ripple';
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
 import { DividerModule } from 'primeng/divider';
+import { NotificationService } from './data_services/notification.service';
 
 const primeNgComponents = [
   CalendarModule,
@@ -119,6 +120,7 @@ const materialComponents = [
     SnotifyService,
     MatDatepickerModule,
     AuthGuard,
+    NotificationService
   ],
   bootstrap: [AppComponent],
 })

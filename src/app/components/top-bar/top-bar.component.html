@@ -6,7 +6,7 @@
       </button>
     </div>
 
-    <button mat-button class="companyName" routerLink="/">
+    <button mat-button class="companyName" routerLink="/home">
       <span>Shop Assistant</span>
     </button>
 
@@ -15,8 +15,13 @@
       <!-- <button mat-button style="font-size: 23px;" [routerLink]="'barcode-scan'">Barcode </button> -->
 
       <button mat-button>
-        <mat-icon matBadge="2" matBadgeColor="warn" class="icon-align" routerLink='shopping-cart'>
+        <mat-icon [matBadge]="getCarT()" matBadgeColor="warn" class="icon-align" routerLink='shopping-cart'>
           shopping_cart</mat-icon>
+      </button>
+
+      <button mat-button>
+        <mat-icon [matBadge]="getFav()" matBadgeColor="warn" class="icon-align" routerLink='shopping-cart'>
+          favorite</mat-icon>
       </button>
 
       <button mat-button>

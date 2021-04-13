@@ -7,7 +7,6 @@ $mobile-small: 300px */
 @media only screen and (max-width: 450px) {
   .product-left {
     text-align: center;
-    font-family: "SanaSansAlt", sans-serif;
     font-size: 16px;
   }
   .product-title {
@@ -24,7 +23,6 @@ $mobile-small: 300px */
 @media only screen and (min-width: 450px) {
   .product-left {
     text-align: center;
-    font-family: "SanaSansAlt", sans-serif;
     font-size: 23px;
   }
 
@@ -61,7 +59,6 @@ $mobile-small: 300px */
 
 .price {
   font-size: 30px;
-  font-family: "SanaSansAlt", sans-serif;
   font-weight: 500;
 }
 
@@ -93,7 +90,7 @@ $mobile-small: 300px */
 }
 
 :host ::ng-deep  .p-carousel .p-carousel-indicators .p-carousel-indicator button {
-  background-color: #cbdef1;
+  background-color: rgb(240, 239, 239);
 }
 
 .product-item .product-item-content {
@@ -135,7 +132,6 @@ $mobile-small: 300px */
   font-size: 15px;
   width: 75%;
   margin: 2px auto;
-  font-family: "SanaSansAlt", sans-serif;
   min-height: 35px;
 }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NotificationService } from 'src/app/data_services/notification.service';
 import { ProductsService } from 'src/app/data_services/products/products.service';
 import { Product } from '../models/product';
 import { ProductAttribute } from '../models/product-attribute';
@@ -46,7 +47,8 @@ export class BarcodeScanComponent implements OnInit {
 
   constructor(
     private productService: ProductsService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private notificationService: NotificationService
   ) {}
 
   ngOnInit() {
@@ -55,7 +57,7 @@ export class BarcodeScanComponent implements OnInit {
 
     this.productService.getProductByBarcode(this.barcode + '').then(
       (data) => {
-        this.product = data.payload.product;
+        this.product = data.payload;
         JSON.parse(data.payload?.attributes).forEach(
           (element: ProductAttribute) => {
             if (element.IsImportant) {
@@ -78,8 +80,8 @@ export class BarcodeScanComponent implements OnInit {
     );
   }
 
-  public addProductToFavorite() {
-    this.productService.addProductToFavourite(this.barcode).then(
+  public async addProductToFavorite() {
+    await this.productService.addProductToFavourite(this.barcode).then(
       (data) => {
         console.log(data);
       },
@@ -87,8 +89,21 @@ export class BarcodeScanComponent implements OnInit {
         console.log(err);
       }
     );
+
+    this.notificationService.updateStats();
   }
 
+  public async addProductToShoppingCart() {
+    await this.productService.addProductToShppingCart(this.barcode).then(
+      (data) => {
+        console.log(data);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+    this.notificationService.updateStats();
+  }
   public mt() {
     console.log('ceva');
   }

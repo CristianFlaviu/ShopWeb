@@ -27,16 +27,42 @@ export class ProductsService {
   ): Promise<CommandResult<any>> {
     return this.httpClient
       .get<any>(
-        'https://localhost:5001/products/get-products-by-category/' + category
+        'https://localhost:5001/products/get-products-category/' + category
       )
       .toPromise();
   }
 
-  public addProductToFavourite(barcode: string) {
+  public addProductToFavourite(barcode: string): Promise<CommandResult<any>> {
     return this.httpClient
       .get<any>(
         'https://localhost:5001/products/add-products-to-favorite/' + barcode
       )
+      .toPromise();
+  }
+
+  public addProductToShppingCart(barcode: string): Promise<CommandResult<any>> {
+    return this.httpClient
+      .get<any>(
+        'https://localhost:5001/products/add-product-shopping-cart/' + barcode
+      )
+      .toPromise();
+  }
+
+  public deleteProductToShppingCart(
+    barcode: string
+  ): Promise<CommandResult<any>> {
+    return this.httpClient
+      .post<any>(
+        'https://localhost:5001/products/delete-shopping-cart-product/' +
+          barcode,
+        {}
+      )
+      .toPromise();
+  }
+
+  public getProductShoppingCart(): Promise<CommandResult<any>> {
+    return this.httpClient
+      .get<any>('https://localhost:5001/products/get-shopping-cart-products')
       .toPromise();
   }
 }

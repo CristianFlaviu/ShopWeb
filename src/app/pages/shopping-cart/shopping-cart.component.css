@@ -2,6 +2,13 @@
   padding: 0;
 }
 
+.center-div {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
 /* product-left  */
 .small-image {
   height: 100px;
