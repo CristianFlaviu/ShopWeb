@@ -48,6 +48,8 @@ import { RippleModule } from 'primeng/ripple';
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
 import { DividerModule } from 'primeng/divider';
 import { NotificationService } from './data_services/notification.service';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { FavoriteProductsComponent } from './pages/favorite-products/favorite-products.component';
 
 const primeNgComponents = [
   CalendarModule,
@@ -62,6 +64,7 @@ const primeNgComponents = [
   CarouselModule,
   RippleModule,
   DividerModule,
+  AutoCompleteModule,
 ];
 
 const materialComponents = [
@@ -95,6 +98,7 @@ const materialComponents = [
     HomeComponent,
     BarcodeScanComponent,
     ShoppingCartComponent,
+    FavoriteProductsComponent,
   ],
   imports: [
     BrowserModule,
@@ -120,7 +124,7 @@ const materialComponents = [
     SnotifyService,
     MatDatepickerModule,
     AuthGuard,
-    NotificationService
+    NotificationService,
   ],
   bootstrap: [AppComponent],
 })

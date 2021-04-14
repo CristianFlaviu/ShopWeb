@@ -11,18 +11,24 @@
     </button>
 
     <span class="example-spacer"></span>
-    <div fxShow="true" fxHide.lt-md="true">
-      <!-- <button mat-button style="font-size: 23px;" [routerLink]="'barcode-scan'">Barcode </button> -->
+    <div fxShow="true" fxHide.lt-md="true">      
 
-      <button mat-button>
+      <!-- <span *ngIf="authentiicationService.isLoggedIn()" class="p-input-icon-right" style="margin-right: 20px; ">
+        <i class="pi pi-search"></i>
+        <input type="text" pInputText  placeholder="Type Barcode"/>
+      </span> -->
+
+      <button mat-button *ngIf="authentiicationService.isLoggedIn()">
         <mat-icon [matBadge]="getCarT()" matBadgeColor="warn" class="icon-align" routerLink='shopping-cart'>
           shopping_cart</mat-icon>
       </button>
 
-      <button mat-button>
-        <mat-icon [matBadge]="getFav()" matBadgeColor="warn" class="icon-align" routerLink='shopping-cart'>
+      <button mat-button *ngIf="authentiicationService.isLoggedIn()">
+        <mat-icon [matBadge]="getFav()" matBadgeColor="warn" class="icon-align" routerLink='favorite-products'>
           favorite</mat-icon>
       </button>
+
+
 
       <button mat-button>
         <mat-icon [matMenuTriggerFor]="menu" class="icon-align">person

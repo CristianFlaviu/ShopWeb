@@ -1,0 +1,22 @@
+.autocomplete-div {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+
+  height: 100px;
+}
+
+:host ::ng-deep .large-input > .p-inputtext {
+  // width: 400px;
+  height: 50px;
+}
+:host .hg-aut {
+  height: 60px;
+}
+
+.title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+  margin: 5% 0 1% 0;
+}

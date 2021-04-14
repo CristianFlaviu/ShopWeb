@@ -11,6 +11,8 @@ import { SignalRService } from 'src/app/data_services/signalR/signalR.service';
   styleUrls: ['./top-bar.component.scss'],
 })
 export class TopBarComponent implements OnInit {
+  
+
   constructor(
     public authentiicationService: AuthentiicationService,
     private router: Router,
@@ -34,7 +36,6 @@ export class TopBarComponent implements OnInit {
     this.authentiicationService.logout();
     this.router.navigate(['/']);
   }
-
   public getFav() {
     return this.notificationService.favourite;
   }

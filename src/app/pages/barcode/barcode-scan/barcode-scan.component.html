@@ -35,7 +35,7 @@
                     <mat-icon>
                         add_shopping_cart</mat-icon> Add to Chart
                 </button>
-                <button mat-raised-button color="warn" style="margin-left: 3%;">
+                <button mat-raised-button color="warn" style="margin-left: 3%;" (click)="addProductToFavorite()">
                     <mat-icon>
                         favorite</mat-icon> Add to Favourite
                 </button>
@@ -75,8 +75,8 @@
                             {{myProduct.discount}}%
                         </div>
                         <div>
-                            <img src='{{ "assets/images/" + myProduct?.pathToImage }}'
-                                [alt]="myProduct.title" class="carusel_image" />
+                            <img src='{{ "assets/images/" + myProduct?.pathToImage }}' [alt]="myProduct.title"
+                                class="carusel_image" />
                         </div>
 
                         <div class="carusel-product-title">{{myProduct.title}}</div>

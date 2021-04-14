@@ -10,31 +10,38 @@
               <img src='{{ "assets/images/" + item.product?.pathToImage }}' class="small-image">
             </div>
             <!-- ===================== Title ===================== -->
-            <div class="center-div p-col-4">
+            <div class="title-div">
               <div class="title-product">
                 {{item.product.title}}
               </div>
-            </div>
-            <!-- ===================== Price ===================== -->
-            <div class="center-div p-col-2">
-              <div style="font-size: 18px;font-weight: bold;">
-                {{item.product.newPrice}} Lei
+
+              <div class="stock">
+                In stock
               </div>
             </div>
+            <!-- ===================== Price ===================== -->
+            <div class="price">
+              <div class="newprice">
+                {{item.product.newPrice}} Lei
+              </div>
 
+              <div class="oldprice">
+                <span style=" text-decoration: line-through;"> {{item.product.oldPrice}} Lei </span>
+                <!-- <span style="color: red;">{{item.product.discount}}% </span> -->
+              </div>
+            </div>
             <!-- ===================== Buttons ===================== -->
-            <div class="center-div p-col-2">
-
+            <div class="buttons">
               <button pButton pRipple type="button" (click)="minus(item)" icon="pi pi-minus"
                 class="p-button-rounded p-button-plain p-button-danger"></button>
 
-              <div style="margin: auto 5px; text-align: center;">{{item.quantity}}</div>
+              <div style="margin: auto 8px; text-align: center;">{{item.quantity}}</div>
 
               <button pButton pRipple type="button" (click)="plus(item)" icon="pi pi-plus"
                 class="p-button-rounded p-button-plain"></button>
 
-              <button pButton pRipple type="button" (click)="deleteProductShoppingCart(item)" icon="pi pi-trash" style="margin-left: 10px;"
-                class="p-button-rounded p-button-plain  p-button-secondary"></button>
+              <button pButton pRipple type="button" (click)="deleteProductShoppingCart(item)" icon="pi pi-trash"
+                style="margin-left: 25px;" class="p-button-rounded p-button-plain  p-button-secondary"></button>
 
             </div>
           </div>
@@ -72,7 +79,6 @@
         </div>
 
         <p-divider></p-divider>
-
 
         <div style="font-weight: bold; font-size: 20px;">
           Total :

@@ -2,12 +2,12 @@
   padding: 0;
 }
 
-.center-div {
+/* .center-div {
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
-}
+} */
 
 /* product-left  */
 .small-image {
@@ -15,11 +15,6 @@
 }
 .div-image {
   text-align: center;
-}
-
-/* product-right */
-.title-product {
-  font-weight: bold;
 }
 
 :host ::ng-deep .p-button.p-button-icon-only.p-button-rounded {
@@ -33,3 +28,56 @@
 .total-price-title {
   font-weight: bold;
 }
+
+/* second div */
+
+.title-div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+  width: 25%;
+}
+
+/* product-right */
+.title-product {
+  font-weight: bold;
+}
+
+.stock {
+  color: green;
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.price {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  align-content: center;
+  width: 18%;
+}
+
+.newprice {
+  font-size: 22px;
+  font-weight: bold;
+  width: 60%;
+}
+
+.oldprice {
+  margin-top: 5px;
+  width: 60%;
+ 
+  color: gray;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+}
+

@@ -65,7 +65,6 @@ export class BarcodeScanComponent implements OnInit {
             }
           }
         );
-
         console.log(this.importantFeatures);
       },
       (err) => console.log(err)
@@ -81,7 +80,7 @@ export class BarcodeScanComponent implements OnInit {
   }
 
   public async addProductToFavorite() {
-    await this.productService.addProductToFavourite(this.barcode).then(
+    await this.productService.addProductToFavorite(this.barcode).then(
       (data) => {
         console.log(data);
       },
@@ -89,7 +88,6 @@ export class BarcodeScanComponent implements OnInit {
         console.log(err);
       }
     );
-
     this.notificationService.updateStats();
   }
 

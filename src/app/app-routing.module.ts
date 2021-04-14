@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './globals/auth-guard';
 import { BarcodeScanComponent } from './pages/barcode/barcode-scan/barcode-scan.component';
 import { ConfirmEmailComponent } from './pages/confirm-email/confirm-email.component';
+import { FavoriteProductsComponent } from './pages/favorite-products/favorite-products.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
@@ -17,6 +18,7 @@ const routes: Routes = [
     component: BarcodeScanComponent,
   },
   { path: 'shopping-cart', component: ShoppingCartComponent },
+  { path: 'favorite-products', component: FavoriteProductsComponent },
 ];
 
 @NgModule({

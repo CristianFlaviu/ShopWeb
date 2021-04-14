@@ -1,6 +1,28 @@
+<div class="title">
 
-<div style="text-align: center;margin-top: 6%;">
-  <img src="https://i.ibb.co/Cn3Ygy8/virtual-shopping-assistant-674x400.png" alt="virtual-shopping-assistant-674x400" >
+  Find a product
+</div>
+
+<div class="autocomplete-div">
+
+  <p-autoComplete [(ngModel)]="product" [suggestions]="productsSuggestion" [styleClass]="'large-input hg-aut'"
+    [style]="{height: '100px'}" (completeMethod)="filterProducts($event)" placeholder='Type the barcode' field="value"
+    (onSelect)="select()" [size]="40">
+
+    <ng-template let-country pTemplate="item">
+      <div class="country-item">
+        <!-- <img src="assets/showcase/images/demo/flag/flag_placeholder.png"
+          [class]="'flag flag-' + country.code.toLowerCase()" /> -->
+        <div>{{country.value}}</div>
+      </div>
+    </ng-template>
+  </p-autoComplete>
+  <span class="p-inputgroup-addon" style="height: 50px;">
+    <i class="pi pi-search"></i></span>
 
 </div>
 
+<div style="text-align: center;">
+  <img src="https://i.ibb.co/Cn3Ygy8/virtual-shopping-assistant-674x400.png" alt="virtual-shopping-assistant-674x400">
+
+</div>
