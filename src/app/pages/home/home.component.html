@@ -1,3 +1,10 @@
+<!-- <ngx-qrcode
+[elementType]="elementType"
+[errorCorrectionLevel]="correctionLevel"
+[value]="value"
+cssClass="bshadow"></ngx-qrcode>
+ -->
+
 <div class="title">
 
   Find a product
@@ -6,14 +13,23 @@
 <div class="autocomplete-div">
 
   <p-autoComplete [(ngModel)]="product" [suggestions]="productsSuggestion" [styleClass]="'large-input hg-aut'"
-    [style]="{height: '100px'}" (completeMethod)="filterProducts($event)" placeholder='Type the barcode' field="value"
-    (onSelect)="select()" [size]="40">
+    [style]="{height: '100px'}" (completeMethod)="filterProducts($event)" placeholder='Type the barcode' field="barcode"
+    (onSelect)="select($event)" [size]="40">
 
-    <ng-template let-country pTemplate="item">
-      <div class="country-item">
-        <!-- <img src="assets/showcase/images/demo/flag/flag_placeholder.png"
-          [class]="'flag flag-' + country.code.toLowerCase()" /> -->
-        <div>{{country.value}}</div>
+    <ng-template let-product pTemplate="item">
+      <div class="list-products">
+        <div class="p-col-3">
+          <img src='assets/images/{{product.pathToImage}}' class="small-image" />
+        </div>
+        <div class="p-col-6 barcode">
+          <div>
+            {{product.title}}
+          </div>
+          <div>
+            {{product.barcode}}
+          </div>
+
+        </div>
       </div>
     </ng-template>
   </p-autoComplete>
@@ -22,7 +38,7 @@
 
 </div>
 
-<div style="text-align: center;">
-  <img src="https://i.ibb.co/Cn3Ygy8/virtual-shopping-assistant-674x400.png" alt="virtual-shopping-assistant-674x400">
+<div style="text-align: center; width: 60%;margin: auto;">
+  <img src="https://i.ibb.co/Cn3Ygy8/virtual-shopping-assistant-674x400.png" alt="virtual-shopping-assistant-674x400" style="width: 95%;">
 
 </div>

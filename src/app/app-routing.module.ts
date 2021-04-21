@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'confirm-email', component: ConfirmEmailComponent },
-  { path: 'home', canActivate: [AuthGuard], component: HomeComponent },
+  { path: 'home', component: HomeComponent },
   {
     path: 'barcode-scan/:barcode',
     component: BarcodeScanComponent,

@@ -5,7 +5,7 @@ import { CommandResult } from 'src/app/globals/commandResult';
 @Injectable({
   providedIn: 'root',
 })
-export class ProductsService {
+export class ProductService {
   constructor(private httpClient: HttpClient) {}
 
   public getAllProducts(): Promise<CommandResult<any>> {

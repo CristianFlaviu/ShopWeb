@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {
+  NgxQrcodeElementTypes,
+  NgxQrcodeErrorCorrectionLevels,
+} from '@techiediaries/ngx-qrcode';
+import { ProductService } from 'src/app/data_services/products/product.service';
 
 @Component({
   selector: 'app-home',
@@ -7,25 +12,48 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+  elementType = NgxQrcodeElementTypes.URL;
+  correctionLevel = NgxQrcodeErrorCorrectionLevels.HIGH;
+  public obj = { hmm: 'a' };
+
+  value = JSON.stringify(this.obj);
+
   public product: any;
+  public productsSuggestion: any[] = [];
 
-  public productsSuggestion = [
-    { label: 'Kyoto', value: 'Kyoto' },
-    { label: 'Osaka', value: 'Osaka' },
-    { label: 'Tokyo', value: 'Tokyo' },
-    { label: 'Yokohama', value: 'Yokohama' },
-  ];
+  public listProducts: any[] = [];
+  constructor(private route: Router, private productService: ProductService) {}
 
-  constructor(private route: Router) {}
-
-  ngOnInit() {}
-
-  public filterProducts(event: any) {
-    this.productsSuggestion = [...this.productsSuggestion];
+  ngOnInit() {
+    this.productService.getAllProducts().then(
+      (data) => {
+        this.listProducts = data.payload;
+        console.log(data);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
-  public select() {
-    console.log('select');
-    this.route.navigateByUrl('barcode-scan/0765756931180');
+  public filterProducts(event: any) {
+    console.log(event);
+    this.productsSuggestion = [];
+    this.listProducts
+      .filter((x) => x.barcode.includes(event.query))
+      .forEach((x) =>
+        this.productsSuggestion.push({
+          label: x.title,
+          barcode: x.barcode,
+          pathToImage: x.pathToImage,
+          title: x.title,
+        })
+      );
+
+    console.log(this.productsSuggestion);
+  }
+
+  public select(product: any) {
+    this.route.navigateByUrl('barcode-scan/' + product.barcode);
   }
 }

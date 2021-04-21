@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NotificationService } from 'src/app/data_services/notification.service';
-import { ProductsService } from 'src/app/data_services/products/products.service';
+import { ProductService } from 'src/app/data_services/products/product.service';
 import { Product } from '../models/product';
 import { ProductAttribute } from '../models/product-attribute';
 
@@ -46,7 +46,7 @@ export class BarcodeScanComponent implements OnInit {
   ];
 
   constructor(
-    private productService: ProductsService,
+    private productService: ProductService,
     private activatedRoute: ActivatedRoute,
     private notificationService: NotificationService
   ) {}

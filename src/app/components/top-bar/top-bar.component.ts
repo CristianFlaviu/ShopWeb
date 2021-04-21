@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthentiicationService } from 'src/app/data_services/authentication/authentication.service';
 import { NotificationService } from 'src/app/data_services/notification.service';
-import { ProductsService } from 'src/app/data_services/products/products.service';
+import { ProductService } from 'src/app/data_services/products/product.service';
 import { SignalRService } from 'src/app/data_services/signalR/signalR.service';
 
 @Component({
@@ -18,7 +18,7 @@ export class TopBarComponent implements OnInit {
     private router: Router,
     private singalService: SignalRService,
     private notificationService: NotificationService,
-    private productService: ProductsService
+    private productService: ProductService
   ) {}
 
   ngOnInit() {

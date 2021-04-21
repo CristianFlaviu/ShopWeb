@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ProductsService } from './products/products.service';
+import { ProductService } from './products/product.service';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +11,7 @@ export class NotificationService {
 
   constructor(
     private http: HttpClient,
-    private productService: ProductsService
+    private productService: ProductService
   ) {}
 
   public updateStats() {

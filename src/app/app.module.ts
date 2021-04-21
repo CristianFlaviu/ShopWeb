@@ -50,6 +50,7 @@ import { DividerModule } from 'primeng/divider';
 import { NotificationService } from './data_services/notification.service';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { FavoriteProductsComponent } from './pages/favorite-products/favorite-products.component';
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 
 const primeNgComponents = [
   CalendarModule,
@@ -101,6 +102,7 @@ const materialComponents = [
     FavoriteProductsComponent,
   ],
   imports: [
+    NgxQRCodeModule,
     BrowserModule,
     FlexLayoutModule,
     AppRoutingModule,
