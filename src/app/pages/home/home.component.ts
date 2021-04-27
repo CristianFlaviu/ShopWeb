@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-  NgxQrcodeElementTypes,
-  NgxQrcodeErrorCorrectionLevels,
-} from '@techiediaries/ngx-qrcode';
 import { ProductService } from 'src/app/data_services/products/product.service';
 
 @Component({
@@ -12,11 +8,7 @@ import { ProductService } from 'src/app/data_services/products/product.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  elementType = NgxQrcodeElementTypes.URL;
-  correctionLevel = NgxQrcodeErrorCorrectionLevels.HIGH;
-  public obj = { hmm: 'a' };
 
-  value = JSON.stringify(this.obj);
 
   public product: any;
   public productsSuggestion: any[] = [];
@@ -50,7 +42,6 @@ export class HomeComponent implements OnInit {
         })
       );
 
-    console.log(this.productsSuggestion);
   }
 
   public select(product: any) {

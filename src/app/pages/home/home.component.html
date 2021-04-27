@@ -1,20 +1,12 @@
-<!-- <ngx-qrcode
-[elementType]="elementType"
-[errorCorrectionLevel]="correctionLevel"
-[value]="value"
-cssClass="bshadow"></ngx-qrcode>
- -->
-
 <div class="title">
-
   Find a product
 </div>
 
 <div class="autocomplete-div">
 
-  <p-autoComplete [(ngModel)]="product" [suggestions]="productsSuggestion" [styleClass]="'large-input hg-aut'"
-    [style]="{height: '100px'}" (completeMethod)="filterProducts($event)" placeholder='Type the barcode' field="barcode"
-    (onSelect)="select($event)" [size]="40">
+  <p-autoComplete [(ngModel)]="product" [suggestions]="productsSuggestion" (completeMethod)="filterProducts($event)"
+    [dropdown]="true" placeholder='Type the barcode' field="barcode" inputStyleClass='input-autocomplete'
+    (onSelect)="select($event)" [size]="40" [minLength]="3">
 
     <ng-template let-product pTemplate="item">
       <div class="list-products">
@@ -22,9 +14,9 @@ cssClass="bshadow"></ngx-qrcode>
           <img src='assets/images/{{product.pathToImage}}' class="small-image" />
         </div>
         <div class="p-col-6 barcode">
-          <div>
+          <!-- <div style="white-space:pre-wrap;" >
             {{product.title}}
-          </div>
+          </div> -->
           <div>
             {{product.barcode}}
           </div>
@@ -33,12 +25,12 @@ cssClass="bshadow"></ngx-qrcode>
       </div>
     </ng-template>
   </p-autoComplete>
-  <span class="p-inputgroup-addon" style="height: 50px;">
-    <i class="pi pi-search"></i></span>
+  <!-- <span class="p-inputgroup-addon" style="height: 50px;">
+    <i class="pi pi-search"></i></span> -->
 
 </div>
 
-<div style="text-align: center; width: 60%;margin: auto;">
-  <img src="https://i.ibb.co/Cn3Ygy8/virtual-shopping-assistant-674x400.png" alt="virtual-shopping-assistant-674x400" style="width: 95%;">
-
+<div class="main-image-div">
+  <img src="https://i.ibb.co/Cn3Ygy8/virtual-shopping-assistant-674x400.png" alt="virtual-shopping-assistant-674x400"
+    class="main-image">
 </div>

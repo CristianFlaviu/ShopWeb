@@ -11,8 +11,6 @@ import { SignalRService } from 'src/app/data_services/signalR/signalR.service';
   styleUrls: ['./top-bar.component.scss'],
 })
 export class TopBarComponent implements OnInit {
-  
-
   constructor(
     public authentiicationService: AuthentiicationService,
     private router: Router,
@@ -22,8 +20,10 @@ export class TopBarComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.singalService.startConnection();
-    this.singalService.addTransferData();
+    if (this.authentiicationService.isLoggedIn()) {
+      this.singalService.startConnection();
+      this.singalService.addTransferData();
+    }
 
     if (this.authentiicationService.isLoggedIn()) {
       this.notificationService.updateStats();

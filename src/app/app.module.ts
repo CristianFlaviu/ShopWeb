@@ -51,6 +51,7 @@ import { NotificationService } from './data_services/notification.service';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { FavoriteProductsComponent } from './pages/favorite-products/favorite-products.component';
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+import { DetectQrCodeComponent } from './pages/detect-qr-code/detect-qr-code.component';
 
 const primeNgComponents = [
   CalendarModule,
@@ -100,6 +101,7 @@ const materialComponents = [
     BarcodeScanComponent,
     ShoppingCartComponent,
     FavoriteProductsComponent,
+    DetectQrCodeComponent,
   ],
   imports: [
     NgxQRCodeModule,

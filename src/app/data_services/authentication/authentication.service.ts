@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { UserLogin } from 'src/app/data_models/authentication/user-login.model';
 import { UserRegister } from 'src/app/data_models/authentication/user-register.model';
@@ -37,8 +38,10 @@ export class AuthentiicationService {
       .post(environment.apiUrl + '/auth/confirm-email', { email, token })
       .toPromise();
   }
-  public getUser(): UserLogin {
-    return this.currentUser;
+  public getCurrentUser() {
+    const token = this.oautth.getAccessToken();
+    const helper = new JwtHelperService();
+    return helper.decodeToken(token);
   }
 
   public isLoggedIn(): boolean {
