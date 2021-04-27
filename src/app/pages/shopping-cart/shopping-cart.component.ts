@@ -15,6 +15,7 @@ export class ShoppingCartComponent implements OnInit {
 
   public products: any[] = [];
   public totalPrice = 0;
+  public imageLoading = false;
 
   async ngOnInit() {
     await this.productService.getProductShoppingCart().then((data) => {

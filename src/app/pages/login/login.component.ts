@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.userLogin.Email, this.userLogin.Password).then(
       () => {
         this.notificationService.updateStats();
-        this.router.navigate(['/home']);
+        this.router.navigate(['/detect-qr-code']);
       },
       (err) => {
         console.log(err);
@@ -88,14 +88,4 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  //  this.singalService.startConnection();
-  //    this.singalService.addTransferData();
-
-  // this.authService.Login('master_user', 'Pass123456*');
-  // this.authService.GetWeather().then((data) => {
-  //   console.log(data);
-  // });
-
-  // this.authService.refreshToken();
-  // }
 }

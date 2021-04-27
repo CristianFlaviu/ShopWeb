@@ -1,24 +1,9 @@
-@media only screen and (max-width: 450px) {
-  .login-card {
-    margin-top: 25%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 3px;
-    width: 70%;
-  }
+.login-card {
+  margin: 25% auto 1%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%;
 }
-
-@media only screen and (min-width: 450px) {
-  .login-card {
-    margin-top: 3%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 3px;
-    width: 26%;
-  }
-}
-
-
 
 .input-form-field {
   width: 80%;
@@ -41,4 +26,24 @@
 }
 .link {
   text-align: right;
+}
+
+@media only screen and (min-width: 450px) {
+  .login-card {
+    width: 60%;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .login-card {
+    margin-top: 15%;
+    width: 40%;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .login-card {
+    margin-top: 6%;
+    width: 23%;
+  }
 }

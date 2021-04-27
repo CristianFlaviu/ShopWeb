@@ -5,13 +5,6 @@ import { ProductService } from 'src/app/data_services/products/product.service';
 import { Product } from '../models/product';
 import { ProductAttribute } from '../models/product-attribute';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
 @Component({
   selector: 'app-barcode-scan',
   templateUrl: './barcode-scan.component.html',
@@ -22,6 +15,7 @@ export class BarcodeScanComponent implements OnInit {
   public pathToProductImage: string;
 
   public barcode: string;
+  public imageLoading: boolean = false;
 
   public importantFeatures: ProductAttribute[] = [];
 
@@ -55,6 +49,7 @@ export class BarcodeScanComponent implements OnInit {
     this.barcode =
       this.activatedRoute.snapshot.paramMap.get('barcode') ?? 'invalid barcode';
 
+    this.imageLoading = true;
     this.productService.getProductByBarcode(this.barcode + '').then(
       (data) => {
         this.product = data.payload;
@@ -65,7 +60,7 @@ export class BarcodeScanComponent implements OnInit {
             }
           }
         );
-        console.log(this.importantFeatures);
+        this.imageLoading = false;
       },
       (err) => console.log(err)
     );
