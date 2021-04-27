@@ -9,7 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { OAuthModule, OAuthStorage } from 'angular-oauth2-oidc';
 import { HttpClientModule } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { MatCardModule } from '@angular/material/card';
+import { MatCardContent, MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -52,7 +52,9 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { FavoriteProductsComponent } from './pages/favorite-products/favorite-products.component';
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 import { DetectQrCodeComponent } from './pages/detect-qr-code/detect-qr-code.component';
-
+import { CreditCardComponent } from './pages/credit-card/credit-card.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
 const primeNgComponents = [
   CalendarModule,
   ProgressBarModule,
@@ -89,6 +91,16 @@ const materialComponents = [
   MatTableModule,
   MatPaginatorModule,
   MatSortModule,
+  MatButtonModule,
+  MatCheckboxModule,
+  MatToolbarModule,
+  MatSidenavModule,
+  MatMenuModule,
+  MatIconModule,
+  MatCardModule,
+  MatInputModule,
+  MatFormFieldModule,
+  MatGridListModule
 ];
 @NgModule({
   declarations: [
@@ -102,8 +114,10 @@ const materialComponents = [
     ShoppingCartComponent,
     FavoriteProductsComponent,
     DetectQrCodeComponent,
+    CreditCardComponent,
   ],
   imports: [
+    ReactiveFormsModule,
     NgxQRCodeModule,
     BrowserModule,
     FlexLayoutModule,

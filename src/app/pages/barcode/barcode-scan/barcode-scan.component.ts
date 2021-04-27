@@ -50,6 +50,7 @@ export class BarcodeScanComponent implements OnInit {
       this.activatedRoute.snapshot.paramMap.get('barcode') ?? 'invalid barcode';
 
     this.imageLoading = true;
+
     this.productService.getProductByBarcode(this.barcode + '').then(
       (data) => {
         this.product = data.payload;

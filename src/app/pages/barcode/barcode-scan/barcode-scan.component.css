@@ -16,6 +16,7 @@ $mobile-small: 300px */
 
   .product-image {
     height: 30vh;
+    width: auto;
     margin: auto;
   }
 }
@@ -34,6 +35,7 @@ $mobile-small: 300px */
 
   .product-image {
     height: 40vh;
+    width: auto;
     margin: auto;
   }
 }

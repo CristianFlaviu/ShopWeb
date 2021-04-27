@@ -9,10 +9,7 @@ export class NotificationService {
   public favourite: number;
   public shoppingCart: number;
 
-  constructor(
-    private http: HttpClient,
-    private productService: ProductService
-  ) {}
+  constructor(private productService: ProductService) {}
 
   public updateStats() {
     this.productService.getProductShoppingCart().then((data) => {

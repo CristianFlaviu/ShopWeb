@@ -5,8 +5,10 @@
             <div class="product-title">
                 {{product?.title}}
             </div>
+            
             <img *ngIf="!imageLoading" mat-card-image src='{{ "assets/images/" + product?.pathToImage }}' alt="Photo of a Shiba Inu"
                 class="product-image">
+
         </div>
 
         <!-- right -->
