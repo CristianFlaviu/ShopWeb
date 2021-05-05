@@ -44,7 +44,7 @@
         <button *ngIf="authentiicationService.isLoggedIn()" mat-button routerLink="/shopping-cart">Shopping
           Cart</button>
         <button *ngIf="authentiicationService.isLoggedIn()" mat-button routerLink="/favorite-products">Favourite
-      </button>
+        </button>
         <button *ngIf="authentiicationService.isLoggedIn()" (click)="logout()" mat-button>Logout</button>
       </div>
     </mat-sidenav>
@@ -58,7 +58,35 @@
 
 
   </mat-sidenav-container>
-  <footer class="my-footer" style="font-size: 23px; font-weight: bold;"> footer awesome</footer>
+
+
+
+  <footer class="my-footer">
+
+    
+    <div style="width: 50%;margin-left: 45%;">
+      &#169; Copright Shop Assistant
+    </div>
+
+    <div class="social-media" style="align-items: flex-end; justify-content: center;align-content: center;">
+
+      <div style="width: 10%;">
+        <i class="pi pi-facebook icon-sm"></i>
+      </div>
+
+      <div style="width: 10%;">
+        <img src="https://i.ibb.co/7YR16tg/insta.png" class="pi pi-phone icon-sm" style="width: 30px;">
+      </div>
+
+      <div style="width: 10%;margin-left: 2%;">
+        <i class="pi pi-twitter icon-sm"></i>
+      </div>
+
+    
+
+
+    </div>
+  </footer>
 
 
 </div>

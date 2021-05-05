@@ -3,7 +3,7 @@
   margin-right: 20px;
   margin-bottom: 10px;
 }
-.icon-align-phone{
+.icon-align-phone {
   font-size: 15px;
 }
 
@@ -32,5 +32,17 @@ div {
   background: rgb(206, 206, 206);
   display: flex;
   justify-content: center;
-  align-items:center;
+  align-items: center;
+}
+
+.social-media {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 35%;
+}
+
+.icon-sm {
+  font-size: 1.23rem;
+  vertical-align: bottom;
 }
