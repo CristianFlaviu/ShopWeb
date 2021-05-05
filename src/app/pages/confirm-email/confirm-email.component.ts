@@ -1,5 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { SnotifyPosition, SnotifyService } from 'ng-snotify';
 import { AuthentiicationService } from 'src/app/data_services/authentication/authentication.service';
 
 @Component({
@@ -17,7 +23,7 @@ export class ConfirmEmailComponent implements OnInit {
     const email = this.route.snapshot.queryParamMap.get('email');
     const token = this.route.snapshot.queryParamMap.get('token');
 
-    console.log(token, email);
+    console.log(email, token);
     if (email && token) {
       this.authService.confirmEmail(email, token);
     }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './globals/auth-guard';
 import { BarcodeScanComponent } from './pages/barcode/barcode-scan/barcode-scan.component';
 import { ConfirmEmailComponent } from './pages/confirm-email/confirm-email.component';
 import { CreditCardComponent } from './pages/credit-card/credit-card.component';
@@ -13,12 +14,17 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'confirm-email', component: ConfirmEmailComponent },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   {
     path: 'barcode-scan/:barcode',
     component: BarcodeScanComponent,
+    canActivate: [AuthGuard],
   },
-  { path: 'shopping-cart', component: ShoppingCartComponent },
+  {
+    path: 'shopping-cart',
+    component: ShoppingCartComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'favorite-products', component: FavoriteProductsComponent },
   { path: 'detect-qr-code', component: DetectQrCodeComponent },
   { path: 'credit-card', component: CreditCardComponent },

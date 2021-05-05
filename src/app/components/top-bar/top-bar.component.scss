@@ -3,8 +3,11 @@
   margin-right: 20px;
   margin-bottom: 10px;
 }
+.icon-align-phone{
+  font-size: 15px;
+}
 
-.companyName {
+.title {
   font-size: 130%;
 }
 
@@ -26,4 +29,8 @@ div {
 
 .my-footer {
   height: 5vh;
+  background: rgb(206, 206, 206);
+  display: flex;
+  justify-content: center;
+  align-items:center;
 }
