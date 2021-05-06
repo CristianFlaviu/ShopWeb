@@ -6,7 +6,7 @@
 
   <p-autoComplete [(ngModel)]="product" [suggestions]="productsSuggestion" (completeMethod)="filterProducts($event)"
     [dropdown]="true" placeholder='Type the barcode' field="barcode" inputStyleClass='input-autocomplete'
-    (onSelect)="select($event)" [size]="40" [minLength]="3">
+    (onSelect)="select($event)" [size]="40">
 
     <ng-template let-product pTemplate="item">
       <div class="list-products">
@@ -14,8 +14,8 @@
           <img src='assets/images/{{product.pathToImage}}' class="small-image" />
         </div>
         <div class="p-col-6 barcode">
-          <div >
-            {{product.title}}
+          <div>
+            {{product.shortTitle}}
           </div>
           <div>
             {{product.barcode}}

@@ -13,7 +13,7 @@
     <span class="example-spacer"></span>
     <div fxShow="true" fxHide.lt-md="true">
 
-      <div *ngIf="authentiicationService.isLoggedIn()">
+      <div *ngIf="authenticationService.isLoggedIn()">
         <button mat-button>
           <mat-icon [matBadge]="getShopC()" matBadgeColor="warn" class="icon-align" routerLink='shopping-cart'>
             shopping_cart</mat-icon>
@@ -29,7 +29,7 @@
         </button>
       </div>
       <mat-menu #menu="matMenu">
-        <button *ngIf="authentiicationService.isLoggedIn()" (click)="logout()" mat-menu-item>Logout</button>
+        <button *ngIf="authenticationService.isLoggedIn()" (click)="logout()" mat-menu-item>Logout</button>
       </mat-menu>
     </div>
 
@@ -40,12 +40,12 @@
 
     <mat-sidenav color="primary" #sidenav fxLayout="column" mode="over" opened="false" fxHide.gt-sm="true">
       <div fxLayout="column">
-        <button *ngIf="authentiicationService.isLoggedIn()" mat-button (click)="navigateOnClickTitle()"> Home</button>
-        <button *ngIf="authentiicationService.isLoggedIn()" mat-button routerLink="/shopping-cart">Shopping
+        <button *ngIf="authenticationService.isLoggedIn()" mat-button (click)="navigateOnClickTitle()"> Home</button>
+        <button *ngIf="authenticationService.isLoggedIn()" mat-button routerLink="/shopping-cart">Shopping
           Cart</button>
-        <button *ngIf="authentiicationService.isLoggedIn()" mat-button routerLink="/favorite-products">Favourite
+        <button *ngIf="authenticationService.isLoggedIn()" mat-button routerLink="/favorite-products">Favourite
         </button>
-        <button *ngIf="authentiicationService.isLoggedIn()" (click)="logout()" mat-button>Logout</button>
+        <button *ngIf="authenticationService.isLoggedIn()" (click)="logout()" mat-button>Logout</button>
       </div>
     </mat-sidenav>
 
@@ -63,28 +63,24 @@
 
   <footer class="my-footer">
 
-    
-    <div style="width: 50%;margin-left: 45%;">
+
+    <div class="copyright-div">
       &#169; Copright Shop Assistant
     </div>
 
     <div class="social-media" style="align-items: flex-end; justify-content: center;align-content: center;">
 
-      <div style="width: 10%;">
+      <div class="icon-div">
         <i class="pi pi-facebook icon-sm"></i>
       </div>
 
-      <div style="width: 10%;">
+      <div class="icon-div">
         <img src="https://i.ibb.co/7YR16tg/insta.png" class="pi pi-phone icon-sm" style="width: 30px;">
       </div>
 
-      <div style="width: 10%;margin-left: 2%;">
+      <div class="icon-div">
         <i class="pi pi-twitter icon-sm"></i>
       </div>
-
-    
-
-
     </div>
   </footer>
 

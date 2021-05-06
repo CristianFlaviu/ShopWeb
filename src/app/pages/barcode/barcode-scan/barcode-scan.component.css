@@ -1,62 +1,33 @@
-/* $desktop: 960px
-$tablet: 768px
-$mobile-large: 640px
-$mobile: 480px
-$mobile-small: 300px */
-
-@media only screen and (max-width: 450px) {
-  .product-left {
-    text-align: center;
-    font-size: 16px;
-  }
-  .product-title {
-    width: 100%;
-    font-weight: 600;
-  }
-
-  .product-image {
-    height: 30vh;
-    width: auto;
-    margin: auto;
-  }
+/* ====== Description Left =======*/
+.product-left {
+  text-align: center;
 }
 
-@media only screen and (min-width: 450px) {
-  .product-left {
-    text-align: center;
-    font-size: 23px;
-  }
-
-  .product-title {
-    width: 50%;
-    margin: 0 auto 3% auto;
-    font-weight: 600;
-  }
-
-  .product-image {
-    height: 40vh;
-    width: auto;
-    margin: auto;
-  }
+.product-title {
+  width: 100%;
+  font-weight: 600;
+  font-size: 20px;
 }
 
+.product-image {
+  height: 30vh;
+  margin-top: 15px;
+}
 
+/* ====== Discription Right =======*/
+.right-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
 
-/* right div  */
+.stars-div {
+  width: 100%;
+}
+
 :host ::ng-deep .bigger-stars .p-rating .p-rating-icon {
-  font-size: 1.5vw;
+  font-size: 18px;
   color: #f9bf3b;
-}
-
-/* ------------ */
-.table-info {
-  width: 80%;
-  margin: auto;
-}
-
-.product-info {
-  width: 65%;
-  margin: 3% auto;
 }
 
 .price {
@@ -71,8 +42,67 @@ $mobile-small: 300px */
 }
 
 .space-div {
-  margin-top: 2%;
+  margin-top: 15px;
 }
+
+.product-buttons {
+  margin-top: 10px;
+  width: 165px;
+}
+
+.info-mobile {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.desktop-info {
+  display: none;
+}
+
+@media only screen and (min-width: 768px) {
+  .product-image {
+    height: 35vh;
+  }
+  .product-title {
+    font-size: 24px;
+  }
+  .right-row {
+    flex-wrap: nowrap;
+  }
+  .stars-div {
+    width: 160px;
+  }
+  :host ::ng-deep .bigger-stars .p-rating .p-rating-icon {
+    font-size: 25px;
+    color: #f9bf3b;
+  }
+
+  .info-mobile {
+    display: none;
+  }
+
+  .desktop-info {
+    display: block;
+  }
+  .product-buttons {
+    margin-right: 25px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .product-image {
+    height: 40vh;
+  }
+  .product-title {
+    font-size: 28px;
+  }
+
+  .product-buttons {
+    margin-right: 25px;
+  }
+}
+
+/* right div  */
 
 .first-info-div {
   margin-top: 3%;
@@ -91,7 +121,12 @@ $mobile-small: 300px */
   min-height: 200px;
 }
 
-:host ::ng-deep  .p-carousel .p-carousel-indicators .p-carousel-indicator button {
+:host
+  ::ng-deep
+  .p-carousel
+  .p-carousel-indicators
+  .p-carousel-indicator
+  button {
   background-color: rgb(240, 239, 239);
 }
 

@@ -11,19 +11,19 @@ import { SignalRService } from 'src/app/data_services/signalR/signalR.service';
 })
 export class TopBarComponent implements OnInit {
   constructor(
-    public authentiicationService: AuthentiicationService,
+    public authenticationService: AuthentiicationService,
     private router: Router,
     private singalService: SignalRService,
     private notificationService: NotificationService
   ) {}
 
   ngOnInit() {
-    if (this.authentiicationService.isLoggedIn()) {
+    if (this.authenticationService.isLoggedIn()) {
       this.singalService.startConnection();
       this.singalService.addTransferData();
     }
 
-    if (this.authentiicationService.isLoggedIn()) {
+    if (this.authenticationService.isLoggedIn()) {
       this.notificationService.updateStats();
     }
   }
@@ -31,7 +31,7 @@ export class TopBarComponent implements OnInit {
   public logout() {
     this.notificationService.favourite = 0;
     this.notificationService.shoppingCart = 0;
-    this.authentiicationService.logout();
+    this.authenticationService.logout();
     this.router.navigate(['/']);
   }
   public getFav() {
@@ -43,7 +43,7 @@ export class TopBarComponent implements OnInit {
   }
 
   public navigateOnClickTitle() {
-    if (this.authentiicationService.isLoggedIn()) {
+    if (this.authenticationService.isLoggedIn()) {
       this.router.navigate(['home']);
     } else {
       this.router.navigate(['login']);

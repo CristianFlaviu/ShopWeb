@@ -27,6 +27,7 @@ div {
   flex: 1 1 auto;
 }
 
+/* ======  footer ====== */
 .my-footer {
   height: 5vh;
   background: rgb(206, 206, 206);
@@ -45,4 +46,27 @@ div {
 .icon-sm {
   font-size: 1.23rem;
   vertical-align: bottom;
+  margin: 0 5px;
+}
+
+
+
+@media only screen and (min-width: 768px) {
+  .copyright-div {
+    width: 50%;
+    margin-left: 38%;
+  }
+}
+
+
+@media only screen and (min-width: 1024px) {
+  .icon-sm {
+    width: 20%;
+    margin: 0 10px;
+  }
+
+  .copyright-div {
+    width: 50%;
+    margin-left: 45%;
+  }
 }
