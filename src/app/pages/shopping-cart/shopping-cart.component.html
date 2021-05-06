@@ -1,95 +1,112 @@
-<div style="width: 80%;margin: 3% auto 0 auto; font-family: 'SanaSansAltBold', sans-serif;">
-  <div style="display: flex; flex-wrap: wrap;">
-    <div class="p-col-8">
+<div class="page">
 
-      <p-card>
-        <div *ngFor="let item of products">
-          <div class="p-grid">
-            <!-- ===================== Image ===================== -->
-            <div class="p-col-3 div-image">
-              <img src='{{ "assets/images/" + item.product?.pathToImage }}' class="small-image">
-            </div>
-            <!-- ===================== Title ===================== -->
-            <div class="title-div">
-              <div class="title-product">
-                {{item.product.title}}
-              </div>
+  <div *ngIf="products.length==0" style="width: 80%;margin: auto;">
+    <p-card styleClass='empty-shop-cart'>
 
-              <div class="stock">
-                In stock
-              </div>
-            </div>
-            <!-- ===================== Price ===================== -->
-            <div class="price">
-              <div class="newprice">
-                {{item.product.newPrice}} Lei
-              </div>
+      <ng-template pTemplate="header">
+        Your Shopping Cart is Empty
+      </ng-template>
 
-              <div class="oldprice">
-                <span style=" text-decoration: line-through;"> {{item.product.oldPrice}} Lei </span>
-                <!-- <span style="color: red;">{{item.product.discount}}% </span> -->
-              </div>
-            </div>
-            <!-- ===================== Buttons ===================== -->
-            <div class="buttons">
-              <button pButton pRipple type="button" (click)="minus(item)" icon="pi pi-minus"
-                class="p-button-rounded p-button-plain p-button-danger"></button>
-
-              <div style="margin: auto 8px; text-align: center;">{{item.quantity}}</div>
-
-              <button pButton pRipple type="button" (click)="plus(item)" icon="pi pi-plus"
-                class="p-button-rounded p-button-plain"></button>
-
-              <button pButton pRipple type="button" (click)="deleteProductShoppingCart(item)" icon="pi pi-trash"
-                style="margin-left: 25px;" class="p-button-rounded p-button-plain  p-button-secondary"></button>
-
-            </div>
-          </div>
-          <p-divider></p-divider>
-        </div>
-
-        <ng-template pTemplate="footer">
-          <span style="font-size: 20px; font-weight: 500;"> Total Price: {{totalPrice + 10}} Lei</span>
-        </ng-template>
-      </p-card>
-    </div>
-
-    <div class="p-col-3 p-offset-1">
-      <p-card styleClass>
-
-        <span class="total-price-title">
-          Sumar comanda
-        </span>
-        <div class="p-grid">
-          <div class="p-col-6">
-            Cost produse
-          </div>
-          <div class="p-col-6" style="text-align: right;">
-            {{totalPrice + 10}} lei
-          </div>
-        </div>
-
-        <div class="p-grid">
-          <div class="p-col-6">
-            Cost Livrare
-          </div>
-          <div class="p-col-6" style="text-align: right;">
-            10 lei
-          </div>
-        </div>
-
-        <p-divider></p-divider>
-
-        <div style="font-weight: bold; font-size: 20px;">
-          Total :
-        </div>
-        <div style="font-weight: bold; font-size: 25px;">
-          {{totalPrice + 10}}<span style="font-size: 18px;">.00</span> Lei
-        </div>
-
-
-
-      </p-card>
-    </div>
+      <img class="empty-cart-image" src="https://i.ibb.co/q14vMsW/emc.png" alt="emc">
+      <ng-template pTemplate="footer">
+        <button mat-raised-button color="primary" class="product-buttons" routerLink='/home'>
+          <mat-icon>
+            search</mat-icon> Find a Product
+        </button>
+      </ng-template>
+    </p-card>
   </div>
+
+  <div *ngIf="products.length!=0" class="list-products-div">
+    <p-card>
+      <div *ngFor="let item of products">
+        <div class="p-grid">
+          <!-- ===================== Image ===================== -->
+          <div class="p-col-3 div-image">
+            <img src='{{ "assets/images/" + item.product?.pathToImage }}' class="small-image">
+          </div>
+          <!-- ===================== Title ===================== -->
+          <div class="title-div">
+
+            <div class="title-product ">
+              {{item.product.title}}
+            </div>
+
+            <div class="stock">
+              In stock
+            </div>
+          </div>
+          <!-- ===================== Price ===================== -->
+          <div class="price">
+            <div class="newprice">
+              {{item.product.newPrice}} Lei
+            </div>
+
+            <div class="oldprice">
+              <span style=" text-decoration: line-through;"> {{item.product.oldPrice}} Lei </span>
+              <!-- <span style="color: red;">{{item.product.discount}}% </span> -->
+            </div>
+          </div>
+          <!-- ===================== Buttons ===================== -->
+          <div class="buttons">
+            <button pButton pRipple type="button" (click)="minus(item)" icon="pi pi-minus"
+              class="p-button-rounded p-button-plain p-button-danger"></button>
+
+            <div style="margin: auto 8px; text-align: center;">{{item.quantity}}</div>
+
+            <button pButton pRipple type="button" (click)="plus(item)" icon="pi pi-plus"
+              class="p-button-rounded p-button-plain"></button>
+
+            <button pButton pRipple type="button" (click)="deleteProductShoppingCart(item)" icon="pi pi-trash"
+              class="p-button-rounded p-button-plain  p-button-secondary delete-button"></button>
+
+          </div>
+        </div>
+        <p-divider></p-divider>
+      </div>
+
+      <ng-template pTemplate="footer">
+        <span style="font-size: 20px; font-weight: 500;"> Total Price: {{totalPrice + 10}} Lei</span>
+      </ng-template>
+    </p-card>
+  </div>
+
+
+  <!-- Total Comanda -->
+  <div *ngIf="products.length!=0" class="total-comanda">
+    <p-card>
+      <span class="total-price-title">
+        Sumar comanda
+      </span>
+      <div class="p-grid">
+        <div class="p-col-6">
+          Cost produse
+        </div>
+        <div class="p-col-6" style="text-align: right;">
+          {{totalPrice + 10}} lei
+        </div>
+      </div>
+
+      <div class="p-grid">
+        <div class="p-col-6">
+          Cost Livrare
+        </div>
+        <div class="p-col-6" style="text-align: right;">
+          10 lei
+        </div>
+      </div>
+
+      <p-divider></p-divider>
+
+      <div style="font-weight: bold; font-size: 20px;">
+        Total :
+      </div>
+      <div style="font-weight: bold; font-size: 25px;">
+        {{totalPrice + 10}}<span style="font-size: 18px;">.00</span> Lei
+      </div>
+
+    </p-card>
+  </div>
+
+
 </div>
