@@ -1,0 +1,77 @@
+<div class="page">
+
+  <div *ngIf="products.length==0" style="width: 80%;margin: 5px auto">
+    <p-card styleClass='empty-shop-cart'>
+
+      <ng-template pTemplate="header">
+        Favourite product list is empty
+      </ng-template>
+
+      <img class="empty-cart-image" src="https://i.ibb.co/q14vMsW/emc.png" alt="emc">
+      <ng-template pTemplate="footer">
+        <button mat-raised-button color="primary" routerLink='/home'>
+          <mat-icon>
+            search</mat-icon> Find a Product
+        </button>
+      </ng-template>
+    </p-card>
+  </div>
+
+  <div *ngIf="products.length!=0" class="list-products-div">
+    <p-card>
+      <div *ngFor="let item of products;index as i;">
+        <div class="p-grid">
+          <!-- ===================== Image ===================== -->
+          <div class="p-col-3 div-image">
+            <img src='{{ "assets/images/" + item.product?.pathToImage }}' class="small-image">
+          </div>
+          <!-- ===================== Title ===================== -->
+          <div class="title-div">
+
+            <div class="title-product" [routerLink]="'/barcode-scan/'+item.product.barcode">
+              {{item.product.title}}
+            </div>
+
+            <div class="stock">
+              In stock
+            </div>
+          </div>
+          <!-- ===================== Price ===================== -->
+          <div class="price">
+            <div class="newprice">
+              {{item.product.newPrice}} Lei
+            </div>
+
+            <div class="oldprice">
+              <span style=" text-decoration: line-through;"> {{item.product.oldPrice}} Lei </span>
+            </div>
+          </div>
+          <!-- ===================== Buttons ===================== -->
+          <div class="buttons">
+            <button mat-raised-button color="primary" class="product-buttons"
+              (click)="addProductToShoppingCart(item.product.barcode)">
+              <mat-icon>
+                add_shopping_cart</mat-icon>
+            </button>
+
+            <button mat-raised-button color="warn" class="product-buttons"
+              (click)="deleteProductShoppingCart(item.product.barcode)">
+              <mat-icon>
+                delete</mat-icon>
+            </button>
+
+          </div>
+        </div>
+        <p-divider *ngIf="i!=products.length-1"></p-divider>
+      </div>
+
+      <!-- <ng-template pTemplate="footer">
+        <span style="font-size: 20px; font-weight: 500;"> Total Price: {{ + 10}} Lei</span>
+      </ng-template> -->
+    </p-card>
+  </div>
+
+
+
+
+</div>

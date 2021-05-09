@@ -1,0 +1,52 @@
+<div class="main-div">
+
+  <mat-card [ngClass]="{'card-div':true}">
+    <mat-card-header>
+      <mat-card-title>Card Payment</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <form [formGroup]="cardForm" (ngSubmit)="onSubmit()">
+
+        <mat-form-field class="full-width">
+          <input matInput formControlName="cardno" placeholder="Card Number" card-number>
+        </mat-form-field>
+
+        <div fxLayout="row" fxLayoutGap="20px">
+
+          <mat-form-field class="full-width">
+            <input matInput formControlName="firstName" placeholder="First Name" card-name>
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <input matInput formControlName="lastName" placeholder="Last Name" card-name>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="20px">
+          <mat-form-field class="full-width">
+            <input matInput formControlName="expDate" placeholder="Expiration Date" card-expiry>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput formControlName="cvvNo" placeholder="CVV" card-cvc>
+          </mat-form-field>
+        </div>
+
+        <div class="p-grid">
+
+        </div>
+
+        <div class="p-grid">
+          <div class="p-col-2">
+            <button mat-raised-button color="primary" class="payment-button">Save</button>
+          </div>
+          <div class="p-col-2 p-offset-5">
+            <img src="assets\images\pp.png" class="image-pp">
+          </div>
+
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

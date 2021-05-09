@@ -1,0 +1,163 @@
+<div style="width: 90%;margin: 3% auto;">
+
+    <div class="p-grid">
+        <!-- left -->
+        <div class="p-col-6 product-left">
+            <div class="product-title">
+                {{product?.title}}
+            </div>
+            <img mat-card-image src='{{ "assets/images/" + product?.pathToImage }}' alt="product" class="product-image">
+        </div>
+
+        <!-- right -->
+        <div class="p-col-6">
+
+            <div class="right-row">
+                <div class="stars-div">
+                    <p-rating [(ngModel)]="product.score" [readonly]="true" [stars]="5" [disabled]='true'
+                        [cancel]="false" class="bigger-stars">
+                    </p-rating>
+                </div>
+                <div>
+                    ( 10 review-uri)
+                </div>
+            </div>
+            <!-- second row-->
+            <div class="price">
+                {{product?.newPrice}} Lei
+            </div>
+            <div class="tva">
+                Pretul Include 9% TVA
+            </div>
+
+            <div class="space-div p-grid">
+                <button mat-raised-button color="primary" class="product-buttons" (click)="addProductToShoppingCart()">
+                    <mat-icon>
+                        add_shopping_cart</mat-icon> Add to Chart
+                </button>
+                <button mat-raised-button color="warn" class="product-buttons" (click)="addProductToFavorite()">
+                    <mat-icon>
+                        favorite</mat-icon> Add to Favourite
+                </button>
+            </div>
+            <div class="desktop-info">
+                <div class="first-info-div">
+                    <i class="pi pi-check-circle"></i>&nbsp; Disponibilitate : <span style="  color: #00985f;"> In
+                        stoc <span style="color: #00985f;">({{product?.unitsAvailable}})</span>
+                    </span>
+                </div>
+
+                <div class="space-div">
+                    <i class="pi pi-calendar"></i> &nbsp; Data Expirarii : {{product.availability |date : 'dd/MM/yyyy'
+                    }}
+                </div>
+                <div class="space-div">
+                    <i class="pi pi-credit-card"></i> &nbsp; Barcode : {{product.barcode}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-mobile">
+        <div class="first-info-div">
+            <i class="pi pi-check-circle"></i>&nbsp; Disponibilitate : <span style="  color: #00985f;"> In
+                stoc <span style="color: #00985f;">({{product?.unitsAvailable}})</span>
+            </span>
+        </div>
+
+        <div class="space-div">
+            <i class="pi pi-calendar"></i> &nbsp; Data Expirarii : {{product.availability |date : 'dd/MM/yyyy' }}
+        </div>
+        <div class="space-div">
+            <i class="pi pi-credit-card"></i> &nbsp; Barcode : {{product.barcode}}
+        </div>
+    </div>
+</div>
+
+<div style="background: #e9ebee;">
+    <div style="margin: auto; width: 70%;">
+        <p-carousel id="carouselID" [value]="products" [numVisible]="4" [numScroll]="1" [circular]="true"
+            [autoplayInterval]="10000" [responsiveOptions]="responsiveOptions">
+            <ng-template pTemplate="header">
+                <span class="header-carusel">We also recommend you </span>
+            </ng-template>
+
+            <ng-template let-myProduct pTemplate="item">
+                <div class="product-item" style="position: relative;">
+                    <div class="product-item-content" style="cursor: pointer;"
+                        [routerLink]="'/barcode-scan/'+myProduct.barcode">
+
+                        <div class="carusel-reducere">
+                            {{myProduct.discount}}%
+                        </div>
+                        <div>
+                            <img src='{{ "assets/images/" + myProduct?.pathToImage }}' [alt]="myProduct.title"
+                                class="carusel_image" />
+                        </div>
+
+                        <div class="carusel-product-title">{{myProduct.title}}</div>
+
+                        <p-rating [(ngModel)]="myProduct.score" [readonly]="true" [stars]="5" [cancel]="false"
+                            class="carusel-stars">
+                        </p-rating>
+
+
+                        <div style="font-size: 13px;">
+                            <span style="text-decoration: line-through;"> {{myProduct.oldPrice}} Lei </span>
+                            ( {{myProduct.discount}} %)
+                        </div>
+
+                        <div class="carusel-new-price">
+                            {{myProduct.newPrice}} Lei
+                        </div>
+
+                    </div>
+                </div>
+            </ng-template>
+        </p-carousel>
+    </div>
+</div>
+
+
+<div style="width: 75%; margin:auto; padding-bottom: 100px;">
+
+    <div class="specifations">
+        Specificatii
+    </div>
+
+    <div style="font-size: 20px;margin-bottom: 20px;">
+        Caractestici Generale
+    </div>
+
+
+    <p-table styleClass="p-datatable-sm" [value]=[1]>
+
+        <ng-template pTemplate="body" let-product>
+            <tr *ngFor="let atr of importantFeatures ">
+
+                <td style="font-weight: bold;">{{atr.Name}}</td>
+                <td>{{atr.Value}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+
+
+    <div style="font-size: 20px;margin:20px 0;">
+        Informatii Lapte
+    </div>
+
+    <p-table styleClass="p-datatable-sm" [value]=[1]>
+
+        <ng-template pTemplate="body" let-product>
+            <tr *ngFor="let atr of importantFeatures ">
+
+
+                <td style="font-weight: bold;">{{atr.Name}}</td>
+                <td>{{atr.Value}}</td>
+
+
+            </tr>
+        </ng-template>
+    </p-table>
+
+</div>

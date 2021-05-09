@@ -1,0 +1,148 @@
+.page {
+  width: 80%;
+  margin: 3% auto 0 auto;
+  font-family: "SanaSansAltBold", sans-serif;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.list-products-div {
+  width: 100%;
+  margin: 0 auto 10px auto;
+}
+
+.small-image {
+  height: 85px;
+}
+.div-image {
+  text-align: center;
+}
+
+.title-div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+  width: 25%;
+  cursor: pointer;
+}
+
+.title-product {
+  font-weight: bold;
+  font-size: 15px;
+  width: 80%;
+}
+
+.stock {
+  color: green;
+  font-size: 13px;
+  margin-top: 5px;
+  width: 80%;
+}
+
+.price {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  align-content: center;
+  width: 18%;
+}
+
+.newprice {
+  font-size: 18px;
+  font-weight: bold;
+  width: 60%;
+}
+
+.oldprice {
+  margin-top: 5px;
+  width: 60%;
+  color: gray;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 30%;
+  flex-direction: column;
+}
+
+.product-buttons {
+  width: 50%;
+  min-width: 15px;
+  padding: 0;
+}
+
+:host ::ng-deep .empty-shop-cart .p-card-header {
+  text-align: center;
+  width: 100%;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+:host ::ng-deep .empty-shop-cart .p-card-body {
+  text-align: center;
+}
+
+.empty-cart-image {
+  height: 200px;
+  margin: auto;
+}
+
+:host ::ng-deep .empty-shop-cart .p-card-footer {
+  text-align: end;
+}
+
+@media only screen and (min-width: 480px) {
+  .delete-button {
+    margin-left: 15px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .list-products-div {
+    width: 90%;
+  }
+  .small-image {
+    height: 125px;
+  }
+  .title-product {
+    font-size: 18px;
+  }
+  .stock {
+    font-size: 18px;
+  }
+  :host ::ng-deep .empty-shop-cart .p-card-header {
+    font-size: 23px;
+  }
+  .product-buttons {
+    min-width: 35px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .product-buttons {
+    width: 30%;
+  }
+
+  .list-products-div {
+    width: 80%;
+  }
+
+  .empty-cart-image {
+    height: 300px;
+  }
+}
+
+:host ::ng-deep .p-card .p-card-content {
+  padding: 0;
+}
+
+:host ::ng-deep .p-button.p-button-icon-only.p-button-rounded {
+  height: 1.557rem;
+  width: 1.557rem;
+}

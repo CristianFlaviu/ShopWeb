@@ -1,0 +1,155 @@
+<mat-card class="login-card">
+  <mat-card-title class="header-text">Login</mat-card-title>
+
+  <mat-tab-group mat-stretch-tabs class="example-stretched-tabs" [(selectedIndex)]="selectedTabIndex">
+
+    <!-- Sign In -->
+    <mat-tab label="Sign In">
+
+      <mat-card-content class="card-content">
+        <form action="">
+          <mat-form-field class="input-form-field">
+            <input matInput placeholder="Email" [(ngModel)]="userLogin.Email" required name="email" ngModel
+              #email="ngModel">
+            <mat-error *ngIf="email.invalid">Email is required</mat-error>
+            <mat-icon matSuffix>email</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field class="input-form-field">
+            <input matInput placeholder="Password" [(ngModel)]="userLogin.Password" type="password" required
+              autocomplete="off" name="password" ngModel #passwordInput="ngModel">
+            <mat-error *ngIf="passwordInput.errors && passwordInput.errors.required">
+              Password is required
+            </mat-error>
+            <mat-icon matSuffix>lock</mat-icon>
+          </mat-form-field>
+
+          <!-- <span class="input-form-field">forget password?</span> -->
+
+          <!-- Button Sign In -->
+          <mat-error *ngIf="isError" class="input-form-field link">
+            {{errorMessage}}
+          </mat-error>
+          <button mat-raised-button color="primary" class="login-button" (click)="login()">
+            Sign In
+          </button>
+
+          <button mat-raised-button class="login-button">
+            Forgot Password
+          </button>
+        </form>
+      </mat-card-content>
+    </mat-tab>
+
+    <!-- Sign Up -->
+
+    <mat-tab label="Sign Up">
+      <mat-card-content>
+        <form action="" [formGroup]="registerForm">
+
+          <!-- firstName -->
+          <mat-form-field class="input-form-field">
+            <mat-label>First Name</mat-label>
+            <input type="text" matInput formControlName="firstName" [errorStateMatcher]="matcher"
+              placeholder="Ex. Vincent">
+
+            <mat-error *ngIf="firstName?.hasError('required')">
+              First Name is <strong>required</strong>
+            </mat-error>
+            <mat-icon matSuffix>person</mat-icon>
+          </mat-form-field>
+
+          <!-- lastName -->
+          <mat-form-field class="input-form-field">
+            <mat-label>Last Name</mat-label>
+            <input type="text" matInput formControlName="lastName" [errorStateMatcher]="matcher"
+              placeholder="Ex. Martin">
+
+            <mat-error *ngIf="lastName?.hasError('required')">
+              Last Name is <strong>required</strong>
+            </mat-error>
+            <mat-icon matSuffix>person</mat-icon>
+          </mat-form-field>
+
+          <!-- Email -->
+          <mat-form-field class="input-form-field">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput formControlName="emailC" [errorStateMatcher]="matcher"
+              placeholder="Ex. flaviu123@example.com">
+            <mat-error *ngIf="emailC?.hasError('email') && !emailC?.hasError('required')">
+              Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="emailC?.hasError('required')">
+              Email is <strong>required</strong>
+            </mat-error>
+            <mat-icon matSuffix>email</mat-icon>
+          </mat-form-field>
+
+
+          <!-- PhoneNumber -->
+          <mat-form-field class="input-form-field">
+            <mat-label>Phone Number </mat-label>
+            <input type="text" matInput formControlName="phoneNumberC" placeholder="Ex. 0744-584-966">
+            <mat-error *ngIf="phoneNumber?.hasError('pattern')  && !phoneNumber?.hasError('required')">
+              Please enter a valid phone number
+            </mat-error>
+            <mat-error *ngIf="phoneNumber?.hasError('required')">
+              Phone Number is <strong>required</strong>
+            </mat-error>
+
+            <mat-icon matSuffix>phone</mat-icon>
+          </mat-form-field>
+
+          <!-- Password 1 -->
+          <mat-form-field class="input-form-field">
+            <mat-label>Password </mat-label>
+            <input type="password" matInput formControlName="password" autocomplete="off">
+            <!-- <mat-error *ngIf="password?.hasError('pattern')  && !phoneNumber?.hasError('required')">
+              Please enter a valid password format
+            </mat-error> -->
+            <mat-error *ngIf="password?.hasError('required')">
+              Password Number is <strong>required</strong>
+            </mat-error>
+
+            <mat-hint>
+              <!-- Minimum eight characters, at least one letter and one number -->
+              <div *ngIf="passwordContains8Characters() ==false"
+                [ngStyle]="{'color': passwordContains8Characters()?'green':'red' }">
+                Minimum eight characters
+              </div>
+
+              <div *ngIf="oneLetter() ==false" [ngStyle]=" {'color': oneLetter()?'green':'red' }">
+                At least one letter
+              </div>
+
+              <span *ngIf="oneNumber() ==false" [ngStyle]="{'color': oneNumber()?'green':'red' }">
+                At least one number
+              </span>
+            </mat-hint>
+
+            <mat-icon matSuffix>lock</mat-icon>
+          </mat-form-field>
+
+          <!-- Password 2 -->
+          <mat-form-field class="input-form-field">
+            <mat-label>Confirmation Password </mat-label>
+            <input type="password" matInput formControlName="confirmPassword" autocomplete="off">
+            <mat-error *ngIf="confirmPassword?.hasError('confirmedValidator')">
+              Password Dont Match
+            </mat-error>
+            <mat-error *ngIf="confirmPassword?.hasError('required')">
+              Confrimation Password is <strong>required</strong>
+            </mat-error>
+
+            <mat-icon matSuffix>lock</mat-icon>
+          </mat-form-field>
+
+          <button mat-raised-button color="primary" class="login-button" (click)="register()">
+            Sign Up
+          </button>
+        </form>
+      </mat-card-content>
+
+    </mat-tab>
+  </mat-tab-group>
+</mat-card>

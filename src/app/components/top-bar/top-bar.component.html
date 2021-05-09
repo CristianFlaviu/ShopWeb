@@ -1,0 +1,88 @@
+<div>
+  <mat-toolbar color="primary">
+    <div fxShow="true" fxHide.gt-sm="true">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+
+    <button mat-button class="title" routerLink="/home" (click)="navigateOnClickTitle()">
+      <span>Shop Assistant</span>
+    </button>
+
+    <span class="example-spacer"></span>
+    <div fxShow="true" fxHide.lt-md="true">
+
+      <div *ngIf="authenticationService.isLoggedIn()">
+        <button mat-button>
+          <mat-icon [matBadge]="getShopC()" matBadgeColor="warn" class="icon-align" routerLink='shopping-cart'>
+            shopping_cart</mat-icon>
+        </button>
+
+        <button mat-button>
+          <mat-icon [matBadge]="getFav()" matBadgeColor="warn" class="icon-align" routerLink='favorite-products'>
+            favorite</mat-icon>
+        </button>
+        <button mat-button>
+          <mat-icon [matMenuTriggerFor]="menu" class="icon-align">person
+          </mat-icon>
+        </button>
+      </div>
+      <mat-menu #menu="matMenu">
+        <button *ngIf="authenticationService.isLoggedIn()" (click)="logout()" mat-menu-item>Logout</button>
+      </mat-menu>
+    </div>
+
+  </mat-toolbar>
+
+
+  <mat-sidenav-container fxFlexFill class="example-container">
+
+    <mat-sidenav color="primary" #sidenav fxLayout="column" mode="over" opened="false" fxHide.gt-sm="true">
+      <div fxLayout="column">
+        <button *ngIf="authenticationService.isLoggedIn()" mat-button (click)="navigateOnClickTitle()"> Home</button>
+        <button *ngIf="authenticationService.isLoggedIn()" mat-button routerLink="/shopping-cart">Shopping
+          Cart</button>
+        <button *ngIf="authenticationService.isLoggedIn()" mat-button routerLink="/favorite-products">Favourite
+        </button>
+        <button *ngIf="authenticationService.isLoggedIn()" (click)="logout()" mat-button>Logout</button>
+      </div>
+    </mat-sidenav>
+
+    <mat-sidenav-content fxFlexFill>
+      <router-outlet></router-outlet>
+
+
+    </mat-sidenav-content>
+
+
+
+  </mat-sidenav-container>
+
+
+
+  <footer class="my-footer">
+
+
+    <div class="copyright-div">
+      &#169; Copright Shop Assistant
+    </div>
+
+    <div class="social-media" style="align-items: flex-end; justify-content: center;align-content: center;">
+
+      <div class="icon-div">
+        <i class="pi pi-facebook icon-sm"></i>
+      </div>
+
+      <div class="icon-div">
+        <img src="https://i.ibb.co/7YR16tg/insta.png" class="pi pi-phone icon-sm" style="width: 30px;">
+      </div>
+
+      <div class="icon-div">
+        <i class="pi pi-twitter icon-sm"></i>
+      </div>
+    </div>
+  </footer>
+
+
+</div>

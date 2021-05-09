@@ -1,0 +1,224 @@
+/* ====== Description Left =======*/
+.product-left {
+  text-align: center;
+}
+
+.product-title {
+  width: 100%;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.product-image {
+  height: 30vh;
+  /* width: 18vw; */
+  margin-top: 15px;
+}
+
+/* ====== Discription Right =======*/
+.right-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.stars-div {
+  width: 100%;
+}
+
+:host ::ng-deep .bigger-stars .p-rating .p-rating-icon {
+  font-size: 18px;
+  color: #f9bf3b;
+}
+
+.price {
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.tva {
+  color: #7c808c;
+  font-weight: 400;
+  font-size: 15px;
+}
+
+.space-div {
+  margin-top: 15px;
+}
+
+.product-buttons {
+  margin-top: 10px;
+  width: 165px;
+}
+
+.info-mobile {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.desktop-info {
+  display: none;
+}
+
+@media only screen and (min-width: 768px) {
+  .product-image {
+    height: 35vh;
+
+  }
+  .product-title {
+    font-size: 24px;
+  }
+  .right-row {
+    flex-wrap: nowrap;
+  }
+  .stars-div {
+    width: 160px;
+  }
+  :host ::ng-deep .bigger-stars .p-rating .p-rating-icon {
+    font-size: 25px;
+    color: #f9bf3b;
+  }
+
+  .info-mobile {
+    display: none;
+  }
+
+  .desktop-info {
+    display: block;
+  }
+  .product-buttons {
+    margin-right: 25px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .product-image {
+    height: 40vh;
+  }
+  .product-title {
+    font-size: 28px;
+  }
+
+  .product-buttons {
+    margin-right: 25px;
+  }
+}
+
+/* right div  */
+
+.first-info-div {
+  margin-top: 3%;
+}
+
+.space-line {
+  width: 70%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  margin-left: 0%;
+  color: #7c808c;
+}
+
+/*  Carusel */
+.product-item {
+  min-height: 200px;
+}
+
+:host
+  ::ng-deep
+  .p-carousel
+  .p-carousel-indicators
+  .p-carousel-indicator
+  button {
+  background-color: rgb(240, 239, 239);
+}
+
+.product-item .product-item-content {
+  background: white;
+  border: 1px solid var(--surface-d);
+  border-radius: 3px;
+  margin: 0.3rem;
+  text-align: center;
+  padding: 15px 0 5px 0;
+  min-height: 260px;
+}
+
+.product-item .product-image {
+  width: 50%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.header-carusel {
+  font-weight: 500;
+  font-size: 20px;
+  display: block;
+  margin-top: 15px;
+  height: 40px;
+}
+
+.carusel_image {
+  height: 130px;
+}
+
+.carusel-reducere {
+  position: absolute;
+  top: 3px;
+  left: 15px;
+  font-weight: 500;
+  color: red;
+}
+
+.carusel-product-title {
+  font-size: 15px;
+  width: 75%;
+  margin: 2px auto;
+  min-height: 35px;
+}
+
+.carusel-old-price {
+  line-height: 0.5em;
+  position: relative;
+  width: 25%;
+  margin: 5px auto;
+  color: gray;
+}
+
+.carusel-old-price::after {
+  border-bottom: 1px solid gray;
+  content: "";
+  left: 0;
+  margin-top: calc(0.125em / 2 * -1);
+  position: absolute;
+  right: 0;
+  top: 60%;
+}
+
+.carusel-new-price {
+  font-size: 18px;
+  font-weight: 500;
+  color: red;
+}
+:host ::ng-deep .carusel-stars .p-rating .p-rating-icon {
+  color: #f9bf3b;
+  font-size: 15px;
+}
+
+/* ============ Informatii Produs ============== */
+.specifations {
+  margin: 10px 0;
+
+  font-size: 30px;
+}
+
+.table {
+  width: 100%;
+  max-width: 100%;
+}
+
+tr {
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  color: #3f51b5;
+  border-collapse: collapse;
+  border-spacing: 0;
+  background: rgb(113, 190, 241);
+}
