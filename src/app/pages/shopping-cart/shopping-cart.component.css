@@ -8,6 +8,7 @@
 
 .list-products-div {
   width: 100%;
+  margin-bottom: 10px;
 }
 
 .small-image {
@@ -24,6 +25,7 @@
   align-items: center;
   align-content: center;
   width: 25%;
+  cursor: pointer;
 }
 
 .title-product {

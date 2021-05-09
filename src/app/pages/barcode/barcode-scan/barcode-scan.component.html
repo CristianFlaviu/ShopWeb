@@ -6,8 +6,7 @@
             <div class="product-title">
                 {{product?.title}}
             </div>
-            <img *ngIf="!imageLoading" mat-card-image src='{{ "assets/images/" + product?.pathToImage }}' alt="product"
-                class="product-image">
+            <img mat-card-image src='{{ "assets/images/" + product?.pathToImage }}' alt="product" class="product-image">
         </div>
 
         <!-- right -->
@@ -77,7 +76,7 @@
 
 <div style="background: #e9ebee;">
     <div style="margin: auto; width: 70%;">
-        <p-carousel id="carouselID" [value]="products" [numVisible]="4" [numScroll]="1" [circular]="true" (click)="mt()"
+        <p-carousel id="carouselID" [value]="products" [numVisible]="4" [numScroll]="1" [circular]="true"
             [autoplayInterval]="10000" [responsiveOptions]="responsiveOptions">
             <ng-template pTemplate="header">
                 <span class="header-carusel">We also recommend you </span>
@@ -85,7 +84,8 @@
 
             <ng-template let-myProduct pTemplate="item">
                 <div class="product-item" style="position: relative;">
-                    <div class="product-item-content">
+                    <div class="product-item-content" style="cursor: pointer;"
+                        [routerLink]="'/barcode-scan/'+myProduct.barcode">
 
                         <div class="carusel-reducere">
                             {{myProduct.discount}}%

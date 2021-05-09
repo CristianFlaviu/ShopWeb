@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { SnotifyService } from 'ng-snotify';
 import { NotificationService } from 'src/app/data_services/notification.service';
 import { ProductService } from 'src/app/data_services/products/product.service';
 import { Product } from '../models/product';
@@ -15,7 +16,6 @@ export class BarcodeScanComponent implements OnInit {
   public pathToProductImage: string;
 
   public barcode: string;
-  public imageLoading: boolean = false;
 
   public importantFeatures: ProductAttribute[] = [];
 
@@ -42,46 +42,46 @@ export class BarcodeScanComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private activatedRoute: ActivatedRoute,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private snotifyService: SnotifyService
   ) {}
 
   ngOnInit() {
-    this.barcode =
-      this.activatedRoute.snapshot.paramMap.get('barcode') ?? 'invalid barcode';
+    this.activatedRoute.params.subscribe((params) => {
+      this.barcode = params['barcode'];
 
-    this.imageLoading = true;
-
-    this.productService.getProductByBarcode(this.barcode + '').then(
-      (data) => {
-        this.product = data.payload;
-        JSON.parse(data.payload?.attributes).forEach(
-          (element: ProductAttribute) => {
-            if (element.IsImportant) {
-              this.importantFeatures.push(element);
+      this.productService.getProductByBarcode(this.barcode + '').then(
+        (data) => {
+          this.product = data.payload;
+          JSON.parse(data.payload?.attributes).forEach(
+            (element: ProductAttribute) => {
+              if (element.IsImportant) {
+                this.importantFeatures.push(element);
+              }
             }
-          }
-        );
-        this.imageLoading = false;
-      },
-      (err) => console.log(err)
-    );
+          );
+        },
+        (err) => console.log(err)
+      );
 
-    this.productService.getProductFromSameCategory('defaultCategory').then(
-      (data) => {
-        console.log('list products', data.payload);
-        this.products = data.payload;
-      },
-      (err) => console.log(err)
-    );
+      this.productService.getProductFromSameCategory('defaultCategory').then(
+        (data) => {
+          this.products = data.payload;
+        },
+        (err) => {
+          this.snotifyService.error('An error occured, please try again later');
+        }
+      );
+    });
   }
 
   public async addProductToFavorite() {
     await this.productService.addProductToFavorite(this.barcode).then(
       (data) => {
-        console.log(data);
+        this.snotifyService.info('Product added to favourite');
       },
       (err) => {
-        console.log(err);
+        this.snotifyService.error('An error occured, please try again later');
       }
     );
     this.notificationService.updateStats();
@@ -90,10 +90,10 @@ export class BarcodeScanComponent implements OnInit {
   public async addProductToShoppingCart() {
     await this.productService.addProductToShppingCart(this.barcode).then(
       (data) => {
-        console.log(data);
+        this.snotifyService.info('Product added to shopping cart');
       },
       (err) => {
-        console.log(err);
+        this.snotifyService.error('An error occured, please try again later');
       }
     );
     this.notificationService.updateStats();

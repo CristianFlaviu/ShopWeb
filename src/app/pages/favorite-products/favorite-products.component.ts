@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SnotifyService } from 'ng-snotify';
 import { NotificationService } from 'src/app/data_services/notification.service';
 import { ProductService } from 'src/app/data_services/products/product.service';
 
@@ -10,7 +11,8 @@ import { ProductService } from 'src/app/data_services/products/product.service';
 export class FavoriteProductsComponent implements OnInit {
   constructor(
     private productService: ProductService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private snotifyService: SnotifyService
   ) {}
 
   public products: any[] = [];
@@ -21,10 +23,28 @@ export class FavoriteProductsComponent implements OnInit {
     });
   }
 
-  public async deleteProductShoppingCart(item: any) {
-    this.products = this.products.filter((x) => x !== item);
-    await this.productService.deleteProductFavorite(item?.product?.barcode);
+  public async deleteProductShoppingCart(barcode: string) {
+    this.products = this.products.filter((x) => x.product.barcode !== barcode);
+    await this.productService.deleteProductFavorite(barcode).then(
+      () => {
+        this.notificationService.updateStats();
+        this.snotifyService.info('Product deleted from favorites');
+      },
+      (err) => {
+        this.snotifyService.error('An error occured, please try again later');
+      }
+    );
+  }
 
-    this.notificationService.updateStats();
+  public async addProductToShoppingCart(barcode: string) {
+    await this.productService.addProductToShppingCart(barcode).then(
+      () => {
+        this.snotifyService.info('Product added in the shopping cart');
+        this.notificationService.updateStats();
+      },
+      (err) => {
+        this.snotifyService.error('An error occured, please try again later');
+      }
+    );
   }
 }

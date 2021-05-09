@@ -61,6 +61,21 @@ export class ProductService {
       .toPromise();
   }
 
+  public setQuantityProductShoppingCart(
+    barcode: string,
+    quantity: number
+  ): Promise<CommandResult<any>> {
+    return this.httpClient
+      .post<any>(
+        environment.apiUrl + '/products/set-quantity-product-shopping-cart',
+        {
+          barcode,
+          quantity,
+        }
+      )
+      .toPromise();
+  }
+
   /* Favorite Product */
 
   public addProductToFavorite(barcode: string): Promise<CommandResult<any>> {
@@ -83,6 +98,15 @@ export class ProductService {
   public getProductFavorite(): Promise<CommandResult<any>> {
     return this.httpClient
       .get<any>(environment.apiUrl + '/products/get-favorite-products')
+      .toPromise();
+  }
+
+  public placeOrderWithoutPayment(amount: number): Promise<CommandResult<any>> {
+    return this.httpClient
+      .post<any>(
+        environment.apiUrl + '/products/place-order-without-payment',
+        amount
+      )
       .toPromise();
   }
 }

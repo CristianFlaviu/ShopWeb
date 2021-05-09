@@ -1,6 +1,6 @@
 <div class="page">
 
-  <div *ngIf="products.length==0" style="width: 80%;margin: auto;">
+  <div *ngIf="products.length==0" style="width: 80%;margin:5px auto;">
     <p-card styleClass='empty-shop-cart'>
 
       <ng-template pTemplate="header">
@@ -9,7 +9,7 @@
 
       <img class="empty-cart-image" src="https://i.ibb.co/q14vMsW/emc.png" alt="emc">
       <ng-template pTemplate="footer">
-        <button mat-raised-button color="primary" class="product-buttons" routerLink='/home'>
+        <button mat-raised-button color="primary" routerLink='/home'>
           <mat-icon>
             search</mat-icon> Find a Product
         </button>
@@ -26,7 +26,7 @@
             <img src='{{ "assets/images/" + item.product?.pathToImage }}' class="small-image">
           </div>
           <!-- ===================== Title ===================== -->
-          <div class="title-div">
+          <div class="title-div" [routerLink]="'/barcode-scan/'+item.product.barcode">
 
             <div class="title-product ">
               {{item.product.title}}
@@ -66,7 +66,7 @@
       </div>
 
       <ng-template pTemplate="footer">
-        <span style="font-size: 20px; font-weight: 500;"> Total Price: {{totalPrice + 10}} Lei</span>
+        <span style="font-size: 20px; font-weight: 500;"> Total Price: {{productsPrice +deliveryCost}} Lei</span>
       </ng-template>
     </p-card>
   </div>
@@ -80,19 +80,19 @@
       </span>
       <div class="p-grid">
         <div class="p-col-6">
-          Cost produse
+          Products Cost
         </div>
         <div class="p-col-6" style="text-align: right;">
-          {{totalPrice + 10}} lei
+          {{productsPrice }} lei
         </div>
       </div>
 
       <div class="p-grid">
         <div class="p-col-6">
-          Cost Livrare
+          Delivery Cost
         </div>
         <div class="p-col-6" style="text-align: right;">
-          10 lei
+          {{deliveryCost}} lei
         </div>
       </div>
 
@@ -102,9 +102,17 @@
         Total :
       </div>
       <div style="font-weight: bold; font-size: 25px;">
-        {{totalPrice + 10}}<span style="font-size: 18px;">.00</span> Lei
+        {{productsPrice + deliveryCost}}<span style="font-size: 18px;">.00</span> Lei
       </div>
 
+      <div style="display: flex;justify-content:center;flex-wrap: wrap;">
+        <button mat-raised-button color="primary" style="margin: 10px 30%; width: 40%;" [routerLink]="'/credit-card'">
+          Pay Now
+        </button>
+        <button mat-raised-button color="warn" style="width: 40%;" (click)="placeOrderLaterPayment()">
+          Pay Later
+        </button>
+      </div>
     </p-card>
   </div>
 
