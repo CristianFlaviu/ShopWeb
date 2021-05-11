@@ -109,4 +109,16 @@ export class ProductService {
       )
       .toPromise();
   }
+
+  public placeOrderWithPayment(
+    amount: number,
+    cardNumber: string
+  ): Promise<CommandResult<any>> {
+    return this.httpClient
+      .post<any>(environment.apiUrl + '/products/pay-order', {
+        amount,
+        cardNumber
+      })
+      .toPromise();
+  }
 }

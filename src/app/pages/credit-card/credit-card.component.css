@@ -13,13 +13,10 @@
 .warn {
   color: red;
 }
+
 .card-div {
   width: 100%;
   margin: auto;
-}
-
-.payment-button {
-  margin-top: 25%;
 }
 
 .main-div {
@@ -30,3 +27,10 @@
 .image-pp {
   width: 200px;
 }
+
+.text-amount {
+  font-size: 18px;
+  font-weight: 600;
+  font-family: "SanaSansAltBold", sans-serif;
+}
+

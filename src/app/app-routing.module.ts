@@ -27,7 +27,6 @@ const routes: Routes = [
   },
   { path: 'favorite-products', component: FavoriteProductsComponent },
   { path: 'detect-qr-code', component: DetectQrCodeComponent },
-  { path: 'credit-card', component: CreditCardComponent },
 ];
 
 @NgModule({

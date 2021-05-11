@@ -1,4 +1,4 @@
-<div class="page">
+<div class="page" *ngIf="!isCardPayment">
 
   <div *ngIf="products.length==0" style="width: 80%;margin:5px auto;">
     <p-card styleClass='empty-shop-cart'>
@@ -106,7 +106,7 @@
       </div>
 
       <div style="display: flex;justify-content:center;flex-wrap: wrap;">
-        <button mat-raised-button color="primary" style="margin: 10px 30%; width: 40%;" [routerLink]="'/credit-card'">
+        <button mat-raised-button color="primary" style="margin: 10px 30%; width: 40%;" (click)="activateCardPayment()">
           Pay Now
         </button>
         <button mat-raised-button color="warn" style="width: 40%;" (click)="placeOrderLaterPayment()">
@@ -115,6 +115,10 @@
       </div>
     </p-card>
   </div>
-
-
 </div>
+
+<!-- credit cart  -->
+
+<app-credit-card [totalBill]="productsPrice + deliveryCost" *ngIf="isCardPayment"  (eventChild)="deactivateCardPayment()">
+
+</app-credit-card>

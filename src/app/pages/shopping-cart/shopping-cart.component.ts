@@ -11,16 +11,18 @@ import { ProductService } from 'src/app/data_services/products/product.service';
   styleUrls: ['./shopping-cart.component.css'],
 })
 export class ShoppingCartComponent implements OnInit {
+  public products: any[] = [];
+  public productsPrice = 0;
+  public deliveryCost = 10;
+
+  public isCardPayment = false;
+
   constructor(
     private productService: ProductService,
     private notificationService: NotificationService,
     private snotifyService: SnotifyService,
     private route: Router
   ) {}
-
-  public products: any[] = [];
-  public productsPrice = 0;
-  public deliveryCost = 10;
 
   async ngOnInit() {
     await this.productService.getProductShoppingCart().then((data) => {
@@ -93,5 +95,13 @@ export class ShoppingCartComponent implements OnInit {
         this.notificationService.updateStats();
         this.route.navigate(['/home']);
       });
+  }
+
+  public activateCardPayment() {
+    this.isCardPayment = true;
+  }
+
+  public deactivateCardPayment() {
+    this.isCardPayment = false;
   }
 }
