@@ -53,6 +53,7 @@ export class BarcodeScanComponent implements OnInit {
       this.productService.getProductByBarcode(this.barcode + '').then(
         (data) => {
           this.product = data.payload;
+          this.importantFeatures = [];
           JSON.parse(data.payload?.attributes).forEach(
             (element: ProductAttribute) => {
               if (element.IsImportant) {
