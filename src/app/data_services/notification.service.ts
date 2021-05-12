@@ -12,12 +12,10 @@ export class NotificationService {
 
   public updateStats() {
     this.productService.getProductShoppingCart().then((data) => {
-      console.log(data);
       this.shoppingCart = data.payload.length;
     });
 
     this.productService.getProductFavorite().then((data) => {
-      console.log(data);
       this.favourite = data.payload.length;
     });
   }

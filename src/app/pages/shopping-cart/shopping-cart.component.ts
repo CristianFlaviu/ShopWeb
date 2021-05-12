@@ -11,7 +11,7 @@ import { ProductService } from 'src/app/data_services/products/product.service';
   styleUrls: ['./shopping-cart.component.css'],
 })
 export class ShoppingCartComponent implements OnInit {
-  public products: any[] = [];
+  public products: any[] = [1];
   public productsPrice = 0;
   public deliveryCost = 10;
 

@@ -28,8 +28,8 @@
           <!-- ===================== Title ===================== -->
           <div class="title-div">
 
-            <div class="title-product" [routerLink]="'/barcode-scan/'+item.product.barcode">
-              {{item.product.title}}
+            <div class="title-product" [routerLink]="'/barcode-scan/'+item.product?.barcode">
+              {{item.product?.title}}
             </div>
 
             <div class="stock">
@@ -39,23 +39,23 @@
           <!-- ===================== Price ===================== -->
           <div class="price">
             <div class="newprice">
-              {{item.product.newPrice}} Lei
+              {{item.product?.newPrice}} Lei
             </div>
 
             <div class="oldprice">
-              <span style=" text-decoration: line-through;"> {{item.product.oldPrice}} Lei </span>
+              <span style=" text-decoration: line-through;"> {{item.product?.oldPrice}} Lei </span>
             </div>
           </div>
           <!-- ===================== Buttons ===================== -->
           <div class="buttons">
             <button mat-raised-button color="primary" class="product-buttons"
-              (click)="addProductToShoppingCart(item.product.barcode)">
+              (click)="addProductToShoppingCart(item.product?.barcode)">
               <mat-icon>
                 add_shopping_cart</mat-icon>
             </button>
 
             <button mat-raised-button color="warn" class="product-buttons"
-              (click)="deleteProductShoppingCart(item.product.barcode)">
+              (click)="deleteProductShoppingCart(item.product?.barcode)">
               <mat-icon>
                 delete</mat-icon>
             </button>

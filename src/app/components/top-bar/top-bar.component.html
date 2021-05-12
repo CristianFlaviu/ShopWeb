@@ -29,6 +29,11 @@
         </button>
       </div>
       <mat-menu #menu="matMenu">
+
+        <button *ngIf="authenticationService.isLoggedIn()" routerLink="/detect-qr-code" mat-menu-item>Connect Raspberry
+          </button>
+        <button *ngIf="authenticationService.isLoggedIn()" routerLink="/orders-history" mat-menu-item>Orders
+          History</button>
         <button *ngIf="authenticationService.isLoggedIn()" (click)="logout()" mat-menu-item>Logout</button>
       </mat-menu>
     </div>

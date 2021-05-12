@@ -15,7 +15,7 @@ export class FavoriteProductsComponent implements OnInit {
     private snotifyService: SnotifyService
   ) {}
 
-  public products: any[] = [];
+  public products: any[] = [1];
 
   async ngOnInit() {
     await this.productService.getProductFavorite().then((data) => {

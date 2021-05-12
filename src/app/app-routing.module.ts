@@ -8,6 +8,8 @@ import { DetectQrCodeComponent } from './pages/detect-qr-code/detect-qr-code.com
 import { FavoriteProductsComponent } from './pages/favorite-products/favorite-products.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
+import { OrderHistoryDetailsComponent } from './pages/order-history-details/order-history-details.component';
+import { OrdersHistoryComponent } from './pages/orders-history/orders-history.component';
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
 
 const routes: Routes = [
@@ -27,6 +29,8 @@ const routes: Routes = [
   },
   { path: 'favorite-products', component: FavoriteProductsComponent },
   { path: 'detect-qr-code', component: DetectQrCodeComponent },
+  { path: 'orders-history', component: OrdersHistoryComponent },
+  { path: 'orders-history/:id', component: OrderHistoryDetailsComponent },
 ];
 
 @NgModule({

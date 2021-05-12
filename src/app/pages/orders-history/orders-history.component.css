@@ -1,0 +1,22 @@
+.title {
+  margin-top: 2%;
+  text-align: center;
+  font-weight: 700;
+  font-size: 25px;
+}
+
+:host ::ng-deep .order-table {
+  width: 80%;
+  margin: 5% auto;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-thead > tr > th {
+  background: #c0cdda;
+}
+
+:host ::ng-deep .empty-card {
+  margin: 10% auto;
+
+  height: 250px;
+  width: 80%;
+}
