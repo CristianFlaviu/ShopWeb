@@ -1,35 +1,52 @@
-<p-card *ngIf="tableData?.length==0" styleClass="empty-card" header="Empty">
+<div class="page" *ngIf="isPageInfoLoade">
+  <!-- ========== empty card ============= -->
+  <div *ngIf="tableData?.length==0" class="empty-div">
+    <p-card styleClass='empty-shop-cart'>
+      <ng-template pTemplate="header">
+        You dont have any order yet
+      </ng-template>
 
-  You havent placed any order yet
-</p-card>
-
-
-
-<div *ngIf="tableData?.length!=0">
-  <div class="title">
-    Orders
+      <img class="empty-cart-image" src="../../../assets/images/jhjhjh.png" alt="emc">
+      <ng-template pTemplate="footer">
+        <button mat-raised-button color="primary" routerLink='/home'>
+          <mat-icon>
+            search</mat-icon> Find a Product
+        </button>
+      </ng-template>
+    </p-card>
   </div>
 
-  <p-table [columns]="cols" [value]="tableData" styleClass='order-table' [rowHover]="true"
-    (onRowSelect)="onRowSelect($event)" selectionMode="single" [selection]="cevaSelected">
 
-    <ng-template pTemplate="header">
-      <tr>
-        <th *ngFor="let col of cols">
-          {{col.header}}
-        </th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-order>
-      <tr [pSelectableRow]="order">
-        <td>{{order['id']}} </td>
-        <td>{{order['orderDate'] | date}} </td>
-        <td>{{order['amount']}} Lei</td>
-        <td>
-          <mat-icon *ngIf="!(order.payments.length>0)" color="warn">close</mat-icon>
-          <mat-icon *ngIf="order.payments.length>0" style="color: green;">done</mat-icon>
-        </td>
-      </tr>
-    </ng-template>
-  </p-table>
+  <div *ngIf="tableData?.length!=0">
+
+    <div>
+      <div class="title">
+        Orders
+      </div>
+
+      <p-table [columns]="cols" [value]="tableData" styleClass='order-table' [rowHover]="true"
+        (onRowSelect)="onRowSelect($event)" selectionMode="single">
+
+        <ng-template pTemplate="header">
+          <tr>
+            <th *ngFor="let col of cols">
+              {{col.header}}
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-order>
+          <tr [pSelectableRow]="order">
+            <td>{{order['id']}} </td>
+            <td>{{order['orderDate'] | date}} </td>
+            <td>{{order['amount']}} Lei</td>
+            <td>
+              <mat-icon *ngIf="!(order.payments.length>0)" color="warn">close</mat-icon>
+              <mat-icon *ngIf="order.payments.length>0" style="color: green;">done</mat-icon>
+            </td>
+          </tr>
+        </ng-template>
+
+      </p-table>
+    </div>
+  </div>
 </div>

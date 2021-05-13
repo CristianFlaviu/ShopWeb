@@ -15,17 +15,14 @@ export class OrdersHistoryComponent implements OnInit {
     { field: 'pay', header: 'IsPayed' },
   ];
   public tableData: any;
-
-  public cevaSelected: any;
+  public isPageInfoLoade = false;
   constructor(private productService: ProductService, private router: Router) {}
 
   ngOnInit() {
     this.productService.getOrders().then(
       (data) => {
-        console.log('history', data);
-
         this.tableData = data.payload;
-        console.log(this.tableData);
+        this.isPageInfoLoade = true;
       },
       (err) => {
         console.log(err);

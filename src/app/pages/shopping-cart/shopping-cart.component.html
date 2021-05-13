@@ -1,6 +1,7 @@
-<div class="page" *ngIf="!isCardPayment">
+<div class="page" *ngIf="isPageInfoLoaded && !isCardPayment">
 
-  <div *ngIf="products.length==0" style="width: 80%;margin:5px auto;">
+  <!-- =================  empty card   ================= -->
+  <div *ngIf="products.length==0" class="empty-div">
     <p-card styleClass='empty-shop-cart'>
 
       <ng-template pTemplate="header">
@@ -44,7 +45,6 @@
 
             <div class="oldprice">
               <span style=" text-decoration: line-through;"> {{item.product?.oldPrice}} Lei </span>
-              <!-- <span style="color: red;">{{item.product.discount}}% </span> -->
             </div>
           </div>
           <!-- ===================== Buttons ===================== -->
@@ -119,6 +119,7 @@
 
 <!-- credit cart  -->
 
-<app-credit-card [totalBill]="productsPrice + deliveryCost" *ngIf="isCardPayment"  (eventChild)="deactivateCardPayment()">
+<app-credit-card [totalBill]="productsPrice + deliveryCost" *ngIf="isCardPayment"
+  (eventChild)="deactivateCardPayment()">
 
 </app-credit-card>

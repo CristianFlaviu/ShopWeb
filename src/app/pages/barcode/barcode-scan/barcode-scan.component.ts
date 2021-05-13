@@ -16,10 +16,9 @@ export class BarcodeScanComponent implements OnInit {
   public pathToProductImage: string;
 
   public barcode: string;
-
   public importantFeatures: ProductAttribute[] = [];
-
   public products: Product[];
+  public isPageInfoLoaded = false;
 
   responsiveOptions = [
     {
@@ -61,6 +60,8 @@ export class BarcodeScanComponent implements OnInit {
               }
             }
           );
+
+          this.isPageInfoLoaded = true;
         },
         (err) => console.log(err)
       );

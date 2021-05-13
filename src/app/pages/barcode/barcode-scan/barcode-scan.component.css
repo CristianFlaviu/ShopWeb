@@ -93,7 +93,8 @@
 
 @media only screen and (min-width: 1024px) {
   .product-image {
-    height: 40vh;
+    height: 350px;
+ 
   }
   .product-title {
     font-size: 28px;

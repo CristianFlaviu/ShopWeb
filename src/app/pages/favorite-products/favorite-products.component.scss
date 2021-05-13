@@ -77,6 +77,14 @@
   padding: 0;
 }
 
+// ================= empty card ================
+
+.empty-div {
+  width: 80%;
+  margin: 60px auto;
+  position: relative;
+}
+
 :host ::ng-deep .empty-shop-cart .p-card-header {
   text-align: center;
   width: 100%;
@@ -86,15 +94,21 @@
 
 :host ::ng-deep .empty-shop-cart .p-card-body {
   text-align: center;
-}
-
-.empty-cart-image {
-  height: 200px;
-  margin: auto;
+  height: 390px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -10px;
 }
 
 :host ::ng-deep .empty-shop-cart .p-card-footer {
-  text-align: end;
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+}
+
+.empty-cart-image {
+  margin: auto;
 }
 
 @media only screen and (min-width: 480px) {
@@ -104,6 +118,11 @@
 }
 
 @media only screen and (min-width: 768px) {
+
+  .empty-div {
+    margin-top: 100px;
+  }
+
   .list-products-div {
     width: 90%;
   }
@@ -125,16 +144,17 @@
 }
 
 @media only screen and (min-width: 1024px) {
+  .empty-div {
+    margin-top: 50px;
+  }
+
+
   .product-buttons {
     width: 30%;
   }
 
   .list-products-div {
     width: 80%;
-  }
-
-  .empty-cart-image {
-    height: 300px;
   }
 }
 

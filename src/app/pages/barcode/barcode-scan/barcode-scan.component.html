@@ -1,4 +1,5 @@
-<div style="width: 90%;margin: 3% auto;">
+<!-- ==================== product info ====================-->
+<div style="width: 90%;margin: 3% auto;" *ngIf="isPageInfoLoaded">
 
     <div class="p-grid">
         <!-- left -->
@@ -6,12 +7,11 @@
             <div class="product-title">
                 {{product?.title}}
             </div>
-            <img mat-card-image src='{{ "assets/images/" + product?.pathToImage }}' alt="product" class="product-image">
+            
+            <img  src='{{ "assets/images/" + product?.pathToImage }}' alt="product" class="product-image">
         </div>
-
         <!-- right -->
         <div class="p-col-6">
-
             <div class="right-row">
                 <div class="stars-div">
                     <p-rating [(ngModel)]="product.score" [readonly]="true" [stars]="5" [disabled]='true'
@@ -73,7 +73,7 @@
         </div>
     </div>
 </div>
-
+<!--  ==================== Carousel ==================-->
 <div style="background: #e9ebee;">
     <div style="margin: auto; width: 70%;">
         <p-carousel id="carouselID" [value]="products" [numVisible]="4" [numScroll]="1" [circular]="true"
@@ -86,7 +86,6 @@
                 <div class="product-item" style="position: relative;">
                     <div class="product-item-content" style="cursor: pointer;"
                         [routerLink]="'/barcode-scan/'+myProduct.barcode">
-
                         <div class="carusel-reducere">
                             {{myProduct.discount}}%
                         </div>
@@ -100,8 +99,6 @@
                         <p-rating [(ngModel)]="myProduct.score" [readonly]="true" [stars]="5" [cancel]="false"
                             class="carusel-stars">
                         </p-rating>
-
-
                         <div style="font-size: 13px;">
                             <span style="text-decoration: line-through;"> {{myProduct.oldPrice}} Lei </span>
                             ( {{myProduct.discount}} %)
@@ -129,7 +126,6 @@
         Caractestici Generale
     </div>
 
-
     <p-table styleClass="p-datatable-sm" [value]=[1]>
 
         <ng-template pTemplate="body" let-product>
@@ -141,20 +137,14 @@
         </ng-template>
     </p-table>
 
-
     <div style="font-size: 20px;margin:20px 0;">
         Informatii Lapte
     </div>
-
     <p-table styleClass="p-datatable-sm" [value]=[1]>
-
         <ng-template pTemplate="body" let-product>
             <tr *ngFor="let atr of importantFeatures ">
-
-
                 <td style="font-weight: bold;">{{atr.Name}}</td>
                 <td>{{atr.Value}}</td>
-
 
             </tr>
         </ng-template>

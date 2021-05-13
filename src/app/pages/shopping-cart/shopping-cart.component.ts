@@ -11,12 +11,13 @@ import { ProductService } from 'src/app/data_services/products/product.service';
   styleUrls: ['./shopping-cart.component.css'],
 })
 export class ShoppingCartComponent implements OnInit {
-  public products: any[] = [1];
+  public products: any[] = [];
   public productsPrice = 0;
   public deliveryCost = 10;
 
   public isCardPayment = false;
 
+  public isPageInfoLoaded = false;
   constructor(
     private productService: ProductService,
     private notificationService: NotificationService,
@@ -27,6 +28,7 @@ export class ShoppingCartComponent implements OnInit {
   async ngOnInit() {
     await this.productService.getProductShoppingCart().then((data) => {
       this.products = data.payload;
+      this.isPageInfoLoaded = true;
     });
     this.computeTotalPrice();
   }
@@ -78,7 +80,7 @@ export class ShoppingCartComponent implements OnInit {
       .deleteProductToShppingCart(item?.product?.barcode)
       .then(
         () => {
-          this.snotifyService.info('Prodcut deleted from shopping cart');
+          this.snotifyService.info('Product deleted from shopping cart');
         },
         () => {
           this.snotifyService.error('An error occured, please try again later');

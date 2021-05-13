@@ -16,6 +16,7 @@ export class OrderHistoryDetailsComponent implements OnInit {
 
   public isCardPayment = false;
   public order: any;
+  public isPageInfoLoaded = false;
 
   constructor(
     private productService: ProductService,
@@ -29,12 +30,12 @@ export class OrderHistoryDetailsComponent implements OnInit {
     const id = this.activatedRoute.snapshot.params.id;
 
     await this.productService.getOrderById(id).then((data) => {
-      console.log(data.payload);
       this.order = data.payload;
     });
 
     await this.productService.getProductsByOrderID(id).then((data) => {
       this.products = data.payload;
+      this.isPageInfoLoaded = true;
     });
     this.computeTotalPrice();
   }

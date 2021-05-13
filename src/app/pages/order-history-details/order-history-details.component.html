@@ -1,4 +1,4 @@
-<div class="page" *ngIf="!isCardPayment">
+<div class="page" *ngIf="isPageInfoLoaded && !isCardPayment">
 
   <div *ngIf="products.length==0" style="width: 80%;margin:5px auto;">
     <p-card styleClass='empty-shop-cart'>

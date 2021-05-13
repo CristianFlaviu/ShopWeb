@@ -9,17 +9,19 @@ import { ProductService } from 'src/app/data_services/products/product.service';
   styleUrls: ['./favorite-products.component.scss'],
 })
 export class FavoriteProductsComponent implements OnInit {
+  public products: any[] = [];
+  public isPageInfoLoaded = false;
+
   constructor(
     private productService: ProductService,
     private notificationService: NotificationService,
     private snotifyService: SnotifyService
   ) {}
 
-  public products: any[] = [1];
-
   async ngOnInit() {
     await this.productService.getProductFavorite().then((data) => {
       this.products = data.payload;
+      this.isPageInfoLoaded = true;
     });
   }
 

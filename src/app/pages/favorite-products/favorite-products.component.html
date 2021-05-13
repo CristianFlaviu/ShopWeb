@@ -1,13 +1,15 @@
-<div class="page">
+<div class="page" *ngIf="isPageInfoLoaded">
 
-  <div *ngIf="products.length==0" style="width: 80%;margin: 5px auto">
+  <!-- ========== empty card ============= -->
+  <div *ngIf="products.length==0" class="empty-div">
     <p-card styleClass='empty-shop-cart'>
 
       <ng-template pTemplate="header">
         Favourite product list is empty
       </ng-template>
 
-      <img class="empty-cart-image" src="https://i.ibb.co/q14vMsW/emc.png" alt="emc">
+      <img class="empty-cart-image"
+        src="https://s13emagst.akamaized.net/layout/ro/static-upload/empty_state_favorite.png" alt="emc">
       <ng-template pTemplate="footer">
         <button mat-raised-button color="primary" routerLink='/home'>
           <mat-icon>
@@ -70,8 +72,5 @@
       </ng-template> -->
     </p-card>
   </div>
-
-
-
 
 </div>
