@@ -101,12 +101,6 @@ export class ProductService {
       .toPromise();
   }
 
-  public getProductsOrdered(): Promise<CommandResult<any>> {
-    return this.httpClient
-      .get<any>(environment.apiUrl + '/products/get-ordered-products')
-      .toPromise();
-  }
-
   public getProductsByOrderID(id: number): Promise<CommandResult<any>> {
     return this.httpClient
       .get<any>(environment.apiUrl + '/products/get-products-by-order/' + id)
@@ -128,13 +122,23 @@ export class ProductService {
       .toPromise();
   }
 
+  public placeOrderLaterPayment(
+    orderId: number,
+    cardNumber: string
+  ): Promise<CommandResult<any>> {
+    return this.httpClient
+      .post<any>(environment.apiUrl + '/products/pay-order-later-payment', {
+        orderId,
+        cardNumber,
+      })
+      .toPromise();
+  }
+
   public placeOrderWithPayment(
-    amount: number,
     cardNumber: string
   ): Promise<CommandResult<any>> {
     return this.httpClient
       .post<any>(environment.apiUrl + '/products/pay-order', {
-        amount,
         cardNumber,
       })
       .toPromise();
@@ -145,6 +149,4 @@ export class ProductService {
       .get<any>(environment.apiUrl + '/products/get-order-by-id/' + id)
       .toPromise();
   }
-
-
 }

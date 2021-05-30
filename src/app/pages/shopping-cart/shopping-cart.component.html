@@ -119,7 +119,7 @@
 
 <!-- credit cart  -->
 
-<app-credit-card [totalBill]="productsPrice + deliveryCost" *ngIf="isCardPayment"
-  (eventChild)="deactivateCardPayment()">
+<app-credit-card [totalBill]="productsPrice + deliveryCost" *ngIf="isCardPayment" (payEvent)="payOrder($event)"
+  (backEvent)="deactivateCardPayment()">
 
 </app-credit-card>

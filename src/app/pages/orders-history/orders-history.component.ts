@@ -10,9 +10,9 @@ import { ProductService } from 'src/app/data_services/products/product.service';
 export class OrdersHistoryComponent implements OnInit {
   public cols = [
     { field: 'id', header: 'Id' },
-    { field: 'orderDate', header: 'Order Date' },
+    { field: 'orderDate', header: 'Order date' },
     { field: 'amount', header: 'Amount' },
-    { field: 'pay', header: 'IsPayed' },
+    { field: 'pay', header: 'Is payed' },
   ];
   public tableData: any;
   public isPageInfoLoade = false;
@@ -23,6 +23,8 @@ export class OrdersHistoryComponent implements OnInit {
       (data) => {
         this.tableData = data.payload;
         this.isPageInfoLoade = true;
+
+        console.log('orders', data);
       },
       (err) => {
         console.log(err);

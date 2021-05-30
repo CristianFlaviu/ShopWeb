@@ -99,6 +99,19 @@ export class ShoppingCartComponent implements OnInit {
       });
   }
 
+  public payOrder(cardNumber: string) {
+    this.productService.placeOrderWithPayment(cardNumber).then(
+      (data) => {
+        this.snotifyService.success('Payment Succeeded');
+        this.notificationService.updateStats();
+        this.route.navigate(['/home']);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
   public activateCardPayment() {
     this.isCardPayment = true;
   }

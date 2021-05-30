@@ -5,7 +5,6 @@
 
     <!-- Sign In -->
     <mat-tab label="Sign In">
-
       <mat-card-content class="card-content">
         <form action="">
           <mat-form-field class="input-form-field">
@@ -118,12 +117,14 @@
                 Minimum eight characters
               </div>
 
-              <div *ngIf="oneLetter() ==false" [ngStyle]=" {'color': oneLetter()?'green':'red' }">
+              <div *ngIf="oneLetter() ==false" [ngStyle]=" {'color':'red' }">
                 At least one letter
               </div>
-
-              <span *ngIf="oneNumber() ==false" [ngStyle]="{'color': oneNumber()?'green':'red' }">
+              <span *ngIf="oneNumber() ==false" [ngStyle]="{'color':'red' }">
                 At least one number
+              </span>
+              <span *ngIf="nonAlphanumeric() == true" [ngStyle]="{'color':'red' }">
+                Only number and letters allowed
               </span>
             </mat-hint>
 
@@ -131,7 +132,7 @@
           </mat-form-field>
 
           <!-- Password 2 -->
-          <mat-form-field class="input-form-field">
+          <mat-form-field class="input-form-field" style="margin-top: 20px;">
             <mat-label>Confirmation Password </mat-label>
             <input type="password" matInput formControlName="confirmPassword" autocomplete="off">
             <mat-error *ngIf="confirmPassword?.hasError('confirmedValidator')">

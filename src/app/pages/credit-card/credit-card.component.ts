@@ -1,9 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { SnotifyService } from 'ng-snotify';
-import { NotificationService } from 'src/app/data_services/notification.service';
-import { ProductService } from 'src/app/data_services/products/product.service';
 
 @Component({
   selector: 'app-credit-card',
@@ -13,15 +10,14 @@ import { ProductService } from 'src/app/data_services/products/product.service';
 export class CreditCardComponent implements OnInit {
   @Input() totalBill: number;
 
-  @Output() eventChild = new EventEmitter<boolean>();
+  @Output() backEvent = new EventEmitter<boolean>();
+  @Output() payEvent = new EventEmitter<any>();
+
   public cardForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,
-    private productService: ProductService,
-    private notificationService: NotificationService,
-    private snotifyService: SnotifyService,
-    private route: Router
+    private snotifyService: SnotifyService
   ) {}
 
   ngOnInit() {
@@ -36,27 +32,13 @@ export class CreditCardComponent implements OnInit {
 
   payOrder() {
     if (this.cardForm.valid) {
-      this.productService
-        .placeOrderWithPayment(
-          this.totalBill,
-          this.cardForm.get('cardno')?.value
-        )
-        .then(
-          (data) => {
-            this.snotifyService.success('Payment Succeeded');
-            this.notificationService.updateStats();
-            this.route.navigate(['/home']);
-          },
-          (err) => {
-            console.log(err);
-          }
-        );
+      this.payEvent.emit(this.cardForm.get('cardno')?.value);
     } else {
       this.snotifyService.error('Some required fields were not filled');
     }
   }
 
   backToShoppingCart() {
-    this.eventChild.emit(false);
+    this.backEvent.emit(false);
   }
 }

@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SnotifyService } from 'ng-snotify';
 import { NotificationService } from 'src/app/data_services/notification.service';
 import { ProductService } from 'src/app/data_services/products/product.service';
+import { UserMessages } from 'src/app/globals/constants';
 
 @Component({
   selector: 'app-order-history-details',
@@ -30,7 +31,12 @@ export class OrderHistoryDetailsComponent implements OnInit {
     const id = this.activatedRoute.snapshot.params.id;
 
     await this.productService.getOrderById(id).then((data) => {
-      this.order = data.payload;
+      if (data.isSuccess) {
+        this.order = data.payload;
+      } else {
+        this.snotifyService.error(UserMessages.general.serverError);
+      }
+      console.log('order-details', data);
     });
 
     await this.productService.getProductsByOrderID(id).then((data) => {
@@ -47,21 +53,21 @@ export class OrderHistoryDetailsComponent implements OnInit {
     });
   }
 
-  public async placeOrderLaterPayment() {
-    this.productService
-      .placeOrderWithoutPayment(this.productsPrice + this.deliveryCost)
-      .then(() => {
-        this.snotifyService.success('Order has been placed');
-        this.notificationService.updateStats();
-        this.route.navigate(['/home']);
-      });
-  }
-
   public activateCardPayment() {
     this.isCardPayment = true;
   }
 
   public deactivateCardPayment() {
     this.isCardPayment = false;
+  }
+
+  public placeOrder(cardNumber: any) {
+    this.productService
+      .placeOrderLaterPayment(this.order.id, cardNumber)
+      .then(() => {
+        this.snotifyService.success('Succesfull Payment');
+        this.notificationService.updateStats();
+        this.route.navigate(['/home']);
+      });
   }
 }
