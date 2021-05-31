@@ -29,10 +29,9 @@ export class HomeComponent implements OnInit {
       .filter((x) => x.barcode.includes(event.query))
       .forEach((x) =>
         this.productsSuggestion.push({
-          label: x.title,
           barcode: x.barcode,
           pathToImage: x.pathToImage,
-          shortTitle: x.shortTitle,
+          shortTitle: x.shortTitle + '  ' + x.brand,
         })
       );
   }

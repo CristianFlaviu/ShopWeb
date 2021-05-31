@@ -24,13 +24,13 @@
         <div class="p-grid">
           <!-- ===================== Image ===================== -->
           <div class="p-col-3 div-image">
-            <img src='{{ "assets/images/" + item.product?.pathToImage }}' class="small-image">
+            <img src='{{item?.pathToImage }}' class="small-image">
           </div>
           <!-- ===================== Title ===================== -->
-          <div class="title-div" [routerLink]="'/barcode-scan/'+item.product?.barcode">
+          <div class="title-div" [routerLink]="'/barcode-scan/'+item?.barcode">
 
             <div class="title-product ">
-              {{item.product?.title}}
+              {{item?.title}}
             </div>
 
             <div class="stock">
@@ -40,11 +40,11 @@
           <!-- ===================== Price ===================== -->
           <div class="price">
             <div class="newprice">
-              {{item.product?.newPrice}} Lei
+              {{item?.newPrice}} Lei
             </div>
 
             <div class="oldprice">
-              <span style=" text-decoration: line-through;"> {{item.product?.oldPrice}} Lei </span>
+              <span style=" text-decoration: line-through;"> {{item?.oldPrice}} Lei </span>
             </div>
           </div>
           <!-- ===================== Buttons ===================== -->
@@ -102,7 +102,9 @@
         Total :
       </div>
       <div style="font-weight: bold; font-size: 25px;">
-        {{productsPrice + deliveryCost}}<span style="font-size: 18px;">.00</span> Lei
+        {{productsPrice + deliveryCost}}
+        <!-- <span style="font-size: 18px;">.00</span> -->
+         Lei
       </div>
 
       <div style="display: flex;justify-content:center;flex-wrap: wrap;">

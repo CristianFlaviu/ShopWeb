@@ -113,11 +113,11 @@ export class ProductService {
       .toPromise();
   }
 
-  public placeOrderWithoutPayment(amount: number): Promise<CommandResult<any>> {
+  public placeOrderWithoutPayment(): Promise<CommandResult<any>> {
     return this.httpClient
       .post<any>(
         environment.apiUrl + '/products/place-order-without-payment',
-        amount
+        {}
       )
       .toPromise();
   }
@@ -138,7 +138,7 @@ export class ProductService {
     cardNumber: string
   ): Promise<CommandResult<any>> {
     return this.httpClient
-      .post<any>(environment.apiUrl + '/products/pay-order', {
+      .post<any>(environment.apiUrl + '/products/pay-order-with-payment', {
         cardNumber,
       })
       .toPromise();

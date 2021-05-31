@@ -33,6 +33,7 @@ export class OrderHistoryDetailsComponent implements OnInit {
     await this.productService.getOrderById(id).then((data) => {
       if (data.isSuccess) {
         this.order = data.payload;
+        this.productsPrice = data.payload.invoiceAmount;
       } else {
         this.snotifyService.error(UserMessages.general.serverError);
       }
@@ -42,14 +43,6 @@ export class OrderHistoryDetailsComponent implements OnInit {
     await this.productService.getProductsByOrderID(id).then((data) => {
       this.products = data.payload;
       this.isPageInfoLoaded = true;
-    });
-    this.computeTotalPrice();
-  }
-
-  public computeTotalPrice() {
-    this.productsPrice = 0;
-    this.products.forEach((x: any) => {
-      this.productsPrice += x.quantity * x.product.newPrice;
     });
   }
 

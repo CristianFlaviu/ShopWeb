@@ -9,4 +9,5 @@ export class Product {
   public barcode: string;
   public unitsAvailable: string;
   public pathToImage: string;
+  public category: string;
 }

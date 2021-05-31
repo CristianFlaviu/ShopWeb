@@ -36,7 +36,7 @@ export class ShoppingCartComponent implements OnInit {
   public computeTotalPrice() {
     this.productsPrice = 0;
     this.products.forEach((x: any) => {
-      this.productsPrice += x.quantity * x.product.newPrice;
+      this.productsPrice += x.quantity * x.newPrice;
     });
   }
 
@@ -44,7 +44,7 @@ export class ShoppingCartComponent implements OnInit {
     itemProduct.quantity++;
     this.productService
       .setQuantityProductShoppingCart(
-        itemProduct.product.barcode,
+        itemProduct.barcode,
         itemProduct.quantity
       )
       .then(
@@ -61,7 +61,7 @@ export class ShoppingCartComponent implements OnInit {
     itemProduct.quantity--;
     this.productService
       .setQuantityProductShoppingCart(
-        itemProduct.product.barcode,
+        itemProduct.barcode,
         itemProduct.quantity
       )
       .then(
@@ -77,7 +77,7 @@ export class ShoppingCartComponent implements OnInit {
   public async deleteProductShoppingCart(item: any) {
     this.products = this.products.filter((x) => x !== item);
     await this.productService
-      .deleteProductToShppingCart(item?.product?.barcode)
+      .deleteProductToShppingCart(item?.barcode)
       .then(
         () => {
           this.snotifyService.info('Product deleted from shopping cart');
@@ -91,7 +91,7 @@ export class ShoppingCartComponent implements OnInit {
 
   public async placeOrderLaterPayment() {
     this.productService
-      .placeOrderWithoutPayment(this.productsPrice + this.deliveryCost)
+      .placeOrderWithoutPayment()
       .then(() => {
         this.snotifyService.success('Order has been placed');
         this.notificationService.updateStats();

@@ -8,7 +8,7 @@
                 {{product?.title}}
             </div>
             
-            <img  src='{{ "assets/images/" + product?.pathToImage }}' alt="product" class="product-image">
+            <img  src='{{product?.pathToImage }}' alt="product" class="product-image">
         </div>
         <!-- right -->
         <div class="p-col-6">
@@ -90,7 +90,7 @@
                             {{myProduct.discount}}%
                         </div>
                         <div>
-                            <img src='{{ "assets/images/" + myProduct?.pathToImage }}' [alt]="myProduct.title"
+                            <img src='{{myProduct?.pathToImage}}' [alt]="myProduct.title"
                                 class="carusel_image" />
                         </div>
 

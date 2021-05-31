@@ -26,7 +26,7 @@ export class FavoriteProductsComponent implements OnInit {
   }
 
   public async deleteProductShoppingCart(barcode: string) {
-    this.products = this.products.filter((x) => x.product.barcode !== barcode);
+    this.products = this.products.filter((x) => x.barcode !== barcode);
     await this.productService.deleteProductFavorite(barcode).then(
       () => {
         this.notificationService.updateStats();
