@@ -23,20 +23,20 @@
         <div class="p-grid">
           <!-- ===================== Image ===================== -->
           <div class="p-col-3 div-image">
-            <img src='{{ "assets/images/" + item.product?.pathToImage }}' class="small-image">
+            <img src='{{item?.pathToImage }}' class="small-image">
           </div>
           <!-- ===================== Title ===================== -->
-          <div class="title-div" [routerLink]="'/barcode-scan/'+item.product.barcode">
+          <div class="title-div" [routerLink]="'/barcode-scan/'+item.barcode">
 
             <div class="title-product ">
-              {{item.product.title}}
+              {{item.title}}
             </div>
 
           </div>
           <!-- ===================== Price ===================== -->
           <div class="price">
             <div class="newprice">
-              {{item.product.newPrice}} Lei
+              {{item.newPrice}} Lei
             </div>
           </div>
 
@@ -83,11 +83,14 @@
         Total :
       </div>
 
-
       <div style="display: flex;justify-content:space-between;">
 
         <div style="font-weight: bold; font-size: 25px;">
-          {{productsPrice + deliveryCost}}<span style="font-size: 18px;">.00</span> Lei
+          {{productsPrice + deliveryCost}} 
+          <span style="font-size: 18px;">
+            <!-- .00 -->
+            Lei
+          </span> 
         </div>
 
         <button *ngIf="!(order.payments?.length>0)" mat-raised-button color="primary" (click)="activateCardPayment()">
