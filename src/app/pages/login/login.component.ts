@@ -64,9 +64,9 @@ export class LoginComponent implements OnInit {
   public isError = false;
   public errorMessage: string;
 
-  showSpinner = false;
+  public showSpinner = false;
 
-  registerForm = this.formbuilder.group(
+  public registerForm = this.formbuilder.group(
     {
       firstName: new FormControl('', [Validators.required]),
       lastName: new FormControl('', [Validators.required]),
@@ -118,11 +118,9 @@ export class LoginComponent implements OnInit {
   get phoneNumber() {
     return this.registerForm.get('phoneNumberC');
   }
-
   get password() {
     return this.registerForm.get('password');
   }
-
   get confirmPassword() {
     return this.registerForm.get('confirmPassword');
   }
@@ -167,6 +165,15 @@ export class LoginComponent implements OnInit {
             this.snotifyService.success(
               UserMessages.login.succesfullyRegistered
             );
+
+            this.registerForm.reset();
+            this.firstName?.reset();
+
+            for (let name in this.registerForm.controls) {
+              this.registerForm.controls[name].setErrors(null);
+            }
+
+            console.log(this.registerForm);
           } else {
             this.snotifyService.error(data.errorMessage);
           }
@@ -203,6 +210,15 @@ export class LoginComponent implements OnInit {
     const touched = this.password?.dirty || this.password?.touched;
     if (touched && pass) {
       return /\d/.test(pass);
+    }
+    return null;
+  }
+
+  nonAlphanumeric() {
+    const pass = this.password?.value;
+    const touched = this.password?.dirty || this.password?.touched;
+    if (touched && pass) {
+      return /[^a-zA-Z\d\s:]/.test(pass);
     }
     return null;
   }

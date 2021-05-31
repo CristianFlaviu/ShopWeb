@@ -1,7 +1,6 @@
 <div class="page" *ngIf="isPageInfoLoaded && !isCardPayment">
 
-  <!-- =================  empty card   ================= -->
-  <div *ngIf="products.length==0" class="empty-div">
+  <div *ngIf="products.length==0" style="width: 80%;margin:5px auto;">
     <p-card styleClass='empty-shop-cart'>
 
       <ng-template pTemplate="header">
@@ -27,40 +26,22 @@
             <img src='{{item?.pathToImage }}' class="small-image">
           </div>
           <!-- ===================== Title ===================== -->
-          <div class="title-div" [routerLink]="'/barcode-scan/'+item?.barcode">
+          <div class="title-div" [routerLink]="'/barcode-scan/'+item.barcode">
 
             <div class="title-product ">
-              {{item?.title}}
+              {{item.title}}
             </div>
 
-            <div class="stock">
-              In stock
-            </div>
           </div>
           <!-- ===================== Price ===================== -->
           <div class="price">
             <div class="newprice">
-              {{item?.newPrice}} Lei
-            </div>
-
-            <div class="oldprice">
-              <span style=" text-decoration: line-through;"> {{item?.oldPrice}} Lei </span>
+              {{item.newPrice}} Lei
             </div>
           </div>
-          <!-- ===================== Buttons ===================== -->
-          <div class="buttons">
-            <button pButton pRipple type="button" (click)="minus(item)" icon="pi pi-minus"
-              class="p-button-rounded p-button-plain p-button-danger"></button>
 
-            <div style="margin: auto 8px; text-align: center;">{{item.quantity}}</div>
+          <div class="price"> {{item.quantity}} Buc</div>
 
-            <button pButton pRipple type="button" (click)="plus(item)" icon="pi pi-plus"
-              class="p-button-rounded p-button-plain"></button>
-
-            <button pButton pRipple type="button" (click)="deleteProductShoppingCart(item)" icon="pi pi-trash"
-              class="p-button-rounded p-button-plain  p-button-secondary delete-button"></button>
-
-          </div>
         </div>
         <p-divider></p-divider>
       </div>
@@ -101,19 +82,40 @@
       <div style="font-weight: bold; font-size: 20px;">
         Total :
       </div>
-      <div style="font-weight: bold; font-size: 25px;">
-        {{productsPrice + deliveryCost}}
-        <!-- <span style="font-size: 18px;">.00</span> -->
-         Lei
-      </div>
 
-      <div style="display: flex;justify-content:center;flex-wrap: wrap;">
-        <button mat-raised-button color="primary" style="margin: 10px 30%; width: 40%;" (click)="activateCardPayment()">
+      <div style="display: flex;justify-content:space-between;">
+
+        <div style="font-weight: bold; font-size: 25px;">
+          {{productsPrice + deliveryCost}} 
+          <span style="font-size: 18px;">
+            <!-- .00 -->
+            Lei
+          </span> 
+        </div>
+
+        <button *ngIf="!(order.payments?.length>0)" mat-raised-button color="primary" (click)="activateCardPayment()">
           Pay Now
         </button>
-        <button mat-raised-button color="warn" style="width: 40%;" (click)="placeOrderLaterPayment()">
-          Pay Later
-        </button>
+      </div>
+
+      <p-divider></p-divider>
+
+      <div class="p-grid">
+        <div class="p-col-6">
+          Order Date
+        </div>
+        <div class="p-col-6" style="text-align: right;">
+          {{order.orderDate |date}}
+        </div>
+      </div>
+
+      <div *ngIf="order.payments?.length>0" class="p-grid">
+        <div class="p-col-6">
+          Payment Date
+        </div>
+        <div class="p-col-6" style="text-align: right;">
+          {{order.payments[0].date | date}}
+        </div>
       </div>
     </p-card>
   </div>
@@ -121,7 +123,7 @@
 
 <!-- credit cart  -->
 
-<app-credit-card [totalBill]="productsPrice + deliveryCost" *ngIf="isCardPayment" (payEvent)="payOrder($event)"
-  (backEvent)="deactivateCardPayment()">
+<app-credit-card [totalBill]="productsPrice + deliveryCost" *ngIf="isCardPayment" (backEvent)="deactivateCardPayment()"
+  (payEvent)="placeOrder($event)">
 
 </app-credit-card>

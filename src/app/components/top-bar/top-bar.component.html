@@ -14,21 +14,25 @@
     <div fxShow="true" fxHide.lt-md="true">
 
       <div *ngIf="authenticationService.isLoggedIn()">
-        <button mat-button>
-          <mat-icon [matBadge]="getShopC()" matBadgeColor="warn" class="icon-align" routerLink='shopping-cart'>
+        <button mat-button routerLink='shopping-cart'>
+          <mat-icon [matBadge]="getShopC()" matBadgeColor="warn" class="icon-align">
             shopping_cart</mat-icon>
         </button>
 
-        <button mat-button>
-          <mat-icon [matBadge]="getFav()" matBadgeColor="warn" class="icon-align" routerLink='favorite-products'>
+        <button mat-button routerLink='favorite-products'>
+          <mat-icon [matBadge]="getFav()" matBadgeColor="warn" class="icon-align">
             favorite</mat-icon>
         </button>
-        <button mat-button>
-          <mat-icon [matMenuTriggerFor]="menu" class="icon-align">person
+        <button mat-button [matMenuTriggerFor]="menu">
+          <mat-icon class="icon-align">person
           </mat-icon>
         </button>
       </div>
       <mat-menu #menu="matMenu">
+        <button *ngIf="authenticationService.isLoggedIn()" routerLink="/detect-qr-code" mat-menu-item>Connect Raspberry
+        </button>
+        <button *ngIf="authenticationService.isLoggedIn()" routerLink="/orders-history" mat-menu-item>Orders
+          History</button>
         <button *ngIf="authenticationService.isLoggedIn()" (click)="logout()" mat-menu-item>Logout</button>
       </mat-menu>
     </div>

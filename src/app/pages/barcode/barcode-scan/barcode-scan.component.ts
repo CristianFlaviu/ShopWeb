@@ -16,10 +16,9 @@ export class BarcodeScanComponent implements OnInit {
   public pathToProductImage: string;
 
   public barcode: string;
-
   public importantFeatures: ProductAttribute[] = [];
-
   public products: Product[];
+  public isPageInfoLoaded = false;
 
   responsiveOptions = [
     {
@@ -47,13 +46,14 @@ export class BarcodeScanComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe((params) => {
+    this.activatedRoute.params.subscribe(async (params) => {
       this.barcode = params['barcode'];
 
-      this.productService.getProductByBarcode(this.barcode + '').then(
+      await this.productService.getProductByBarcode(this.barcode + '').then(
         (data) => {
           this.product = data.payload;
           this.importantFeatures = [];
+
           JSON.parse(data.payload?.attributes).forEach(
             (element: ProductAttribute) => {
               if (element.IsImportant) {
@@ -61,18 +61,24 @@ export class BarcodeScanComponent implements OnInit {
               }
             }
           );
+
+          this.isPageInfoLoaded = true;
         },
         (err) => console.log(err)
       );
 
-      this.productService.getProductFromSameCategory('defaultCategory').then(
-        (data) => {
-          this.products = data.payload;
-        },
-        (err) => {
-          this.snotifyService.error('An error occured, please try again later');
-        }
-      );
+      this.productService
+        .getProductFromSameCategory(this.product.category)
+        .then(
+          (data) => {
+            this.products = data.payload;
+          },
+          (err) => {
+            this.snotifyService.error(
+              'An error occured, please try again later'
+            );
+          }
+        );
     });
   }
 

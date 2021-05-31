@@ -9,22 +9,24 @@ import { ProductService } from 'src/app/data_services/products/product.service';
   styleUrls: ['./favorite-products.component.scss'],
 })
 export class FavoriteProductsComponent implements OnInit {
+  public products: any[] = [];
+  public isPageInfoLoaded = false;
+
   constructor(
     private productService: ProductService,
     private notificationService: NotificationService,
     private snotifyService: SnotifyService
   ) {}
 
-  public products: any[] = [];
-
   async ngOnInit() {
     await this.productService.getProductFavorite().then((data) => {
       this.products = data.payload;
+      this.isPageInfoLoaded = true;
     });
   }
 
   public async deleteProductShoppingCart(barcode: string) {
-    this.products = this.products.filter((x) => x.product.barcode !== barcode);
+    this.products = this.products.filter((x) => x.barcode !== barcode);
     await this.productService.deleteProductFavorite(barcode).then(
       () => {
         this.notificationService.updateStats();

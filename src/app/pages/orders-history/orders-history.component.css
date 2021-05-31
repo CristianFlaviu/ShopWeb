@@ -1,0 +1,76 @@
+.page {
+  width: 80%;
+  margin: 3% auto 0 auto;
+  font-family: "SanaSansAltBold", sans-serif;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.title {
+  margin-top: 2%;
+  text-align: center;
+  font-weight: 700;
+  font-size: 25px;
+}
+
+:host ::ng-deep .order-table {
+  width: 80%;
+  margin: 5% auto;
+}
+
+
+:host ::ng-deep .p-datatable .p-datatable-thead > tr > th {
+  background: #c0cdda;
+}
+
+/* ========= empty card ============*/
+
+.empty-div {
+  width: 80%;
+  margin: 60px auto;
+  position: relative;
+}
+
+:host ::ng-deep .empty-shop-cart .p-card-header {
+  text-align: center;
+  width: 100%;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+:host ::ng-deep .empty-shop-cart .p-card-body {
+  text-align: center;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -10px;
+}
+
+:host ::ng-deep .empty-shop-cart .p-card-footer {
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+}
+
+.empty-cart-image {
+  margin: auto;
+}
+
+
+@media only screen and (min-width: 768px) {
+  .image-empty-card {
+    height: 180px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .image-empty-card {
+    height: 180px;
+  }
+
+  :host ::ng-deep .empty-card {
+    margin: 10% auto;
+    height: 390px;
+  }
+}

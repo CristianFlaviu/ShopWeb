@@ -55,6 +55,8 @@ import { DetectQrCodeComponent } from './pages/detect-qr-code/detect-qr-code.com
 import { CreditCardComponent } from './pages/credit-card/credit-card.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { OrdersHistoryComponent } from './pages/orders-history/orders-history.component';
+import { OrderHistoryDetailsComponent } from './pages/order-history-details/order-history-details.component';
 const primeNgComponents = [
   CalendarModule,
   ProgressBarModule,
@@ -100,7 +102,7 @@ const materialComponents = [
   MatCardModule,
   MatInputModule,
   MatFormFieldModule,
-  MatGridListModule
+  MatGridListModule,
 ];
 @NgModule({
   declarations: [
@@ -115,6 +117,8 @@ const materialComponents = [
     FavoriteProductsComponent,
     DetectQrCodeComponent,
     CreditCardComponent,
+    OrdersHistoryComponent,
+    OrderHistoryDetailsComponent
   ],
   imports: [
     ReactiveFormsModule,
