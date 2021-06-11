@@ -1,36 +1,42 @@
-.full-width {
-  width: 100%;
-}
-
-.card-margin {
-  margin: 5%;
-}
-
-.btn-reg {
-  background: rgb(62, 150, 153);
-}
-
-.warn {
-  color: red;
-}
-
-.card-div {
-  width: 100%;
-  margin: auto;
-}
-
 .main-div {
-  margin: 2% auto;
-  width: 35%;
+  margin: 15% auto;
+  width: 80%;
+}
+
+.full-width {
+  width: 40%;
 }
 
 .image-pp {
-  width: 200px;
+  width: 130px;
 }
+
 
 .text-amount {
   font-size: 18px;
   font-weight: 600;
   font-family: "SanaSansAltBold", sans-serif;
+}
+
+
+
+@media only screen and (min-width: 480px) {
+  
+
+  .full-width {
+    width: 50%;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .main-div {
+    margin: 3% auto;
+    width: 35%;
+  }
+
+  .image-pp {
+    width: 190px;
+  }
+  
 }
 

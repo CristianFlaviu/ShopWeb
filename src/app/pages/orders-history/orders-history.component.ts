@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ProductService } from 'src/app/data_services/products/product.service';
+import { OrderService } from 'src/app/data_services/products/order.service';
 
 @Component({
   selector: 'app-orders-history',
@@ -13,17 +13,22 @@ export class OrdersHistoryComponent implements OnInit {
     { field: 'orderDate', header: 'Order date' },
     { field: 'amount', header: 'Amount' },
     { field: 'pay', header: 'Is payed' },
+    { field: 'limitDate', header: 'limitDate' },
   ];
   public tableData: any;
   public isPageInfoLoade = false;
-  constructor(private productService: ProductService, private router: Router) {}
+  constructor(private orderService: OrderService, private router: Router) {}
 
   ngOnInit() {
-    this.productService.getOrders().then(
+    this.orderService.getOrders().then(
       (data) => {
         this.tableData = data.payload;
-        this.isPageInfoLoade = true;
 
+        this.tableData.forEach((order: any) => {
+          order.invoiceAmount = Number(order.invoiceAmount).toFixed(2);
+        });
+
+        this.isPageInfoLoade = true;
         console.log('orders', data);
       },
       (err) => {

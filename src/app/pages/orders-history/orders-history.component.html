@@ -37,12 +37,15 @@
         <ng-template pTemplate="body" let-order>
           <tr [pSelectableRow]="order">
             <td>{{order['id']}} </td>
-            <td>{{order['orderDate'] | date}} </td>
-            <td>{{order['amount']}} Lei</td>
+            <td>{{order['orderDate'] | date:'dd.MM.yyyy'}} </td>
+            <td>{{order['invoiceAmount']}} Lei</td>
             <td>
-              <mat-icon *ngIf="!(order.payments.length>0)" color="warn">close</mat-icon>
-              <mat-icon *ngIf="order.payments.length>0" style="color: green;">done</mat-icon>
+              <mat-icon *ngIf="!(order.payment)" color="warn">close</mat-icon>
+              <mat-icon *ngIf="order.payment" style="color: green;">done</mat-icon>
             </td>
+
+            <td>{{order['limitDate'] | date:'dd.MM.yyyy'}}</td>
+           
           </tr>
         </ng-template>
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SnotifyService } from 'ng-snotify';
 import { NotificationService } from 'src/app/data_services/notification.service';
+import { OrderService } from 'src/app/data_services/products/order.service';
 import { ProductService } from 'src/app/data_services/products/product.service';
 import { UserMessages } from 'src/app/globals/constants';
 
@@ -12,8 +13,8 @@ import { UserMessages } from 'src/app/globals/constants';
 })
 export class OrderHistoryDetailsComponent implements OnInit {
   public products: any[] = [];
-  public productsPrice = 0;
-  public deliveryCost = 10;
+  public productsPrice: string;
+  public deliveryCost = 0;
 
   public isCardPayment = false;
   public order: any;
@@ -21,6 +22,7 @@ export class OrderHistoryDetailsComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
+    private orderService: OrderService,
     private notificationService: NotificationService,
     private snotifyService: SnotifyService,
     private route: Router,
@@ -30,14 +32,13 @@ export class OrderHistoryDetailsComponent implements OnInit {
   async ngOnInit() {
     const id = this.activatedRoute.snapshot.params.id;
 
-    await this.productService.getOrderById(id).then((data) => {
+    await this.orderService.getOrderById(id).then((data) => {
       if (data.isSuccess) {
         this.order = data.payload;
-        this.productsPrice = data.payload.invoiceAmount;
+        this.productsPrice = Number(data.payload.invoiceAmount).toFixed(2);
       } else {
         this.snotifyService.error(UserMessages.general.serverError);
       }
-      console.log('order-details', data);
     });
 
     await this.productService.getProductsByOrderID(id).then((data) => {
@@ -54,8 +55,8 @@ export class OrderHistoryDetailsComponent implements OnInit {
     this.isCardPayment = false;
   }
 
-  public placeOrder(cardNumber: any) {
-    this.productService
+  public payOrder(cardNumber: any) {
+    this.orderService
       .placeOrderLaterPayment(this.order.id, cardNumber)
       .then(() => {
         this.snotifyService.success('Succesfull Payment');

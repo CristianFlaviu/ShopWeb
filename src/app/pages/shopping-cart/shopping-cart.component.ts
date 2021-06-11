@@ -1,8 +1,8 @@
-import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SnotifyService } from 'ng-snotify';
 import { NotificationService } from 'src/app/data_services/notification.service';
+import { OrderService } from 'src/app/data_services/products/order.service';
 import { ProductService } from 'src/app/data_services/products/product.service';
 
 @Component({
@@ -13,13 +13,15 @@ import { ProductService } from 'src/app/data_services/products/product.service';
 export class ShoppingCartComponent implements OnInit {
   public products: any[] = [];
   public productsPrice = 0;
-  public deliveryCost = 10;
+  public productsPriceString: string;
+  public deliveryCost = 0;
 
   public isCardPayment = false;
 
   public isPageInfoLoaded = false;
   constructor(
     private productService: ProductService,
+    private orderService: OrderService,
     private notificationService: NotificationService,
     private snotifyService: SnotifyService,
     private route: Router
@@ -38,15 +40,14 @@ export class ShoppingCartComponent implements OnInit {
     this.products.forEach((x: any) => {
       this.productsPrice += x.quantity * x.newPrice;
     });
+
+    this.productsPriceString = Number(this.productsPrice).toFixed(2);
   }
 
   plus(itemProduct: any) {
     itemProduct.quantity++;
     this.productService
-      .setQuantityProductShoppingCart(
-        itemProduct.barcode,
-        itemProduct.quantity
-      )
+      .setQuantityProductShoppingCart(itemProduct.barcode, itemProduct.quantity)
       .then(
         () => {
           this.computeTotalPrice();
@@ -60,10 +61,7 @@ export class ShoppingCartComponent implements OnInit {
   minus(itemProduct: any) {
     itemProduct.quantity--;
     this.productService
-      .setQuantityProductShoppingCart(
-        itemProduct.barcode,
-        itemProduct.quantity
-      )
+      .setQuantityProductShoppingCart(itemProduct.barcode, itemProduct.quantity)
       .then(
         () => {
           this.computeTotalPrice();
@@ -76,31 +74,27 @@ export class ShoppingCartComponent implements OnInit {
 
   public async deleteProductShoppingCart(item: any) {
     this.products = this.products.filter((x) => x !== item);
-    await this.productService
-      .deleteProductToShppingCart(item?.barcode)
-      .then(
-        () => {
-          this.snotifyService.info('Product deleted from shopping cart');
-        },
-        () => {
-          this.snotifyService.error('An error occured, please try again later');
-        }
-      );
+    await this.productService.deleteProductToShppingCart(item?.barcode).then(
+      () => {
+        this.snotifyService.info('Product deleted from shopping cart');
+      },
+      () => {
+        this.snotifyService.error('An error occured, please try again later');
+      }
+    );
     this.notificationService.updateStats();
   }
 
   public async placeOrderLaterPayment() {
-    this.productService
-      .placeOrderWithoutPayment()
-      .then(() => {
-        this.snotifyService.success('Order has been placed');
-        this.notificationService.updateStats();
-        this.route.navigate(['/home']);
-      });
+    this.orderService.placeOrderWithoutPayment().then(() => {
+      this.snotifyService.success('Order has been placed');
+      this.notificationService.updateStats();
+      this.route.navigate(['/home']);
+    });
   }
 
   public payOrder(cardNumber: string) {
-    this.productService.placeOrderWithPayment(cardNumber).then(
+    this.orderService.placeOrderWithPayment(cardNumber).then(
       (data) => {
         this.snotifyService.success('Payment Succeeded');
         this.notificationService.updateStats();

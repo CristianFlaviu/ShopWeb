@@ -1,6 +1,6 @@
 <div class="main-div">
 
-  <mat-card [ngClass]="{'card-div':true}">
+  <mat-card>
     <mat-card-header>
       <mat-card-title>Card Payment</mat-card-title>
     </mat-card-header>
@@ -9,7 +9,7 @@
 
       <form [formGroup]="cardForm" (ngSubmit)="payOrder()">
 
-        <mat-form-field class="full-width">
+        <mat-form-field style="width: 100%;">
           <input matInput formControlName="cardno" placeholder="Card Number" card-number>
         </mat-form-field>
 
@@ -17,19 +17,44 @@
 
           <mat-form-field class="full-width">
             <input matInput formControlName="firstName" placeholder="First Name" card-name>
+            <mat-error *ngIf="firstName?.hasError('required')">
+              First Name is <strong>required</strong>
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field class="full-width">
             <input matInput formControlName="lastName" placeholder="Last Name" card-name>
+            <mat-error *ngIf="lastName?.hasError('required')">
+              Last Name is <strong>required</strong>
+            </mat-error>
           </mat-form-field>
         </div>
 
         <div fxLayout="row" fxLayoutGap="20px">
           <mat-form-field class="full-width">
-            <input matInput formControlName="expDate" placeholder="Expiration Date" card-expiry>
+
+            <mat-label>Expiration date</mat-label>
+            <!-- <input formControlName="expDate" matInput [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker> -->
+
+            <input formControlName="expDate" matInput [matDatepicker]="dp2" placeholder="Select a Date" (click)="openDatePicker(dp2)">
+            <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+            <mat-datepicker #dp2 startView="multi-year" (monthSelected)="closeDatePicker($event, dp2)"></mat-datepicker>
+
+            <mat-error *ngIf="expDate?.hasError('required')">
+              Expiration date is <strong>required</strong>
+            </mat-error>
           </mat-form-field>
+
           <mat-form-field class="full-width">
-            <input matInput formControlName="cvvNo" placeholder="CVV" card-cvc>
+            <input matInput formControlName="cvvNo" placeholder="CVV">
+            <mat-error *ngIf="cvvNo?.hasError('pattern')  && !cvvNo?.hasError('required')">
+              Please enter a valid CVV
+            </mat-error>
+            <mat-error *ngIf="cvvNo?.hasError('required')">
+              CVV is <strong>required</strong>
+            </mat-error>
           </mat-form-field>
         </div>
 
@@ -55,13 +80,13 @@
         </div>
 
         <div class="p-col-12" style="margin-top: 20px;">
-          <div class="p-grid p-jc-center " style="margin-right: 2%;">
+          <div class="p-grid p-jc-center" style="margin-right: 2%;">
             <div class="p-col-3">
               <button mat-raised-button color="primary" style="width: 100%;"
                 (click)="backToShoppingCart()">Back</button>
             </div>
 
-            <div class="p-col-3">
+            <div class="p-col-3 p-offset-2">
               <button mat-raised-button color="primary" style="width: 100%;">Pay</button>
             </div>
           </div>
