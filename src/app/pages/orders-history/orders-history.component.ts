@@ -13,7 +13,7 @@ export class OrdersHistoryComponent implements OnInit {
     { field: 'orderDate', header: 'Order date' },
     { field: 'amount', header: 'Amount' },
     { field: 'pay', header: 'Is payed' },
-    { field: 'limitDate', header: 'limitDate' },
+    { field: 'limitDate', header: 'Due date' },
   ];
   public tableData: any;
   public isPageInfoLoade = false;

@@ -7,7 +7,7 @@ export class Product {
   public discount: number;
   public availability: Date;
   public barcode: string;
-  public unitsAvailable: string;
+  public unitsAvailable: number;
   public pathToImage: string;
   public category: string;
 }

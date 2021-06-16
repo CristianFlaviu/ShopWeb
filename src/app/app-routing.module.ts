@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './globals/auth-guard';
+import { RedirectGuard } from './globals/redirect-guard';
 import { BarcodeScanComponent } from './pages/barcode/barcode-scan/barcode-scan.component';
 import { ConfirmEmailComponent } from './pages/confirm-email/confirm-email.component';
 import { CreditCardComponent } from './pages/credit-card/credit-card.component';
@@ -31,6 +32,30 @@ const routes: Routes = [
   { path: 'detect-qr-code', component: DetectQrCodeComponent },
   { path: 'orders-history', component: OrdersHistoryComponent },
   { path: 'orders-history/:id', component: OrderHistoryDetailsComponent },
+  {
+    path: 'facebook',
+    canActivate: [RedirectGuard],
+    component: RedirectGuard,
+    data: {
+      externalUrl: 'https://www.facebook.com/diaconu.calin',
+    },
+  },
+  {
+    path: 'instagram',
+    canActivate: [RedirectGuard],
+    component: RedirectGuard,
+    data: {
+      externalUrl: 'https://www.instagram.com/ccalindiaconu',
+    },
+  },
+  {
+    path: 'twitter',
+    canActivate: [RedirectGuard],
+    component: RedirectGuard,
+    data: {
+      externalUrl: 'https://twitter.com/elonmusk?lang=ro',
+    },
+  },
 ];
 
 @NgModule({

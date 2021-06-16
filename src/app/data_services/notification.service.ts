@@ -5,7 +5,7 @@ import { ProductService } from './products/product.service';
   providedIn: 'root',
 })
 export class NotificationService {
-  public favourite: number;
+  public favorite: number;
   public shoppingCart: number;
 
   constructor(private productService: ProductService) {}
@@ -16,7 +16,7 @@ export class NotificationService {
     });
 
     this.productService.getProductFavorite().then((data) => {
-      this.favourite = data.payload.length;
+      this.favorite = data.payload.length;
     });
   }
 }

@@ -4,6 +4,8 @@ import { SnotifyService } from 'ng-snotify';
 import { NotificationService } from 'src/app/data_services/notification.service';
 import { OrderService } from 'src/app/data_services/products/order.service';
 import { ProductService } from 'src/app/data_services/products/product.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -24,7 +26,8 @@ export class ShoppingCartComponent implements OnInit {
     private orderService: OrderService,
     private notificationService: NotificationService,
     private snotifyService: SnotifyService,
-    private route: Router
+    private route: Router,
+    public dialog: MatDialog
   ) {}
 
   async ngOnInit() {
@@ -45,31 +48,45 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   plus(itemProduct: any) {
-    itemProduct.quantity++;
-    this.productService
-      .setQuantityProductShoppingCart(itemProduct.barcode, itemProduct.quantity)
-      .then(
-        () => {
-          this.computeTotalPrice();
-        },
-        () => {
-          this.snotifyService.error('An error occured, please try again later');
-        }
-      );
+    if (itemProduct.quantity < itemProduct.unitsAvailable) {
+      itemProduct.quantity++;
+      this.productService
+        .setQuantityProductShoppingCart(
+          itemProduct.barcode,
+          itemProduct.quantity
+        )
+        .then(
+          () => {
+            this.computeTotalPrice();
+          },
+          () => {
+            this.snotifyService.error(
+              'An error occured, please try again later'
+            );
+          }
+        );
+    }
   }
 
   minus(itemProduct: any) {
-    itemProduct.quantity--;
-    this.productService
-      .setQuantityProductShoppingCart(itemProduct.barcode, itemProduct.quantity)
-      .then(
-        () => {
-          this.computeTotalPrice();
-        },
-        () => {
-          this.snotifyService.error('An error occured, please try again later');
-        }
-      );
+    if (itemProduct.quantity > 1) {
+      itemProduct.quantity--;
+      this.productService
+        .setQuantityProductShoppingCart(
+          itemProduct.barcode,
+          itemProduct.quantity
+        )
+        .then(
+          () => {
+            this.computeTotalPrice();
+          },
+          () => {
+            this.snotifyService.error(
+              'An error occured, please try again later'
+            );
+          }
+        );
+    }
   }
 
   public async deleteProductShoppingCart(item: any) {
@@ -112,5 +129,20 @@ export class ShoppingCartComponent implements OnInit {
 
   public deactivateCardPayment() {
     this.isCardPayment = false;
+  }
+  openDialog(): void {
+    const today = new Date();
+    const nextWeek = new Date().setDate(today.getDate() + 7);
+
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '250px',
+      data: { total: Number(this.productsPrice).toFixed(2), limitDate: nextWeek },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.placeOrderLaterPayment();
+      }
+    });
   }
 }

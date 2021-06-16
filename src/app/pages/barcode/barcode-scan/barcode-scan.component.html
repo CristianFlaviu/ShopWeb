@@ -33,11 +33,11 @@
             <div class="space-div p-grid">
                 <button mat-raised-button color="primary" class="product-buttons" (click)="addProductToShoppingCart()">
                     <mat-icon>
-                        add_shopping_cart</mat-icon> Add to Chart
+                        add_shopping_cart</mat-icon> Add to cart
                 </button>
                 <button mat-raised-button color="warn" class="product-buttons" (click)="addProductToFavorite()">
                     <mat-icon>
-                        favorite</mat-icon> Add to Favourite
+                        favorite</mat-icon> Add to favourite
                 </button>
             </div>
             <div class="desktop-info">
@@ -48,7 +48,7 @@
                 </div>
 
                 <div class="space-div">
-                    <i class="pi pi-calendar"></i> &nbsp; Data Expirarii : {{product.availability |date : 'dd/MM/yyyy'
+                    <i class="pi pi-calendar"></i> &nbsp; Expiration Date : {{product.availability |date : 'dd/MM/yyyy'
                     }}
                 </div>
                 <div class="space-div">

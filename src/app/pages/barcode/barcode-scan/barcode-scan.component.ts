@@ -83,29 +83,48 @@ export class BarcodeScanComponent implements OnInit {
   }
 
   public async addProductToFavorite() {
-    await this.productService.addProductToFavorite(this.barcode).then(
-      (data) => {
-        this.snotifyService.info('Product added to favourite');
-      },
-      (err) => {
-        this.snotifyService.error('An error occured, please try again later');
+    await this.productService.getProductFavorite().then(async (data) => {
+      console.log('fav product', data);
+      if (
+        data.payload.filter((x: any) => x.barcode === this.barcode).length > 0
+      ) {
+        this.snotifyService.info('Product already added to favorites');
+      } else {
+        await this.productService.addProductToFavorite(this.barcode).then(
+          (data) => {
+            this.snotifyService.info('Product added to favorite');
+          },
+          (err) => {
+            this.snotifyService.error(
+              'An error occured, please try again later'
+            );
+          }
+        );
+        this.notificationService.updateStats();
       }
-    );
-    this.notificationService.updateStats();
+    });
   }
 
   public async addProductToShoppingCart() {
-    await this.productService.addProductToShppingCart(this.barcode).then(
-      (data) => {
-        this.snotifyService.info('Product added to shopping cart');
-      },
-      (err) => {
-        this.snotifyService.error('An error occured, please try again later');
+    await this.productService.getProductShoppingCart().then(async (data) => {
+      console.log('add product', data);
+      if (
+        data.payload.filter((x: any) => x.barcode === this.barcode).length > 0
+      ) {
+        this.snotifyService.info('Product already added to the cart');
+      } else {
+        await this.productService.addProductToShppingCart(this.barcode).then(
+          (data) => {
+            this.snotifyService.info('Product added to the cart');
+          },
+          (err) => {
+            this.snotifyService.error(
+              'An error occured, please try again later'
+            );
+          }
+        );
+        this.notificationService.updateStats();
       }
-    );
-    this.notificationService.updateStats();
-  }
-  public mt() {
-    console.log('ceva');
+    });
   }
 }

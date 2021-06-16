@@ -1,3 +1,6 @@
+.icon-div {
+  cursor: pointer;
+}
 .icon-align {
   font-size: 35px;
   margin-right: 20px;
@@ -49,15 +52,12 @@ div {
   margin: 0 5px;
 }
 
-
-
 @media only screen and (min-width: 768px) {
   .copyright-div {
     width: 50%;
     margin-left: 38%;
   }
 }
-
 
 @media only screen and (min-width: 1024px) {
   .icon-sm {

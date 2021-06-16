@@ -57,6 +57,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { OrdersHistoryComponent } from './pages/orders-history/orders-history.component';
 import { OrderHistoryDetailsComponent } from './pages/order-history-details/order-history-details.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from './pages/confirmation-dialog/confirmation-dialog.component';
+import { RedirectGuard } from './globals/redirect-guard';
 const primeNgComponents = [
   CalendarModule,
   ProgressBarModule,
@@ -103,6 +106,7 @@ const materialComponents = [
   MatInputModule,
   MatFormFieldModule,
   MatGridListModule,
+  MatDialogModule
 ];
 @NgModule({
   declarations: [
@@ -118,7 +122,8 @@ const materialComponents = [
     DetectQrCodeComponent,
     CreditCardComponent,
     OrdersHistoryComponent,
-    OrderHistoryDetailsComponent
+    OrderHistoryDetailsComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -147,6 +152,7 @@ const materialComponents = [
     MatDatepickerModule,
     AuthGuard,
     NotificationService,
+    RedirectGuard
   ],
   bootstrap: [AppComponent],
 })

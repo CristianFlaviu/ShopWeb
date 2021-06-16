@@ -29,13 +29,13 @@ export class TopBarComponent implements OnInit {
   }
 
   public logout() {
-    this.notificationService.favourite = 0;
+    this.notificationService.favorite = 0;
     this.notificationService.shoppingCart = 0;
     this.authenticationService.logout();
     this.router.navigate(['/']);
   }
   public getFav() {
-    return this.notificationService.favourite;
+    return this.notificationService.favorite;
   }
 
   public getShopC() {

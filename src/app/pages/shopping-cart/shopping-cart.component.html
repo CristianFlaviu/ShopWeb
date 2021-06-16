@@ -34,7 +34,7 @@
             </div>
 
             <div class="stock">
-              In stock
+              In stock ({{item.unitsAvailable}})
             </div>
           </div>
           <!-- ===================== Price ===================== -->
@@ -49,12 +49,12 @@
           </div>
           <!-- ===================== Buttons ===================== -->
           <div class="buttons">
-            <button pButton pRipple type="button" (click)="minus(item)" icon="pi pi-minus"
+            <button pButton pRipple type="button" (click)="minus(item)" [disabled]="item.quantity<=1" icon="pi pi-minus"
               class="p-button-rounded p-button-plain p-button-danger"></button>
 
             <div style="margin: auto 8px; text-align: center;">{{item.quantity}}</div>
 
-            <button pButton pRipple type="button" (click)="plus(item)" icon="pi pi-plus"
+            <button pButton pRipple type="button" (click)="plus(item)" [disabled]="item.quantity>=item.unitsAvailable" icon="pi pi-plus"
               class="p-button-rounded p-button-plain"></button>
 
             <button pButton pRipple type="button" (click)="deleteProductShoppingCart(item)" icon="pi pi-trash"
@@ -104,14 +104,14 @@
       <div style="font-weight: bold; font-size: 25px;">
         {{productsPriceString}}
         <!-- <span style="font-size: 18px;">.00</span> -->
-         Lei
+        Lei
       </div>
 
       <div style="display: flex;justify-content:center;flex-wrap: wrap;">
         <button mat-raised-button color="primary" style="margin: 10px 30%; width: 40%;" (click)="activateCardPayment()">
           Pay Now
         </button>
-        <button mat-raised-button color="warn" style="width: 40%;" (click)="placeOrderLaterPayment()">
+        <button mat-raised-button color="warn" style="width: 40%;" (click)="openDialog()">
           Pay Later
         </button>
       </div>
@@ -123,5 +123,6 @@
 
 <app-credit-card [totalBill]="productsPriceString" *ngIf="isCardPayment" (payEvent)="payOrder($event)"
   (backEvent)="deactivateCardPayment()">
-
 </app-credit-card>
+
+
