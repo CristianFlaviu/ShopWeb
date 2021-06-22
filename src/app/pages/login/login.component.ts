@@ -165,7 +165,6 @@ export class LoginComponent implements OnInit {
             this.snotifyService.success(
               UserMessages.login.succesfullyRegistered
             );
-
             this.registerForm.reset();
             this.firstName?.reset();
 

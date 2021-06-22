@@ -46,11 +46,8 @@ export class ProductService {
     barcode: string
   ): Promise<CommandResult<any>> {
     return this.httpClient
-      .post<any>(
-        environment.apiUrl +
-          '/products/delete-shopping-cart-product/' +
-          barcode,
-        {}
+      .delete<any>(
+        environment.apiUrl + '/products/delete-shopping-cart-product/' + barcode
       )
       .toPromise();
   }
@@ -88,9 +85,8 @@ export class ProductService {
 
   public deleteProductFavorite(barcode: string): Promise<CommandResult<any>> {
     return this.httpClient
-      .post<any>(
-        environment.apiUrl + '/products/delete-favorite-product/' + barcode,
-        {}
+      .delete<any>(
+        environment.apiUrl + '/products/delete-favorite-product/' + barcode
       )
       .toPromise();
   }

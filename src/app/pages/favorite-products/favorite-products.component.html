@@ -35,7 +35,14 @@
             </div>
 
             <div class="stock">
-              In stock
+              <span *ngIf="item.unitsAvailable>0" style=" color: green;">
+                In stock ({{item.unitsAvailable}})
+              </span>
+
+              <span *ngIf="item.unitsAvailable <= 0" style=" color: #c00c48;">
+                Sold
+              </span>
+
             </div>
           </div>
           <!-- ===================== Price ===================== -->
@@ -50,7 +57,7 @@
           </div>
           <!-- ===================== Buttons ===================== -->
           <div class="buttons">
-            <button mat-raised-button color="primary" class="product-buttons"
+            <button mat-raised-button color="primary" class="product-buttons" [disabled]="item.unitsAvailable<=0"
               (click)="addProductToShoppingCart(item.barcode)">
               <mat-icon>
                 add_shopping_cart</mat-icon>

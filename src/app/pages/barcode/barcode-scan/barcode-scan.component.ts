@@ -13,11 +13,13 @@ import { ProductAttribute } from '../models/product-attribute';
 })
 export class BarcodeScanComponent implements OnInit {
   public product: Product = new Product();
+  public productAttributes: ProductAttribute[] = [];
+  public attributeCategories: string[] = [];
   public pathToProductImage: string;
 
   public barcode: string;
-  public importantFeatures: ProductAttribute[] = [];
-  public products: Product[];
+
+  public carouselProducts: Product[];
   public isPageInfoLoaded = false;
 
   responsiveOptions = [
@@ -52,12 +54,12 @@ export class BarcodeScanComponent implements OnInit {
       await this.productService.getProductByBarcode(this.barcode + '').then(
         (data) => {
           this.product = data.payload;
-          this.importantFeatures = [];
-
+          this.productAttributes = [];
           JSON.parse(data.payload?.attributes).forEach(
             (element: ProductAttribute) => {
-              if (element.IsImportant) {
-                this.importantFeatures.push(element);
+              this.productAttributes.push(element);
+              if (!this.attributeCategories.includes(element.InfoCategory)) {
+                this.attributeCategories.push(element.InfoCategory);
               }
             }
           );
@@ -71,7 +73,7 @@ export class BarcodeScanComponent implements OnInit {
         .getProductFromSameCategory(this.product.category)
         .then(
           (data) => {
-            this.products = data.payload;
+            this.carouselProducts = data.payload;
           },
           (err) => {
             this.snotifyService.error(
@@ -92,7 +94,7 @@ export class BarcodeScanComponent implements OnInit {
       } else {
         await this.productService.addProductToFavorite(this.barcode).then(
           (data) => {
-            this.snotifyService.info('Product added to favorite');
+            this.snotifyService.info('Product added to favorites');
           },
           (err) => {
             this.snotifyService.error(

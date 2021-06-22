@@ -34,7 +34,13 @@
             </div>
 
             <div class="stock">
-              In stock ({{item.unitsAvailable}})
+              <span *ngIf="item.unitsAvailable>0" style=" color: green;">
+                In stock ({{item.unitsAvailable}})
+              </span>
+
+              <span *ngIf="item.unitsAvailable <= 0" style=" color: #c00c48;">
+                Sold
+              </span>
             </div>
           </div>
           <!-- ===================== Price ===================== -->
@@ -54,8 +60,8 @@
 
             <div style="margin: auto 8px; text-align: center;">{{item.quantity}}</div>
 
-            <button pButton pRipple type="button" (click)="plus(item)" [disabled]="item.quantity>=item.unitsAvailable" icon="pi pi-plus"
-              class="p-button-rounded p-button-plain"></button>
+            <button pButton pRipple type="button" (click)="plus(item)" [disabled]="item.quantity>=item.unitsAvailable"
+              icon="pi pi-plus" class="p-button-rounded p-button-plain"></button>
 
             <button pButton pRipple type="button" (click)="deleteProductShoppingCart(item)" icon="pi pi-trash"
               class="p-button-rounded p-button-plain  p-button-secondary delete-button"></button>
@@ -124,5 +130,3 @@
 <app-credit-card [totalBill]="productsPriceString" *ngIf="isCardPayment" (payEvent)="payOrder($event)"
   (backEvent)="deactivateCardPayment()">
 </app-credit-card>
-
-
