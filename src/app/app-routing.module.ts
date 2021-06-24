@@ -2,9 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './globals/auth-guard';
 import { RedirectGuard } from './globals/redirect-guard';
-import { BarcodeScanComponent } from './pages/barcode/barcode-scan/barcode-scan.component';
+import { BarcodeScanComponent } from './pages/product-details/barcode-scan.component';
 import { ConfirmEmailComponent } from './pages/confirm-email/confirm-email.component';
-import { CreditCardComponent } from './pages/credit-card/credit-card.component';
 import { DetectQrCodeComponent } from './pages/detect-qr-code/detect-qr-code.component';
 import { FavoriteProductsComponent } from './pages/favorite-products/favorite-products.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -19,7 +18,7 @@ const routes: Routes = [
   { path: 'confirm-email', component: ConfirmEmailComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   {
-    path: 'barcode-scan/:barcode',
+    path: 'product-details/:barcode',
     component: BarcodeScanComponent,
     canActivate: [AuthGuard],
   },

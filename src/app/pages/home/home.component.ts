@@ -37,6 +37,6 @@ export class HomeComponent implements OnInit {
   }
 
   public select(product: any) {
-    this.route.navigateByUrl('barcode-scan/' + product.barcode);
+    this.route.navigateByUrl('product-details/' + product.barcode);
   }
 }

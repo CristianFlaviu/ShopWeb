@@ -10,4 +10,5 @@ export class Product {
   public unitsAvailable: number;
   public pathToImage: string;
   public category: string;
+  public attributes: string;
 }

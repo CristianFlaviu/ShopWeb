@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ProductSearch } from 'src/app/data_models/product/product-search.model';
+import { Product } from 'src/app/data_models/product/product.model';
 import { CommandResult } from 'src/app/globals/commandResult';
 import { environment } from 'src/environments/environment';
 
@@ -9,15 +11,19 @@ import { environment } from 'src/environments/environment';
 export class ProductService {
   constructor(private httpClient: HttpClient) {}
 
-  public getAllProducts(): Promise<CommandResult<any>> {
+  public getAllProducts(): Promise<CommandResult<ProductSearch[]>> {
     return this.httpClient
-      .get<any>(environment.apiUrl + '/products/get-products')
+      .get<CommandResult<ProductSearch[]>>(
+        environment.apiUrl + '/products/get-products'
+      )
       .toPromise();
   }
 
-  public getProductByBarcode(barcode: string): Promise<CommandResult<any>> {
+  public getProductByBarcode(
+    barcode: string
+  ): Promise<CommandResult<Product>> {
     return this.httpClient
-      .get<any>(
+      .get<CommandResult<Product>>(
         environment.apiUrl + '/products/get-product-by-barcode/' + barcode
       )
       .toPromise();
@@ -25,9 +31,9 @@ export class ProductService {
 
   public getProductFromSameCategory(
     category: string
-  ): Promise<CommandResult<any>> {
+  ): Promise<CommandResult<Product[]>> {
     return this.httpClient
-      .get<any>(
+      .get<CommandResult<Product[]>>(
         environment.apiUrl + '/products/get-products-category/' + category
       )
       .toPromise();
@@ -52,7 +58,7 @@ export class ProductService {
       .toPromise();
   }
 
-  public getProductShoppingCart(): Promise<CommandResult<any>> {
+  public getProductShoppingCart(): Promise<CommandResult<Product[]>> {
     return this.httpClient
       .get<any>(environment.apiUrl + '/products/get-shopping-cart-products')
       .toPromise();
@@ -91,15 +97,19 @@ export class ProductService {
       .toPromise();
   }
 
-  public getProductFavorite(): Promise<CommandResult<any>> {
+  public getProductFavorite(): Promise<CommandResult<Product[]>> {
     return this.httpClient
-      .get<any>(environment.apiUrl + '/products/get-favorite-products')
+      .get<CommandResult<Product[]>>(
+        environment.apiUrl + '/products/get-favorite-products'
+      )
       .toPromise();
   }
 
-  public getProductsByOrderID(id: number): Promise<CommandResult<any>> {
+  public getProductsByOrderID(id: number): Promise<CommandResult<Product[]>> {
     return this.httpClient
-      .get<any>(environment.apiUrl + '/products/get-products-by-order/' + id)
+      .get<CommandResult<Product[]>>(
+        environment.apiUrl + '/products/get-products-by-order/' + id
+      )
       .toPromise();
   }
 }

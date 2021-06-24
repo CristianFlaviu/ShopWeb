@@ -30,7 +30,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { AuthGuard } from './globals/auth-guard';
 import { MatBadgeModule } from '@angular/material/badge';
 import { TableModule } from 'primeng/table';
-import { BarcodeScanComponent } from './pages/barcode/barcode-scan/barcode-scan.component';
+import { BarcodeScanComponent } from './pages/product-details/barcode-scan.component';
 import { CalendarModule } from 'primeng/calendar';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { MultiSelectModule } from 'primeng/multiselect';

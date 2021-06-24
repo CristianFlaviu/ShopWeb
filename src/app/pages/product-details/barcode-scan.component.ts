@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SnotifyService } from 'ng-snotify';
+import { Product } from 'src/app/data_models/product/product.model';
+
 import { NotificationService } from 'src/app/data_services/notification.service';
 import { ProductService } from 'src/app/data_services/products/product.service';
-import { Product } from '../models/product';
-import { ProductAttribute } from '../models/product-attribute';
+import { ProductAttribute } from '../../data_models/product/product-attribute.model';
 
 @Component({
   selector: 'app-barcode-scan',

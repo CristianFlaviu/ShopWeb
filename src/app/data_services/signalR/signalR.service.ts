@@ -33,15 +33,15 @@ export class SignalRService {
     this.hubconnection.on(
       'transferData/' + this.authService.getCurrentUser().nameid,
       (data) => {
-        this.productService.addProductToShppingCart(data).then(
-          () => {
-            this.notificationService.updateStats();
-          },
-          (err) => {
-            console.log(err);
-          }
-        );
-        this.router.navigate(['/barcode-scan', data]);
+        // this.productService.addProductToShppingCart(data).then(
+        //   () => {
+        //     this.notificationService.updateStats();
+        //   },
+        //   (err) => {
+        //     console.log(err);
+        //   }
+        // );
+        this.router.navigate(['/product-details', data]);
       }
     );
   };

@@ -103,7 +103,7 @@
             <ng-template let-myProduct pTemplate="item">
                 <div class="product-item" style="position: relative;">
                     <div class="product-item-content" style="cursor: pointer;"
-                        [routerLink]="'/barcode-scan/'+myProduct.barcode">
+                        [routerLink]="'/product-details/'+myProduct.barcode">
                         <div class="carusel-reducere">
                             {{myProduct.discount}}%
                         </div>
