@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './globals/auth-guard';
 import { RedirectGuard } from './globals/redirect-guard';
-import { BarcodeScanComponent } from './pages/product-details/barcode-scan.component';
+import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 import { ConfirmEmailComponent } from './pages/confirm-email/confirm-email.component';
 import { DetectQrCodeComponent } from './pages/detect-qr-code/detect-qr-code.component';
 import { FavoriteProductsComponent } from './pages/favorite-products/favorite-products.component';
@@ -13,13 +13,12 @@ import { OrdersHistoryComponent } from './pages/orders-history/orders-history.co
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'confirm-email', component: ConfirmEmailComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   {
     path: 'product-details/:barcode',
-    component: BarcodeScanComponent,
+    component: ProductDetailsComponent,
     canActivate: [AuthGuard],
   },
   {
@@ -27,10 +26,27 @@ const routes: Routes = [
     component: ShoppingCartComponent,
     canActivate: [AuthGuard],
   },
-  { path: 'favorite-products', component: FavoriteProductsComponent },
-  { path: 'detect-qr-code', component: DetectQrCodeComponent },
-  { path: 'orders-history', component: OrdersHistoryComponent },
-  { path: 'orders-history/:id', component: OrderHistoryDetailsComponent },
+  {
+    path: 'favorite-products',
+    component: FavoriteProductsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'detect-qr-code',
+    component: DetectQrCodeComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'orders-history',
+    component: OrdersHistoryComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'orders-history/:id',
+    component: OrderHistoryDetailsComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   {
     path: 'facebook',
     canActivate: [RedirectGuard],

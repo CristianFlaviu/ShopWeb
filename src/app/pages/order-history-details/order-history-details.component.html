@@ -93,7 +93,7 @@
           </span> 
         </div>
 
-        <button *ngIf="!(order.payments?.length>0)" mat-raised-button color="primary" (click)="activateCardPayment()">
+        <button *ngIf="!(order.payment)" mat-raised-button color="primary" (click)="activateCardPayment()">
           Pay Now
         </button>
       </div>

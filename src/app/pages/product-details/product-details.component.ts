@@ -8,18 +8,17 @@ import { ProductService } from 'src/app/data_services/products/product.service';
 import { ProductAttribute } from '../../data_models/product/product-attribute.model';
 
 @Component({
-  selector: 'app-barcode-scan',
-  templateUrl: './barcode-scan.component.html',
-  styleUrls: ['./barcode-scan.component.css'],
+  selector: 'app-product-details',
+  templateUrl: './product-details.component.html',
+  styleUrls: ['./product-details.component.css'],
 })
-export class BarcodeScanComponent implements OnInit {
+export class ProductDetailsComponent implements OnInit {
   public product: Product = new Product();
   public productAttributes: ProductAttribute[] = [];
   public attributeCategories: string[] = [];
   public pathToProductImage: string;
 
   public barcode: string;
-
   public carouselProducts: Product[];
   public isPageInfoLoaded = false;
 
