@@ -14,6 +14,7 @@ import { UserLogin } from 'src/app/data_models/authentication/user-login.model';
 import { UserRegister } from 'src/app/data_models/authentication/user-register.model';
 import { AuthentiicationService } from 'src/app/data_services/authentication/authentication.service';
 import { NotificationService } from 'src/app/data_services/notification.service';
+import { SignalRService } from 'src/app/data_services/signalR/signalR.service';
 import { UserMessages } from 'src/app/globals/constants';
 
 export function ConfirmedValidator(
@@ -93,7 +94,8 @@ export class LoginComponent implements OnInit {
     private snotifyService: SnotifyService,
     private router: Router,
     private notificationService: NotificationService,
-    private formbuilder: FormBuilder
+    private formbuilder: FormBuilder,
+    private signalRService: SignalRService
   ) {}
 
   public matcher = new MyErrorStateMatcher();
@@ -129,10 +131,11 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.userLogin.Email, this.userLogin.Password).then(
       () => {
         this.notificationService.updateStats();
+        this.signalRService.startConnection();
+        this.signalRService.addTransferData();
         this.router.navigate(['/detect-qr-code']);
       },
       (err) => {
-        console.log(err);
         switch (err.status) {
           case 401: {
             this.errorMessage = err.error;
@@ -171,8 +174,6 @@ export class LoginComponent implements OnInit {
             for (let name in this.registerForm.controls) {
               this.registerForm.controls[name].setErrors(null);
             }
-
-            console.log(this.registerForm);
           } else {
             this.snotifyService.error(data.errorMessage);
           }
@@ -181,7 +182,6 @@ export class LoginComponent implements OnInit {
           this.snotifyService.error(UserMessages.general.serverError, {
             timeout: 5000,
           });
-          console.log(err);
         });
     }
   }

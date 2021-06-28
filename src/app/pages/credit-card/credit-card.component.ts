@@ -80,8 +80,6 @@ export class CreditCardComponent implements OnInit {
   }
 
   payOrder() {
-    console.log(this.cardForm);
-
     if (this.cardForm.valid) {
       this.payEvent.emit(this.cardForm.get('cardno')?.value);
     } else {
@@ -94,11 +92,7 @@ export class CreditCardComponent implements OnInit {
   }
 
   closeDatePicker(eventData: any, dp?: any) {
-    console.log(eventData);
-    console.log(eventData._i.year);
-
     this.expDate?.setValue(new Date(eventData._i.year,eventData._i.month));
-    // get month and year from eventData and close datepicker, thus not allowing user to select date
     dp.close();
   }
 

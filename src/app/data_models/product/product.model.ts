@@ -1,6 +1,7 @@
 export class Product {
   public id: number;
   public title: string;
+  public brand: string;
   public score: number;
   public newPrice: number;
   public oldPrice: number;
@@ -11,4 +12,5 @@ export class Product {
   public pathToImage: string;
   public category: string;
   public attributes: string;
+  
 }

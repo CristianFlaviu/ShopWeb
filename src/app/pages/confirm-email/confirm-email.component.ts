@@ -23,7 +23,6 @@ export class ConfirmEmailComponent implements OnInit {
     const email = this.route.snapshot.queryParamMap.get('email');
     const token = this.route.snapshot.queryParamMap.get('token');
 
-    console.log(email, token);
     if (email && token) {
       this.authService.confirmEmail(email, token);
     }

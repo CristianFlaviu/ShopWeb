@@ -20,7 +20,6 @@ export class DetectQrCodeComponent implements OnInit {
 
   ngOnInit() {
     const user = this.authService.getCurrentUser();
-    console.log(user);
     const obj = { name: user.given_name, id: user.nameid };
     this.value = JSON.stringify(obj);
   }

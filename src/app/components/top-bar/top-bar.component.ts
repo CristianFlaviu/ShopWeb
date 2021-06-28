@@ -13,14 +13,14 @@ export class TopBarComponent implements OnInit {
   constructor(
     public authenticationService: AuthentiicationService,
     private router: Router,
-    private singalService: SignalRService,
+    private signalService: SignalRService,
     private notificationService: NotificationService
   ) {}
 
   ngOnInit() {
     if (this.authenticationService.isLoggedIn()) {
-      this.singalService.startConnection();
-      this.singalService.addTransferData();
+      this.signalService.startConnection();
+      this.signalService.addTransferData();
     }
 
     if (this.authenticationService.isLoggedIn()) {

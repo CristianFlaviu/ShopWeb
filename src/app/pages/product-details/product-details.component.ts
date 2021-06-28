@@ -66,16 +66,19 @@ export class ProductDetailsComponent implements OnInit {
 
           this.isPageInfoLoaded = true;
         },
-        (err) => console.log(err)
+        () =>
+          this.snotifyService.error('An error occured, please try again later')
       );
 
       this.productService
         .getProductFromSameCategory(this.product.category)
         .then(
           (data) => {
-            this.carouselProducts = data.payload;
+            this.carouselProducts = data.payload.filter(
+              (x) => x.barcode !== this.barcode
+            );
           },
-          (err) => {
+          () => {
             this.snotifyService.error(
               'An error occured, please try again later'
             );
@@ -86,17 +89,16 @@ export class ProductDetailsComponent implements OnInit {
 
   public async addProductToFavorite() {
     await this.productService.getProductFavorite().then(async (data) => {
-      console.log('fav product', data);
       if (
         data.payload.filter((x: any) => x.barcode === this.barcode).length > 0
       ) {
         this.snotifyService.info('Product already added to favorites');
       } else {
         await this.productService.addProductToFavorite(this.barcode).then(
-          (data) => {
+          () => {
             this.snotifyService.info('Product added to favorites');
           },
-          (err) => {
+          () => {
             this.snotifyService.error(
               'An error occured, please try again later'
             );
@@ -109,17 +111,16 @@ export class ProductDetailsComponent implements OnInit {
 
   public async addProductToShoppingCart() {
     await this.productService.getProductShoppingCart().then(async (data) => {
-      console.log('add product', data);
       if (
         data.payload.filter((x: any) => x.barcode === this.barcode).length > 0
       ) {
         this.snotifyService.info('Product already added to the cart');
       } else {
         await this.productService.addProductToShppingCart(this.barcode).then(
-          (data) => {
+          () => {
             this.snotifyService.info('Product added to the cart');
           },
-          (err) => {
+          () => {
             this.snotifyService.error(
               'An error occured, please try again later'
             );

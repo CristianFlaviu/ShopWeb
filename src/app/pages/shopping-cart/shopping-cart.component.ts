@@ -93,6 +93,7 @@ export class ShoppingCartComponent implements OnInit {
     this.products = this.products.filter((x) => x !== item);
     await this.productService.deleteProductToShppingCart(item?.barcode).then(
       () => {
+        this.computeTotalPrice();
         this.snotifyService.info('Product deleted from shopping cart');
       },
       () => {
@@ -112,13 +113,13 @@ export class ShoppingCartComponent implements OnInit {
 
   public payOrder(cardNumber: string) {
     this.orderService.placeOrderWithPayment(cardNumber).then(
-      (data) => {
+      () => {
         this.snotifyService.success('Payment Succeeded');
         this.notificationService.updateStats();
         this.route.navigate(['/home']);
       },
-      (err) => {
-        console.log(err);
+      () => {
+        this.snotifyService.error('An error occured, please try again later');
       }
     );
   }
@@ -136,7 +137,10 @@ export class ShoppingCartComponent implements OnInit {
 
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '250px',
-      data: { total: Number(this.productsPrice).toFixed(2), limitDate: nextWeek },
+      data: {
+        total: Number(this.productsPrice).toFixed(2),
+        limitDate: nextWeek,
+      },
     });
 
     dialogRef.afterClosed().subscribe((result) => {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SnotifyService } from 'ng-snotify';
 import { OrderService } from 'src/app/data_services/products/order.service';
 
 @Component({
@@ -17,7 +18,11 @@ export class OrdersHistoryComponent implements OnInit {
   ];
   public tableData: any;
   public isPageInfoLoade = false;
-  constructor(private orderService: OrderService, private router: Router) {}
+  constructor(
+    private orderService: OrderService,
+    private router: Router,
+    private snotifyService: SnotifyService
+  ) {}
 
   ngOnInit() {
     this.orderService.getOrders().then(
@@ -29,16 +34,14 @@ export class OrdersHistoryComponent implements OnInit {
         });
 
         this.isPageInfoLoade = true;
-        console.log('orders', data);
       },
       (err) => {
-        console.log(err);
+        this.snotifyService.error('An error occured, please try again later');
       }
     );
   }
 
   onRowSelect(event: any) {
-    console.log(event.data);
     this.router.navigate(['/orders-history', event.data.id]);
   }
 }

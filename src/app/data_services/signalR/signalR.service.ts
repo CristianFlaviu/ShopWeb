@@ -38,7 +38,6 @@ export class SignalRService {
         //     this.notificationService.updateStats();
         //   },
         //   (err) => {
-        //     console.log(err);
         //   }
         // );
         this.router.navigate(['/product-details', data]);

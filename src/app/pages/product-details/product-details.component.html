@@ -59,8 +59,7 @@
                 </div>
 
                 <div class="space-div">
-                    <i class="pi pi-calendar"></i> &nbsp; Expiration Date : {{product.availability |date : 'dd/MM/yyyy'
-                    }}
+                    <i class="pi pi-tag"></i> &nbsp; Brand : {{product.brand}}
                 </div>
                 <div class="space-div">
                     <i class="pi pi-credit-card"></i> &nbsp; Barcode : {{product.barcode}}
@@ -94,7 +93,7 @@
 <!--  ==================== Carousel ==================-->
 <div style="background: #e9ebee;">
     <div style="margin: auto; width: 70%;">
-        <p-carousel id="carouselID" [value]="carouselProducts" [numVisible]="4" [numScroll]="1" [circular]="true"
+        <p-carousel id="carouselID" [value]="carouselProducts" [numVisible]="5" [numScroll]="1" [circular]="true"
             [autoplayInterval]="10000" [responsiveOptions]="responsiveOptions">
             <ng-template pTemplate="header">
                 <span class="header-carusel">We also recommend you </span>

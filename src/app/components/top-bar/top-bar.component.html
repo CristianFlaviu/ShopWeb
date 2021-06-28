@@ -40,15 +40,20 @@
   </mat-toolbar>
 
 
+  <!-- ===== mobile ======= -->
   <mat-sidenav-container fxFlexFill class="example-container">
 
     <mat-sidenav color="primary" #sidenav fxLayout="column" mode="over" opened="false" fxHide.gt-sm="true">
       <div fxLayout="column">
         <button *ngIf="authenticationService.isLoggedIn()" mat-button (click)="navigateOnClickTitle()"> Home</button>
-        <button *ngIf="authenticationService.isLoggedIn()" mat-button routerLink="/shopping-cart">Shopping
-          Cart</button>
-        <button *ngIf="authenticationService.isLoggedIn()" mat-button routerLink="/favorite-products">Favourite
+        <button *ngIf="authenticationService.isLoggedIn()" routerLink="/detect-qr-code" mat-menu-item>Connect Raspberry
         </button>
+        <button *ngIf="authenticationService.isLoggedIn()" mat-button routerLink="/shopping-cart"> Shopping
+          Cart</button>
+        <button *ngIf="authenticationService.isLoggedIn()" mat-button routerLink="/favorite-products"> Favourite
+        </button>
+        <button *ngIf="authenticationService.isLoggedIn()" routerLink="/orders-history" mat-menu-item>Orders
+          History</button>
         <button *ngIf="authenticationService.isLoggedIn()" (click)="logout()" mat-button>Logout</button>
       </div>
     </mat-sidenav>
@@ -56,8 +61,8 @@
     <mat-sidenav-content fxFlexFill>
       <router-outlet></router-outlet>
     </mat-sidenav-content>
-    
+
   </mat-sidenav-container>
 
-<app-footer></app-footer>
+  <app-footer></app-footer>
 </div>
