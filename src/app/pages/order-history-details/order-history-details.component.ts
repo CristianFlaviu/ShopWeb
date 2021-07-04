@@ -14,6 +14,8 @@ import { UserMessages } from 'src/app/globals/constants';
 export class OrderHistoryDetailsComponent implements OnInit {
   public products: any[] = [];
   public productsPrice: string;
+  public interest: string;
+  public totalCost: string;
   public deliveryCost = 0;
 
   public isCardPayment = false;
@@ -35,7 +37,11 @@ export class OrderHistoryDetailsComponent implements OnInit {
     await this.orderService.getOrderById(id).then((data) => {
       if (data.isSuccess) {
         this.order = data.payload;
-        this.productsPrice = Number(data.payload.invoiceAmount).toFixed(2);
+        this.productsPrice = Number(data.payload.productsCost).toFixed(2);
+        this.interest = Number(data.payload.interest).toFixed(2);
+        this.totalCost = Number(
+          data.payload.productsCost + data.payload.interest
+        ).toFixed(2);
       } else {
         this.snotifyService.error(UserMessages.general.serverError);
       }

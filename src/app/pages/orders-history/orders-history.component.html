@@ -23,9 +23,8 @@
       <div class="title">
         Orders
       </div>
-
       <p-table [columns]="cols" [value]="tableData" styleClass='order-table' [rowHover]="true"
-        (onRowSelect)="onRowSelect($event)" selectionMode="single">
+        (onRowSelect)="onRowSelect($event)" selectionMode="single" [autoLayout]="true">
 
         <ng-template pTemplate="header">
           <tr>
@@ -38,14 +37,14 @@
           <tr [pSelectableRow]="order">
             <td>{{order['id']}} </td>
             <td>{{order['orderDate'] | date:'dd.MM.yyyy'}} </td>
-            <td>{{order['invoiceAmount']}} Lei</td>
+            <td>{{order['productsCost'] + order['interest']}} Lei</td>
             <td>
               <mat-icon *ngIf="!(order.payment)" color="warn">close</mat-icon>
               <mat-icon *ngIf="order.payment" style="color: green;">done</mat-icon>
             </td>
 
-            <td>{{order['limitDate'] | date:'dd.MM.yyyy'}}</td>
-           
+            <td>{{order['dueDate'] | date:'dd.MM.yyyy'}}</td>
+
           </tr>
         </ng-template>
 

@@ -5,18 +5,28 @@ import { ProductService } from './products/product.service';
   providedIn: 'root',
 })
 export class NotificationService {
-  public favorite: number;
-  public shoppingCart: number;
+  public favorite: number | null;
+  public shoppingCart: number | null;
 
   constructor(private productService: ProductService) {}
 
   public updateStats() {
-    this.productService.getProductShoppingCart().then((data) => {
-      this.shoppingCart = data.payload.length;
-    });
+    this.productService.getProductShoppingCart().then(
+      (data) => {
+        this.shoppingCart = data.payload.length;
+      },
+      () => {
+        this.shoppingCart = null;
+      }
+    );
 
-    this.productService.getProductFavorite().then((data) => {
-      this.favorite = data.payload.length;
-    });
+    this.productService.getProductFavorite().then(
+      (data) => {
+        this.favorite = data.payload.length;
+      },
+      () => {
+        this.favorite = null;
+      }
+    );
   }
 }

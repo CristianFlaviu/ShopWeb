@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SnotifyService } from 'ng-snotify';
 import { Product } from 'src/app/data_models/product/product.model';
 
@@ -43,6 +43,7 @@ export class ProductDetailsComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private activatedRoute: ActivatedRoute,
+    private route: Router,
     private notificationService: NotificationService,
     private snotifyService: SnotifyService
   ) {}
@@ -53,27 +54,34 @@ export class ProductDetailsComponent implements OnInit {
 
       await this.productService.getProductByBarcode(this.barcode + '').then(
         (data) => {
-          this.product = data.payload;
-          this.productAttributes = [];
-          JSON.parse(data.payload?.attributes).forEach(
-            (element: ProductAttribute) => {
-              this.productAttributes.push(element);
-              if (!this.attributeCategories.includes(element.InfoCategory)) {
-                this.attributeCategories.push(element.InfoCategory);
+          console.log(data);
+          if (data.payload == null) {
+            this.route.navigate(['home']);
+            this.snotifyService.error('Product not found');
+          } else {
+            this.product = data.payload;
+            this.productAttributes = [];
+            JSON.parse(data.payload?.attributes).forEach(
+              (element: ProductAttribute) => {
+                this.productAttributes.push(element);
+                if (!this.attributeCategories.includes(element.InfoCategory)) {
+                  this.attributeCategories.push(element.InfoCategory);
+                }
               }
-            }
-          );
+            );
 
-          this.isPageInfoLoaded = true;
+            this.isPageInfoLoaded = true;
+          }
         },
         () =>
           this.snotifyService.error('An error occured, please try again later')
       );
 
-      this.productService
+      await this.productService
         .getProductFromSameCategory(this.product.category)
         .then(
           (data) => {
+            this.carouselProducts = [];
             this.carouselProducts = data.payload.filter(
               (x) => x.barcode !== this.barcode
             );

@@ -7,7 +7,6 @@
             <div class="product-title">
                 {{product?.title}}
             </div>
-
             <img src='{{product?.pathToImage }}' alt="product" class="product-image">
         </div>
         <!-- right -->
@@ -21,7 +20,7 @@
                 <div style="color: gray;">
                     <span style="font-size: 21px;margin-left: 4px;">
                         {{ product.score}}
-                    </span>  
+                    </span>
                     <span>
                         (10 reviews)
                     </span>
@@ -47,8 +46,8 @@
                 </button>
             </div>
             <div class="desktop-info">
-                <div class="first-info-div">
-                    <i class="pi pi-check-circle"></i>&nbsp; Disponibilitate :
+                <div style="margin-top: 20px;">
+                    <i class="pi pi-check-circle"></i>&nbsp; Availability :
                     <span *ngIf="product.unitsAvailable > 0" style="  color: #00985f;"> In
                         stock <span style="color: #00985f;">({{product?.unitsAvailable}})</span>
                     </span>
@@ -61,6 +60,7 @@
                 <div class="space-div">
                     <i class="pi pi-tag"></i> &nbsp; Brand : {{product.brand}}
                 </div>
+
                 <div class="space-div">
                     <i class="pi pi-credit-card"></i> &nbsp; Barcode : {{product.barcode}}
                 </div>
@@ -69,8 +69,9 @@
     </div>
 
     <div class="info-mobile">
-        <div class="first-info-div">
-            <i class="pi pi-check-circle"></i>&nbsp; Disponibilitate :
+
+        <div class="p-col-9" style="margin-top: 10px;">
+            <i class="pi pi-check-circle"></i>&nbsp; Availabity :
             <span *ngIf="product.unitsAvailable > 0" style="  color: #00985f;"> In
                 stock <span style="color: #00985f;">({{product?.unitsAvailable}})</span>
             </span>
@@ -78,20 +79,18 @@
             <span *ngIf="product.unitsAvailable <= 0" style="  color: #c00c48;">
                 Sold
             </span>
-
-
         </div>
 
-        <div class="space-div">
-            <i class="pi pi-calendar"></i> &nbsp; Data Expirarii : {{product.availability |date : 'dd/MM/yyyy' }}
+        <div class="p-col-9">
+            <i class="pi pi-tag"></i> &nbsp; Brand : {{product.brand}}
         </div>
-        <div class="space-div">
+        <div class="p-col-9">
             <i class="pi pi-credit-card"></i> &nbsp; Barcode : {{product.barcode}}
         </div>
     </div>
 </div>
 <!--  ==================== Carousel ==================-->
-<div style="background: #e9ebee;">
+<div *ngIf="isPageInfoLoaded" style="background: #e9ebee;">
     <div style="margin: auto; width: 70%;">
         <p-carousel id="carouselID" [value]="carouselProducts" [numVisible]="5" [numScroll]="1" [circular]="true"
             [autoplayInterval]="10000" [responsiveOptions]="responsiveOptions">
@@ -115,6 +114,7 @@
                         <p-rating [(ngModel)]="myProduct.score" [readonly]="true" [stars]="5" [cancel]="false"
                             class="carusel-stars">
                         </p-rating>
+                        {{myProduct.score}}
                         <div style="font-size: 13px;">
                             <span style="text-decoration: line-through;"> {{myProduct.oldPrice}} Lei </span>
                             ( {{myProduct.discount}} %)
@@ -132,7 +132,7 @@
 </div>
 
 
-<div style="width: 75%; margin:auto; padding-bottom: 100px;">
+<div *ngIf="isPageInfoLoaded" class="product-attributes">
 
     <div class="specifations">
         Specifications
@@ -146,9 +146,9 @@
         <p-table styleClass="p-datatable-sm" [value]=[1]>
             <ng-template pTemplate="body" let-product>
                 <tr *ngFor="let atr of productAttributes">
-                    
+
                     <td *ngIf="atr.InfoCategory==item" style="font-weight: bold;">{{atr.Name}}</td>
-                    <td *ngIf="atr.InfoCategory==item" >{{atr.Value}}</td>
+                    <td *ngIf="atr.InfoCategory==item">{{atr.Value}}</td>
                 </tr>
             </ng-template>
         </p-table>
@@ -157,7 +157,7 @@
 </div>
 
 
-    <!-- <div style="font-size: 20px;margin:20px 0;">
+<!-- <div style="font-size: 20px;margin:20px 0;">
         Informatii Lapte
     </div>
     <p-table styleClass="p-datatable-sm" [value]=[1]>

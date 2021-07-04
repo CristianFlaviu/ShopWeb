@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://localhost:5001',
-  apiSignalR: 'https://localhost:5001/chathub',
+  apiUrl: 'http://40.68.136.232/api',
+  apiSignalR: 'http://40.68.136.232/api/chathub',
 };

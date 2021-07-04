@@ -1,38 +1,30 @@
 <div class="title">
-  Find a product
+    Find a product
 </div>
 
-<div class="autocomplete-div">
+<div>
 
-  <p-autoComplete [(ngModel)]="product" [suggestions]="productsSuggestion" (completeMethod)="filterProducts($event)"
-    [dropdown]="true" placeholder='Type the barcode' field="barcode" inputStyleClass='input-autocomplete'
-    (onSelect)="select($event)" [size]="40">
+    <p-autoComplete [(ngModel)]="product" [suggestions]="productsSuggestion" (completeMethod)="filterProducts($event)"
+        [dropdown]="true" placeholder='Type the barcode' field="barcode" inputStyleClass='input-autocomplete'
+        (onSelect)="select($event)" [size]="40" [panelStyle]="{'backgroud':'red', color:'red','width':'50px'}" appendTo="body">
 
-    <ng-template let-product pTemplate="item">
-      <div class="list-products">
-        <div class="p-col-3">
-          <img src='{{product.pathToImage}}' class="small-image" />
-        </div>
-        <div class="p-col-6 barcode">
-          <div>
-            {{product.shortTitle}}
-          </div>
-          <div>
-            {{product.barcode}}
-          </div>
-
-        </div>
-      </div>
-    </ng-template>
-  </p-autoComplete>
-  <!-- <span class="p-inputgroup-addon" style="height: 50px;">
-    <i class="pi pi-search"></i></span> -->
+        <ng-template let-product pTemplate="item">
+            <div class="list-products">
+                <div class="p-col-3">
+                    <img src='{{product.pathToImage}}' class="small-image" />
+                </div>
+                <div class="p-col-7 barcode">
+                    {{product.shortTitle}}
+                </div>
+            </div>
+        </ng-template>
+    </p-autoComplete>
 
 </div>
 
 <div class="main-image-div">
-  <img src="https://i.ibb.co/Cn3Ygy8/virtual-shopping-assistant-674x400.png" alt="virtual-shopping-assistant-674x400"
-    class="main-image">
+    <img src="https://i.ibb.co/Cn3Ygy8/virtual-shopping-assistant-674x400.png" alt="virtual-shopping-assistant-674x400"
+        class="main-image">
 </div>
 
 

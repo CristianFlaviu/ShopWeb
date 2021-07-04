@@ -27,7 +27,7 @@
             <img src='{{item?.pathToImage }}' class="small-image">
           </div>
           <!-- ===================== Title ===================== -->
-          <div class="title-div" [routerLink]="'/product-details/'+item?.barcode">
+          <div class="p-col-4 title-div" [routerLink]="'/product-details/'+item?.barcode">
 
             <div class="title-product ">
               {{item?.title}}
@@ -44,7 +44,7 @@
             </div>
           </div>
           <!-- ===================== Price ===================== -->
-          <div class="price">
+          <div class="p-col-2 price">
             <div class="newprice">
               {{item?.newPrice}} Lei
             </div>
@@ -54,7 +54,7 @@
             </div>
           </div>
           <!-- ===================== Buttons ===================== -->
-          <div class="buttons">
+          <div class="p-col-3 buttons desktopDevice">
             <button pButton pRipple type="button" (click)="minus(item)" [disabled]="item.quantity<=1" icon="pi pi-minus"
               class="p-button-rounded p-button-plain p-button-danger"></button>
 
@@ -65,6 +65,21 @@
 
             <button pButton pRipple type="button" (click)="deleteProductShoppingCart(item)" icon="pi pi-trash"
               class="p-button-rounded p-button-plain  p-button-secondary delete-button"></button>
+
+          </div>
+
+          <div class="p-col-3 buttons mobileDevice">
+
+            <button pButton pRipple type="button" (click)="deleteProductShoppingCart(item)" icon="pi pi-trash"
+              class="p-button-rounded p-button-plain  p-button-secondary delete-button"></button>
+            <div style="margin: auto 8px; text-align: center;">{{item.quantity}}</div>
+
+            <button pButton pRipple type="button" (click)="plus(item)" [disabled]="item.quantity>=item.unitsAvailable"
+              icon="pi pi-plus" class="p-button-rounded p-button-plain"></button>
+
+            <button pButton pRipple type="button" (click)="minus(item)" [disabled]="item.quantity<=1" icon="pi pi-minus"
+              class="p-button-rounded p-button-plain p-button-danger"></button>
+
 
           </div>
         </div>

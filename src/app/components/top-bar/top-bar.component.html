@@ -13,7 +13,7 @@
     <span class="example-spacer"></span>
     <div fxShow="true" fxHide.lt-md="true">
 
-      <div *ngIf="authenticationService.isLoggedIn()">
+      <div *ngIf="authenticationService.isLoggedIn() && getShopC()!=null && getFav()!=null">
         <button mat-button routerLink='shopping-cart'>
           <mat-icon [matBadge]="getShopC()" matBadgeColor="warn" class="icon-align">
             shopping_cart</mat-icon>

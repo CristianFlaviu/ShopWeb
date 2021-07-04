@@ -1,22 +1,5 @@
 <div class="page" *ngIf="isPageInfoLoaded && !isCardPayment">
 
-  <div *ngIf="products.length==0" style="width: 80%;margin:5px auto;">
-    <p-card styleClass='empty-shop-cart'>
-
-      <ng-template pTemplate="header">
-        Your Shopping Cart is Empty
-      </ng-template>
-
-      <img class="empty-cart-image" src="https://i.ibb.co/q14vMsW/emc.png" alt="emc">
-      <ng-template pTemplate="footer">
-        <button mat-raised-button color="primary" routerLink='/home'>
-          <mat-icon>
-            search</mat-icon> Find a Product
-        </button>
-      </ng-template>
-    </p-card>
-  </div>
-
   <div *ngIf="products.length!=0" class="list-products-div">
     <p-card>
       <div *ngFor="let item of products">
@@ -47,7 +30,7 @@
       </div>
 
       <ng-template pTemplate="footer">
-        <span style="font-size: 20px; font-weight: 500;"> Total Price: {{productsPrice}} Lei</span>
+        <span style="font-size: 20px; font-weight: 500;"> Products Price: {{productsPrice}} Lei</span>
       </ng-template>
     </p-card>
   </div>
@@ -64,7 +47,7 @@
           Products Cost
         </div>
         <div class="p-col-6" style="text-align: right;">
-          {{productsPrice }} lei
+          {{order.productsCost }} lei
         </div>
       </div>
 
@@ -77,6 +60,15 @@
         </div>
       </div>
 
+      <div class="p-grid" *ngIf="order.interest>0">
+        <div class="p-col-6">
+          Interest
+        </div>
+        <div class="p-col-6" style="text-align: right;">
+          {{interest}} lei
+        </div>
+      </div>
+
       <p-divider></p-divider>
 
       <div style="font-weight: bold; font-size: 20px;">
@@ -86,11 +78,11 @@
       <div style="display: flex;justify-content:space-between;">
 
         <div style="font-weight: bold; font-size: 25px;">
-          {{productsPrice}} 
+          {{totalCost}}
           <span style="font-size: 18px;">
             <!-- .00 -->
             Lei
-          </span> 
+          </span>
         </div>
 
         <button *ngIf="!(order.payment)" mat-raised-button color="primary" (click)="activateCardPayment()">
@@ -109,12 +101,12 @@
         </div>
       </div>
 
-      <div *ngIf="order.payments?.length>0" class="p-grid">
+      <div *ngIf="order.payment" class="p-grid">
         <div class="p-col-6">
           Payment Date
         </div>
         <div class="p-col-6" style="text-align: right;">
-          {{order.payments[0].date | date :"dd.MM.yyyy"}}
+          {{order.payment.date | date :"dd.MM.yyyy"}}
         </div>
       </div>
     </p-card>
@@ -123,7 +115,7 @@
 
 <!-- credit cart  -->
 
-<app-credit-card [totalBill]="productsPrice" *ngIf="isCardPayment" (backEvent)="deactivateCardPayment()"
+<app-credit-card [totalBill]="totalCost" *ngIf="isCardPayment" (backEvent)="deactivateCardPayment()"
   (payEvent)="payOrder($event)">
 
 </app-credit-card>

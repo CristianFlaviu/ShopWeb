@@ -4,6 +4,7 @@
   font-family: "SanaSansAltBold", sans-serif;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .title {
@@ -14,8 +15,9 @@
 }
 
 :host ::ng-deep .order-table {
-  width: 80%;
-  margin: 5% auto;
+  margin-top: 8%;
+   width: 75vw; 
+  /* margin: 5% auto; */
 }
 
 

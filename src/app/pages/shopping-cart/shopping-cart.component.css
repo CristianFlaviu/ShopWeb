@@ -12,19 +12,19 @@
 }
 
 .small-image {
-  height: 70px;
+  height: 45px;
 }
 .div-image {
   text-align: center;
 }
 
 .title-div {
+  padding: 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: center;
   align-content: center;
-  width: 25%;
   cursor: pointer;
 }
 
@@ -47,7 +47,6 @@
   justify-content: flex-end;
   align-items: center;
   align-content: center;
-  width: 18%;
 }
 
 .newprice {
@@ -55,6 +54,15 @@
   font-weight: bold;
   width: 60%;
 }
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+
 
 .total-comanda {
   width: 100%;
@@ -89,9 +97,22 @@
   text-align: end;
 }
 
+.desktopDevice{
+  display: none;
+}
+.mobileDevice{
+  display: flex;
+}
+
 @media only screen and (min-width: 480px) {
   .delete-button {
     margin-left: 15px;
+  }
+  .desktopDevice{
+    display: flex;
+  }
+  .mobileDevice{
+    display: none;
   }
 }
 
@@ -157,10 +178,3 @@
   color: gray;
 }
 
-.buttons {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  width: 30%;
-}

@@ -5,23 +5,19 @@
   margin: 5% 0 1% 0;
 }
 
-.autocomplete-div {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
-  height: 100px;
-}
-
 /* span above input*/
 :host ::ng-deep .p-autocomplete {
-  width: 450px;
+  width: 80%;
+  display: flex;
+  margin: auto;
+
   button {
     height: 50px;
     margin-top: 5%;
   }
 }
 
-/* search input */
+/* ==== search input ========*/
 :host ::ng-deep .input-autocomplete {
   width: 80%;
   height: 50px;
@@ -36,43 +32,53 @@
   .small-image {
     width: 40%;
   }
-  .barcode {
-    padding-right: 15%;
-  }
 }
 
-/* ======= main image =======*/
+/* ======= image =======*/
 .main-image-div {
   display: flex;
   justify-content: center;
   align-content: center;
-  margin-top: 2%;
+  margin-top: 25%;
+  margin-bottom: 100px;
+}
+.main-image {
+  height: 150px;
+}
 
+@media only screen and (min-width: 768px) {
+  .main-image-div {
+    margin-top: 3%;
+  }
   .main-image {
     height: 300px;
   }
-}
 
-@media only screen and (max-width: 640px) {
   :host ::ng-deep .p-autocomplete {
-    width: 250px;
-  }
-
-  .small-image {
-    width: 40%;
-  }
-
-  :host ::ng-deep .p-autocomplete-panel
-  {
-    width: 50%;
-    word-break: break-all;
-  }
-
-  /* ======= main image ======= */
-  .main-image-div {
-    margin-top: 25%;
-    .main-image {
-      height: 150px;
-    }
+    width: 35%;
   }
 }
+
+// @media only screen and (max-width: 640px) {
+//   :host ::ng-deep .p-autocomplete {
+//     width: 250px;
+//   }
+
+//   .small-image {
+//     width: 40%;
+//   }
+
+//   :host ::ng-deep .p-autocomplete-panel
+//   {
+//     width: 50%;
+//     word-break: break-all;
+//   }
+
+//   /* ======= main image ======= */
+//   .main-image-div {
+//     margin-top: 25%;
+//     .main-image {
+//       height: 150px;
+//     }
+//   }
+// }

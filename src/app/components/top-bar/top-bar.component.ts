@@ -29,8 +29,8 @@ export class TopBarComponent implements OnInit {
   }
 
   public logout() {
-    this.notificationService.favorite = 0;
-    this.notificationService.shoppingCart = 0;
+    this.notificationService.favorite = null;
+    this.notificationService.shoppingCart = null;
     this.authenticationService.logout();
     this.router.navigate(['/']);
   }
