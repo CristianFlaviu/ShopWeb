@@ -51,11 +51,4 @@ export class AuthentiicationService {
   public logout(): void {
     this.oautth.logOut();
   }
-  // public refreshToken() {
-  //   this.oautth.refreshToken();
-  // }
-
-  // public GetWeather() {
-  //   return this.http.get('https://localhost:5001/WeatherForecast').toPromise();
-  // }
 }
